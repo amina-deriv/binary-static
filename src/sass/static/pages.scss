@@ -959,11 +959,8 @@ body #not_authenticated_financial ul.checked > li {
         .onfido-sdk-ui-NavigationBar-back {
             background: transparent;
         }
-        .onfido-sdk-ui-crossDevice-CrossDeviceLink-numberInputSection {
-            .ods-button.-action--primary {
-                height: 100%;
-                font-size: 0.875em;
-            }
+        .onfido-sdk-ui-Button-button-primary:hover {
+            background: rgb(53, 63, 244); // Onfido's primary color
         }
         .onfido-sdk-ui-Button-button-outline:hover {
             background-color: transparent;
@@ -973,6 +970,7 @@ body #not_authenticated_financial ul.checked > li {
             color: $COLOR_BLACK;
             border-radius: 0;
         }
+        /** TODO: To re-implement style overrides when upgrading Onfido version
         .onfido-sdk-ui-Theme-textButton:hover {
             color: $COLOR_BLACK;
         }
@@ -987,14 +985,14 @@ body #not_authenticated_financial ul.checked > li {
                     background: rgb(92, 108, 255);
                 }
             }
-        }
+        } **/
         input, textarea {
             &:hover, &:focus {
                 outline: 0;
                 border: none;
             }
         }
-        button:not(.onfido-sdk-ui-Theme-link):not(.ods-button) {
+        button:not(.onfido-sdk-ui-Theme-link):not(.onfido-sdk-ui-Button-button-primary) {
             &:hover, &:focus {
                 background-color: inherit;
             }
@@ -1638,6 +1636,41 @@ body #not_authenticated_financial ul.checked > li {
             @media screen and (max-width: 931px) {
                 margin: 15px 15px 20px;
             }
+        }
+    }
+}
+
+.deactivated-account-content {
+    text-align: center;
+
+    .close-user-account {
+        height: 25vh;
+
+        .msg_main_modal {
+            .notice-msg {
+                background-color: transparent;
+                height: auto;
+                margin: auto;
+
+                img {
+                    width: 4rem;
+                    margin-bottom: 1rem;
+                }
+                p {
+                    font-weight: 500;
+                }
+                h1 {
+                    @media (max-width: 500px) {
+                        font-size: 30px;
+                    }
+                }
+                @media (max-width: 500px) {
+                    width: 90%;
+                }
+            }
+        }
+        @media (max-width: 500px) {
+            margin-bottom: 5rem;
         }
     }
 }
