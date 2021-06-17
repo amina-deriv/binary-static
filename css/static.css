@@ -1637,38 +1637,38 @@ body #not_authenticated_financial ul.checked > li {
   margin-left: 5px;
   margin-bottom: 3px; }
 
-.authentication #onfido .onfido-sdk-ui-NavigationBar-back {
-  background: transparent; }
+.authentication #onfido {
+  /** TODO: To re-implement style overrides when upgrading Onfido version
+        .onfido-sdk-ui-Theme-textButton:hover {
+            color: $COLOR_BLACK;
+        }
+        .onfido-sdk-ui-CustomFileInput-container {
+            .onfido-sdk-ui-Theme-button-lg {
+                background: rgb(54, 64, 245);
+            }
+            button {
+                background: transparent;
 
-.authentication #onfido .onfido-sdk-ui-crossDevice-CrossDeviceLink-numberInputSection .ods-button.-action--primary {
-  height: 100%;
-  font-size: 0.875em; }
-
-.authentication #onfido .onfido-sdk-ui-Button-button-outline:hover {
-  background-color: transparent; }
-
-.authentication #onfido .onfido-sdk-ui-crossDevice-CrossDeviceLink-copyToClipboard {
-  background: #fff;
-  color: #000;
-  border-radius: 0; }
-
-.authentication #onfido .onfido-sdk-ui-Theme-textButton:hover {
-  color: #000; }
-
-.authentication #onfido .onfido-sdk-ui-CustomFileInput-container .onfido-sdk-ui-Theme-button-lg {
-  background: #3640f5; }
-
-.authentication #onfido .onfido-sdk-ui-CustomFileInput-container button {
-  background: transparent; }
-  .authentication #onfido .onfido-sdk-ui-CustomFileInput-container button:hover {
-    background: #5c6cff; }
-
-.authentication #onfido input:hover, .authentication #onfido input:focus, .authentication #onfido textarea:hover, .authentication #onfido textarea:focus {
-  outline: 0;
-  border: none; }
-
-.authentication #onfido button:not(.onfido-sdk-ui-Theme-link):not(.ods-button):hover, .authentication #onfido button:not(.onfido-sdk-ui-Theme-link):not(.ods-button):focus {
-  background-color: inherit; }
+                &:hover {
+                    background: rgb(92, 108, 255);
+                }
+            }
+        } **/ }
+  .authentication #onfido .onfido-sdk-ui-NavigationBar-back {
+    background: transparent; }
+  .authentication #onfido .onfido-sdk-ui-Button-button-primary:hover {
+    background: #353ff4; }
+  .authentication #onfido .onfido-sdk-ui-Button-button-outline:hover {
+    background-color: transparent; }
+  .authentication #onfido .onfido-sdk-ui-crossDevice-CrossDeviceLink-copyToClipboard {
+    background: #fff;
+    color: #000;
+    border-radius: 0; }
+  .authentication #onfido input:hover, .authentication #onfido input:focus, .authentication #onfido textarea:hover, .authentication #onfido textarea:focus {
+    outline: 0;
+    border: none; }
+  .authentication #onfido button:not(.onfido-sdk-ui-Theme-link):not(.onfido-sdk-ui-Button-button-primary):hover, .authentication #onfido button:not(.onfido-sdk-ui-Theme-link):not(.onfido-sdk-ui-Button-button-primary):focus {
+    background-color: inherit; }
 
 .authentication .fields > .gr-row > div > .button {
   display: block;
@@ -1978,6 +1978,67 @@ body #not_authenticated_financial ul.checked > li {
       #content.economic_calendar-content .calendar-container .calendar-footer .right a {
         padding: 0 2px; }
 
+.welcome-content a:hover {
+  text-decoration: none; }
+
+.welcome-content-container {
+  margin: 0 auto;
+  width: 80%; }
+  @media only screen and (max-width: 768px) {
+    .welcome-content-container {
+      width: 100%; } }
+
+.welcome-content-box {
+  max-height: 86px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  border-radius: 9px;
+  margin-top: 10px; }
+  .welcome-content-box-desc {
+    overflow: hidden;
+    text-align: left;
+    margin-left: 15px;
+    width: 80%;
+    font-weight: 500; }
+    @media only screen and (max-width: 576px) {
+      .welcome-content-box-desc {
+        font-size: 13px;
+        margin-top: 0.6rem;
+        width: 70%;
+        word-wrap: break-word;
+        margin-left: 8px; } }
+    .welcome-content-box-desc p {
+      margin: 0.4em 0;
+      line-height: 1.2em; }
+    .welcome-content-box-desc p.default:first-of-type {
+      margin-top: 1.1rem; }
+  .welcome-content-box-sub-options {
+    width: 100%;
+    font-size: 12px;
+    color: #000; }
+    @media only screen and (max-width: 576px) {
+      .welcome-content-box-sub-options {
+        font-size: xx-small; } }
+    .welcome-content-box-sub-options span {
+      padding: 0 0.5rem;
+      border-left: 0.5px solid #999999; }
+      @media only screen and (max-width: 576px) {
+        .welcome-content-box-sub-options span {
+          padding: 0 0.2rem; } }
+  .welcome-content-box-arrow {
+    width: 5%;
+    position: relative; }
+    .welcome-content-box-arrow-image img {
+      position: absolute;
+      top: 50%; }
+
 .welcome-content .box-grid .box {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -2200,6 +2261,29 @@ body #not_authenticated_financial ul.checked > li {
     @media screen and (max-width: 931px) {
       .why-us-content .awards-section .horizontal-margin {
         margin: 15px 15px 20px; } }
+
+.deactivated-account-content {
+  text-align: center; }
+  .deactivated-account-content .close-user-account {
+    height: 25vh; }
+    .deactivated-account-content .close-user-account .msg_main_modal .notice-msg {
+      background-color: transparent;
+      height: auto;
+      margin: auto; }
+      .deactivated-account-content .close-user-account .msg_main_modal .notice-msg img {
+        width: 4rem;
+        margin-bottom: 1rem; }
+      .deactivated-account-content .close-user-account .msg_main_modal .notice-msg p {
+        font-weight: 500; }
+      @media (max-width: 500px) {
+        .deactivated-account-content .close-user-account .msg_main_modal .notice-msg h1 {
+          font-size: 30px; } }
+      @media (max-width: 500px) {
+        .deactivated-account-content .close-user-account .msg_main_modal .notice-msg {
+          width: 90%; } }
+    @media (max-width: 500px) {
+      .deactivated-account-content .close-user-account {
+        margin-bottom: 5rem; } }
 
 .account-closure .notice-msg-wrapper {
   background-color: #fef1cf;
