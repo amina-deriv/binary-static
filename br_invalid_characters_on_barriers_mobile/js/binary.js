@@ -14122,6 +14122,7 @@ module.exports = DerivBanner;
 
 
 var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
+    /* eslint-disable no-debugger, no-console */
     console.log(ev);
     var key = ev.which;
     var char = String.fromCharCode(key);
@@ -14133,6 +14134,7 @@ var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
         // similarity to arrows key code in some browsers
         ev.returnValue = false;
         ev.preventDefault();
+        /* eslint-disable no-debugger, no-console */
         console.log('invalid');
     }
 };
