@@ -14122,6 +14122,7 @@ module.exports = DerivBanner;
 
 
 var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
+    console.log(ev);
     var key = ev.which;
     var char = String.fromCharCode(key);
     var array_of_char = [0, 8, 37, 39, 46]; // special keypresses (tab, esc), delete, backspace, arrow keys
@@ -23431,18 +23432,24 @@ var TradingEvents = function () {
          * attach an event to change in low barrier
          */
         var low_barrier_element = getElementById('barrier_low');
-        low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
-            Barriers.validateBarrier();
-            Defaults.set('barrier_low', e.target.value);
-            Price.processPriceRequest();
-            CommonTrading.submitForm(getElementById('websocket_form'));
-        }));
-        low_barrier_element.addEventListener('keypress', function (ev) {
-            /* eslint-disable no-debugger, no-console */
-            console.log('low_barrier', ev);
-            return onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
-
+        if (duration_amount_element) {
+            low_barrier_element.addEventListener('keypress', function (ev) {
+                /* eslint-disable no-debugger, no-console */
+                console.log('low_barrier event', ev);
+                return onlyNumericOnKeypress(ev, [43, 45, 46]);
+            });
+            low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
+                Barriers.validateBarrier();
+                Defaults.set('barrier_low', e.target.value);
+                Price.processPriceRequest();
+                CommonTrading.submitForm(getElementById('websocket_form'));
+            }));
+            // low_barrier_element.addEventListener('keypress', (ev) => {
+            //     /* eslint-disable no-debugger, no-console */
+            //     console.log('low_barrier', ev);
+            //     return onlyNumericOnKeypress(ev, [43, 45, 46]);
+            // });
+        }
         /*
          * attach an event to change in high barrier
          */
