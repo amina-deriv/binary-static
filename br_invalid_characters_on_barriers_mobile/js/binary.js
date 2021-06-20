@@ -23435,7 +23435,7 @@ var TradingEvents = function () {
          */
         var low_barrier_element = getElementById('barrier_low');
         /* eslint-disable no-debugger, no-console */
-        console.log('low_barrier element');
+        console.log(low_barrier_element);
         if (low_barrier_element) {
             low_barrier_element.addEventListener('keypress', function (ev) {
                 /* eslint-disable no-debugger, no-console */
