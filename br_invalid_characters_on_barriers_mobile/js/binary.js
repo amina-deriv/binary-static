@@ -23455,7 +23455,7 @@ var TradingEvents = function () {
         }));
         high_barrier_element.addEventListener('keypress', function (ev) {
             /* eslint-disable no-debugger, no-console */
-            console.log('low_barrier', ev);
+            console.log('high_barrier', ev);
             return onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
 
