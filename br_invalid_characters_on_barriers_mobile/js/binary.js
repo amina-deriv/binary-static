@@ -23417,6 +23417,7 @@ var TradingEvents = function () {
          * attach an event to change in barrier
          */
         $('#barrier').on('keypress', function (ev) {
+            /* eslint-disable no-debugger, no-console */
             console.log('barrier-keypress', ev);
             return onlyNumericOnKeypress(ev, [43, 45, 46]);
         }).on('input', CommonTrading.debounce(function (e) {
@@ -23437,6 +23438,7 @@ var TradingEvents = function () {
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
         low_barrier_element.addEventListener('keypress', function (ev) {
+            /* eslint-disable no-debugger, no-console */
             console.log('low_barrier', ev);
             return onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
@@ -23452,6 +23454,7 @@ var TradingEvents = function () {
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
         high_barrier_element.addEventListener('keypress', function (ev) {
+            /* eslint-disable no-debugger, no-console */
             console.log('low_barrier', ev);
             return onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
