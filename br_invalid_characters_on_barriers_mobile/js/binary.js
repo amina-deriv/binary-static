@@ -23432,7 +23432,9 @@ var TradingEvents = function () {
          * attach an event to change in low barrier
          */
         var low_barrier_element = getElementById('barrier_low');
-        if (duration_amount_element) {
+        /* eslint-disable no-debugger, no-console */
+        console.log('low_barrier element', ev);
+        if (low_barrier_element) {
             low_barrier_element.addEventListener('keypress', function (ev) {
                 /* eslint-disable no-debugger, no-console */
                 console.log('low_barrier event', ev);
