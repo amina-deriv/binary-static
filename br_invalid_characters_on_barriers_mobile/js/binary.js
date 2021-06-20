@@ -14132,6 +14132,7 @@ var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
         // similarity to arrows key code in some browsers
         ev.returnValue = false;
         ev.preventDefault();
+        console.log('invalid');
     }
 };
 
@@ -23416,7 +23417,8 @@ var TradingEvents = function () {
          * attach an event to change in barrier
          */
         $('#barrier').on('keypress', function (ev) {
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
+            console.log('barrier-keypress', ev);
+            return onlyNumericOnKeypress(ev, [43, 45, 46]);
         }).on('input', CommonTrading.debounce(function (e) {
             Barriers.validateBarrier();
             Defaults.set('barrier', e.target.value);
@@ -23435,7 +23437,8 @@ var TradingEvents = function () {
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
         low_barrier_element.addEventListener('keypress', function (ev) {
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
+            console.log('low_barrier', ev);
+            return onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
 
         /*
@@ -23449,7 +23452,8 @@ var TradingEvents = function () {
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
         high_barrier_element.addEventListener('keypress', function (ev) {
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
+            console.log('low_barrier', ev);
+            return onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
 
         /*
