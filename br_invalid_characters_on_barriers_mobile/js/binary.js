@@ -23446,6 +23446,7 @@ var TradingEvents = function () {
             });
             low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
                 console.log('input-low barrier event');
+                console.log(keypress_event_triggered);
                 if (keypress_event_triggered === false) {
                     onlyNumericOnKeypress(e, [43, 45, 46]);
                     keypress_event_triggered = true;
