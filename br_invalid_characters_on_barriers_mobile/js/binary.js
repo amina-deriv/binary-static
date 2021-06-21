@@ -23434,15 +23434,21 @@ var TradingEvents = function () {
          * attach an event to change in low barrier
          */
         var low_barrier_element = getElementById('barrier_low');
+        var keypress_event_triggered = false;
         /* eslint-disable no-debugger, no-console */
-        console.log(low_barrier_element);
+        console.log('low barrier ->', low_barrier_element);
         if (low_barrier_element) {
             low_barrier_element.addEventListener('keypress', function (ev) {
                 /* eslint-disable no-debugger, no-console */
                 console.log('low_barrier event', ev);
+                keypress_event_triggered = true;
                 return onlyNumericOnKeypress(ev, [43, 45, 46]);
             });
             low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
+                if (keypress_event_triggered === false) {
+                    onlyNumericOnKeypress(e, [43, 45, 46]);
+                    keypress_event_triggered = true;
+                }
                 Barriers.validateBarrier();
                 Defaults.set('barrier_low', e.target.value);
                 Price.processPriceRequest();
