@@ -23434,7 +23434,7 @@ var TradingEvents = function () {
          * attach an event to change in low barrier
          */
         var low_barrier_element = getElementById('barrier_low');
-        low_barrier_element.addEventListener('keydown', function (ev) {
+        low_barrier_element.addEventListener('keypress', function (ev) {
             console.log('keydown');
             onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
