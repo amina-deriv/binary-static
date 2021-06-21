@@ -23440,11 +23440,12 @@ var TradingEvents = function () {
         if (low_barrier_element) {
             low_barrier_element.addEventListener('keypress', function (ev) {
                 /* eslint-disable no-debugger, no-console */
-                console.log('low_barrier event', ev);
+                console.log('keypress-low barrier event', ev);
                 keypress_event_triggered = true;
                 return onlyNumericOnKeypress(ev, [43, 45, 46]);
             });
             low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
+                console.log('input-low barrier event');
                 if (keypress_event_triggered === false) {
                     onlyNumericOnKeypress(e, [43, 45, 46]);
                     keypress_event_triggered = true;
