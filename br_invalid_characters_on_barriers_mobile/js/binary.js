@@ -23447,7 +23447,7 @@ var TradingEvents = function () {
             low_barrier_element.addEventListener('keydown', function (ev) {
                 /* eslint-disable no-debugger, no-console */
                 console.log('keydown-low barrier event', ev);
-                console.log(keydown_event_triggered);
+                console.log(keypress_event_triggered);
                 if (keypress_event_triggered === false) {
                     onlyNumericOnKeypress(e, [43, 45, 46]);
                     keypress_event_triggered = true;
