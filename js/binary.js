@@ -14155,12 +14155,8 @@ module.exports = DerivBanner;
 
 
 var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
-    /* eslint-disable no-debugger, no-console */
-    console.log(ev);
     var key = ev.which;
     var char = String.fromCharCode(key);
-    /* eslint-disable no-debugger, no-console */
-    console.log(ev, key, char);
     var array_of_char = [0, 8, 37, 39, 46]; // special keypresses (tab, esc), delete, backspace, arrow keys
     if (optional_value && optional_value.length > 0) {
         array_of_char = array_of_char.concat(optional_value);
@@ -14169,8 +14165,6 @@ var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
         // similarity to arrows key code in some browsers
         ev.returnValue = false;
         ev.preventDefault();
-        /* eslint-disable no-debugger, no-console */
-        console.log('invalid');
     }
 };
 
@@ -23468,9 +23462,7 @@ var TradingEvents = function () {
          * attach an event to change in barrier
          */
         $('#barrier').on('keypress', function (ev) {
-            /* eslint-disable no-debugger, no-console */
-            console.log('barrier-keypress', ev);
-            return onlyNumericOnKeypress(ev, [43, 45, 46]);
+            onlyNumericOnKeypress(ev, [43, 45, 46]);
         }).on('input', CommonTrading.debounce(function (e) {
             Barriers.validateBarrier();
             Defaults.set('barrier', e.target.value);
@@ -23482,10 +23474,6 @@ var TradingEvents = function () {
          * attach an event to change in low barrier
          */
         var low_barrier_element = getElementById('barrier_low');
-        low_barrier_element.addEventListener('keypress', function (ev) {
-            console.log('keydown');
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
         low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
             Barriers.validateBarrier();
             Defaults.set('barrier_low', e.target.value);
@@ -23507,19 +23495,7 @@ var TradingEvents = function () {
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
         high_barrier_element.addEventListener('keypress', function (ev) {
-            /* eslint-disable no-debugger, no-console */
-            console.log('high_barrier', ev);
-            return onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
-        high_barrier_element.addEventListener('keydown', function (ev) {
-            /* eslint-disable no-debugger, no-console */
-            console.log('high_barrier', ev);
-            return onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
-        high_barrier_element.addEventListener('onkeyup', function (ev) {
-            /* eslint-disable no-debugger, no-console */
-            console.log('high_barrier', ev);
-            return onlyNumericOnKeypress(ev, [43, 45, 46]);
+            onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
 
         /*
