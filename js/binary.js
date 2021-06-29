@@ -14157,6 +14157,8 @@ module.exports = DerivBanner;
 var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
     var key = ev.which;
     var char = String.fromCharCode(key);
+    // eslint-disable-next-line no-console
+    console.log(ev, key, char);
     var array_of_char = [0, 8, 37, 39, 46]; // special keypresses (tab, esc), delete, backspace, arrow keys
     if (optional_value && optional_value.length > 0) {
         array_of_char = array_of_char.concat(optional_value);
@@ -14164,6 +14166,8 @@ var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
     if (char === '.' && ev.target.value.indexOf(char) >= 0 || !/[0-9.]/.test(char) && array_of_char.indexOf(key) < 0 || /['%]/.test(char)) {
         // similarity to arrows key code in some browsers
         ev.returnValue = false;
+        // eslint-disable-next-line no-console
+        console.log('invalid');
         ev.preventDefault();
     }
 };
@@ -23475,12 +23479,26 @@ var TradingEvents = function () {
          */
         var low_barrier_element = getElementById('barrier_low');
         low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
+            // eslint-disable-next-line no-console
+            console.log('input');
             Barriers.validateBarrier();
             Defaults.set('barrier_low', e.target.value);
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
         low_barrier_element.addEventListener('keypress', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('keypress');
+            onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
+        low_barrier_element.addEventListener('keydown', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('keydown');
+            onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
+        low_barrier_element.addEventListener('onkeyup', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('keyup');
             onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
 
