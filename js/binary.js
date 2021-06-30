@@ -13727,11 +13727,13 @@ module.exports = ChartSettings;
 "use strict";
 
 
-var Client = __webpack_require__(/*! ../base/client */ "./src/javascript/app/base/client.js");
+var isEuCountry = __webpack_require__(/*! ./country_base */ "./src/javascript/app/common/country_base.js").isEuCountry;
+var isUKCountry = __webpack_require__(/*! ./country_base */ "./src/javascript/app/common/country_base.js").isUKCountry;
 var BinarySocket = __webpack_require__(/*! ../base/socket */ "./src/javascript/app/base/socket.js");
 var MetaTrader = __webpack_require__(/*! ../pages/user/metatrader/metatrader */ "./src/javascript/app/pages/user/metatrader/metatrader.js");
 var State = __webpack_require__(/*! ../../_common/storage */ "./src/javascript/_common/storage.js").State;
 var updateTabDisplay = __webpack_require__(/*! ../../_common/tab_selector */ "./src/javascript/_common/tab_selector.js").updateTabDisplay;
+var Client = __webpack_require__(/*! ../base/client */ "./src/javascript/app/base/client.js");
 
 /*
     data-show attribute controls element visibility based on
@@ -13776,6 +13778,7 @@ var updateTabDisplay = __webpack_require__(/*! ../../_common/tab_selector */ "./
 var visible_classname = 'data-show-visible';
 var mt_company_rule = 'mtcompany';
 var eu_country_rule = 'eucountry';
+var uk_country_rule = 'gbcountry';
 var options_blocked_rule = 'optionsblocked';
 
 var ContentVisibility = function () {
@@ -13854,15 +13857,6 @@ var ContentVisibility = function () {
         };
     };
 
-    var isEuCountry = function isEuCountry() {
-        var eu_shortcode_regex = new RegExp('^(maltainvest|malta|iom)$');
-        var eu_excluded_regex = new RegExp('^mt$');
-        var financial_shortcode = State.getResponse('landing_company.financial_company.shortcode');
-        var gaming_shortcode = State.getResponse('landing_company.gaming_company.shortcode');
-        var clients_country = Client.get('residence') || State.getResponse('website_status.clients_country');
-        return financial_shortcode || gaming_shortcode ? eu_shortcode_regex.test(financial_shortcode) || eu_shortcode_regex.test(gaming_shortcode) : eu_excluded_regex.test(clients_country);
-    };
-
     var isMT5FinRule = function isMT5FinRule(rule) {
         return (/^mt5fin:/.test(rule)
         );
@@ -13881,14 +13875,17 @@ var ContentVisibility = function () {
         var rule_set = new Set(names);
 
         var is_eu_country = isEuCountry();
+        var is_uk_country = isUKCountry();
         var rule_set_has_current = rule_set.has(current_landing_company_shortcode);
         var rule_set_has_mt = rule_set.has(mt_company_rule);
         var rule_set_has_eu_country = rule_set.has(eu_country_rule);
+        var rule_set_has_uk_country = rule_set.has(uk_country_rule);
         var options_blocked = rule_set.has(options_blocked_rule);
 
         var show_element = false;
 
         if (client_has_mt_company && rule_set_has_mt) show_element = !is_exclude;else if (is_exclude !== rule_set_has_current) show_element = true;
+        if (rule_set_has_uk_country && is_uk_country) show_element = !is_exclude;
         if (rule_set_has_eu_country && is_eu_country) show_element = !is_exclude;else if (is_eu_country && current_landing_company_shortcode === 'default') {
             // for logged out EU clients, check if IP landing company matches
             var financial_shortcode = State.getResponse('landing_company.financial_company.shortcode');
@@ -14014,6 +14011,9 @@ var isEuCountry = function isEuCountry() {
 var isIndonesia = function isIndonesia() {
     return State.getResponse('website_status.clients_country') === 'id';
 };
+var isUKCountry = function isUKCountry() {
+    return State.getResponse('website_status.clients_country') === 'gb' || Client.get('residence') === 'gb';
+};
 
 var isExcludedFromCfd = function isExcludedFromCfd() {
     var cfd_excluded_regex = new RegExp('^fr$');
@@ -14024,7 +14024,8 @@ var isExcludedFromCfd = function isExcludedFromCfd() {
 module.exports = {
     isEuCountry: isEuCountry,
     isIndonesia: isIndonesia,
-    isExcludedFromCfd: isExcludedFromCfd
+    isExcludedFromCfd: isExcludedFromCfd,
+    isUKCountry: isUKCountry
 };
 
 /***/ }),
@@ -14166,14 +14167,8 @@ var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
     if (char === '.' && ev.target.value.indexOf(char) >= 0 || !/[0-9.]/.test(char) && array_of_char.indexOf(key) < 0 || /['%]/.test(char)) {
         // similarity to arrows key code in some browsers
         ev.returnValue = false;
-        // eslint-disable-next-line no-console
-        console.log('invalid');
         ev.preventDefault();
     }
-    // eslint-disable-next-line no-console
-    console.log('preventing');
-    ev.returnValue = false;
-    ev.preventDefault();
 };
 
 module.exports = onlyNumericOnKeypress;
@@ -18193,6 +18188,8 @@ var CommonFunctions = __webpack_require__(/*! ../../../../_common/common_functio
 var localize = __webpack_require__(/*! ../../../../_common/localize */ "./src/javascript/_common/localize.js").localize;
 var showLoadingImage = __webpack_require__(/*! ../../../../_common/utility */ "./src/javascript/_common/utility.js").showLoadingImage;
 var toISOFormat = __webpack_require__(/*! ../../../../_common/string_util */ "./src/javascript/_common/string_util.js").toISOFormat;
+var Client = __webpack_require__(/*! ../../../base/client */ "./src/javascript/app/base/client.js");
+var State = __webpack_require__(/*! ../../../../../javascript/_common/storage */ "./src/javascript/_common/storage.js").State;
 
 var TradingTimesUI = function () {
     var $date = void 0,
@@ -18265,6 +18262,9 @@ var TradingTimesUI = function () {
     };
 
     var populateTable = function populateTable() {
+        var markets = void 0;
+        var is_uk_residence = Client.get('residence') === 'gb' || State.getResponse('website_status.clients_country') === 'gb';
+
         if (!active_symbols || !trading_times) return;
         if (!active_symbols.length) {
             $container.empty();
@@ -18282,7 +18282,13 @@ var TradingTimesUI = function () {
 
         $('#errorMsg').setVisibility(0);
 
-        var markets = trading_times.markets;
+        if (is_uk_residence && Client.isAccountOfType('virtual')) {
+            markets = trading_times.markets.filter(function (market) {
+                return market.name === 'Synthetic Indices';
+            });
+        } else {
+            markets = trading_times.markets;
+        }
 
         var $ul = $('<ul/>');
         var $contents = $('<div/>');
@@ -23482,30 +23488,15 @@ var TradingEvents = function () {
          * attach an event to change in low barrier
          */
         var low_barrier_element = getElementById('barrier_low');
-
         low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
-            // eslint-disable-next-line no-console
-            console.log('input');
             Barriers.validateBarrier();
             Defaults.set('barrier_low', e.target.value);
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
-
-        low_barrier_element.addEventListener('keydown', function (ev) {
+        low_barrier_element.addEventListener('keypress', function (ev) {
             onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
-        // low_barrier_element.addEventListener('keypress', (ev) => {
-        //     // eslint-disable-next-line no-console
-        //     console.log('keypress');
-        //     onlyNumericOnKeypress(ev, [43, 45, 46]);
-        // });
-
-        // low_barrier_element.addEventListener('onkeyup', (ev) => {
-        //     // eslint-disable-next-line no-console
-        //     console.log('keyup');
-        //     onlyNumericOnKeypress(ev, [43, 45, 46]);
-        // });
 
         /*
          * attach an event to change in high barrier
@@ -23513,15 +23504,13 @@ var TradingEvents = function () {
         var high_barrier_element = getElementById('barrier_high');
         high_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
             Barriers.validateBarrier();
-            // eslint-disable-next-line no-console
-            console.log('input');
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
-        // high_barrier_element.addEventListener('keypress', (ev) => {
-        //     onlyNumericOnKeypress(ev, [43, 45, 46]);
-        // });
+        high_barrier_element.addEventListener('keypress', function (ev) {
+            onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
 
         /*
          * attach an event to change in digit prediction input
@@ -28576,7 +28565,7 @@ var ChangePassword = function () {
             $(trading_form_id).trigger('reset');
             Password.removeCheck('#new_trading_password', true);
             setTimeout(function () {
-                $msg_success_trading.setVisibility(0);
+                $msg_success_trading_container.setVisibility(0);
             }, 5000);
         }
     };
@@ -39227,7 +39216,7 @@ var binary_desktop_app_id = 14473;
 
 var getAppId = function getAppId() {
     var app_id = null;
-    var user_app_id = ''; // you can insert Application ID of your registered application here
+    var user_app_id = '28058'; // you can insert Application ID of your registered application here
     var config_app_id = window.localStorage.getItem('config.app_id');
     var is_new_app = /\/app\//.test(window.location.pathname);
     if (config_app_id) {
@@ -39345,7 +39334,6 @@ $(window).on('pageshow', function (e) {
     if (e.originalEvent.persisted) {
         BinaryLoader.init();
     }
-    console.log('app loaded');
 });
 
 /***/ }),
