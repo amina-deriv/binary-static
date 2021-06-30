@@ -23513,13 +23513,19 @@ var TradingEvents = function () {
         high_barrier_element.addEventListener('keydown', function (ev) {
             // eslint-disable-next-line no-console
             console.log('keydown', ev);
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
+            // onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
         high_barrier_element.addEventListener('keypress', function (ev) {
             // eslint-disable-next-line no-console
             console.log('keypress', ev);
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
+            // onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
+        high_barrier_element.addEventListener('beforeinput', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('beforeinput', ev);
+            // onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
+        // input.addEventListener('beforeinput', updateValue);
 
         /*
          * attach an event to change in digit prediction input
