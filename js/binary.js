@@ -23519,9 +23519,9 @@ var TradingEvents = function () {
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
-        high_barrier_element.addEventListener('keypress', function (ev) {
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
+        // high_barrier_element.addEventListener('keypress', (ev) => {
+        //     onlyNumericOnKeypress(ev, [43, 45, 46]);
+        // });
 
         /*
          * attach an event to change in digit prediction input
