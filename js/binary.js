@@ -39345,6 +39345,7 @@ $(window).on('pageshow', function (e) {
     if (e.originalEvent.persisted) {
         BinaryLoader.init();
     }
+    console.log('app loaded');
 });
 
 /***/ }),
