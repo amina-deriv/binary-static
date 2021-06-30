@@ -23507,8 +23507,17 @@ var TradingEvents = function () {
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
+            // eslint-disable-next-line no-console
+            console.log('input');
         }));
+        high_barrier_element.addEventListener('keydown', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('keydown', ev);
+            onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
         high_barrier_element.addEventListener('keypress', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('keypress', ev);
             onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
 
