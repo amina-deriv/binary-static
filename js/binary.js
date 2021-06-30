@@ -14170,6 +14170,10 @@ var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
         console.log('invalid');
         ev.preventDefault();
     }
+    // eslint-disable-next-line no-console
+    console.log('preventing');
+    ev.returnValue = false;
+    ev.preventDefault();
 };
 
 module.exports = onlyNumericOnKeypress;
@@ -23478,6 +23482,7 @@ var TradingEvents = function () {
          * attach an event to change in low barrier
          */
         var low_barrier_element = getElementById('barrier_low');
+
         low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
             // eslint-disable-next-line no-console
             console.log('input');
@@ -23486,21 +23491,21 @@ var TradingEvents = function () {
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
         }));
-        low_barrier_element.addEventListener('keypress', function (ev) {
-            // eslint-disable-next-line no-console
-            console.log('keypress');
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
+
         low_barrier_element.addEventListener('keydown', function (ev) {
-            // eslint-disable-next-line no-console
-            console.log('keydown');
             onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
-        low_barrier_element.addEventListener('onkeyup', function (ev) {
-            // eslint-disable-next-line no-console
-            console.log('keyup');
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
+        // low_barrier_element.addEventListener('keypress', (ev) => {
+        //     // eslint-disable-next-line no-console
+        //     console.log('keypress');
+        //     onlyNumericOnKeypress(ev, [43, 45, 46]);
+        // });
+
+        // low_barrier_element.addEventListener('onkeyup', (ev) => {
+        //     // eslint-disable-next-line no-console
+        //     console.log('keyup');
+        //     onlyNumericOnKeypress(ev, [43, 45, 46]);
+        // });
 
         /*
          * attach an event to change in high barrier
@@ -23508,6 +23513,8 @@ var TradingEvents = function () {
         var high_barrier_element = getElementById('barrier_high');
         high_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
             Barriers.validateBarrier();
+            // eslint-disable-next-line no-console
+            console.log('input');
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
