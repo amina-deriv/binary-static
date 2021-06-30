@@ -23525,6 +23525,11 @@ var TradingEvents = function () {
             console.log('beforeinput', ev);
             // onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
+        high_barrier_element.addEventListener('change', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('onchange', ev);
+            // onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
         // input.addEventListener('beforeinput', updateValue);
 
         /*
