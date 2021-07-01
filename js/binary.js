@@ -23507,10 +23507,30 @@ var TradingEvents = function () {
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
+            // eslint-disable-next-line no-console
+            console.log('input', e);
         }));
-        high_barrier_element.addEventListener('keypress', function (ev) {
-            onlyNumericOnKeypress(ev, [43, 45, 46]);
+        high_barrier_element.addEventListener('keydown', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('keydown', ev);
+            // onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
+        high_barrier_element.addEventListener('keypress', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('keypress', ev);
+            // onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
+        high_barrier_element.addEventListener('beforeinput', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('beforeinput', ev);
+            // onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
+        high_barrier_element.addEventListener('change', function (ev) {
+            // eslint-disable-next-line no-console
+            console.log('onchange', ev);
+            // onlyNumericOnKeypress(ev, [43, 45, 46]);
+        });
+        // input.addEventListener('beforeinput', updateValue);
 
         /*
          * attach an event to change in digit prediction input
