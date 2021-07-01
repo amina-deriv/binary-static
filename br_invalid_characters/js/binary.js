@@ -23508,7 +23508,7 @@ var TradingEvents = function () {
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
             // eslint-disable-next-line no-console
-            console.log('input');
+            console.log('input', e);
         }));
         high_barrier_element.addEventListener('keydown', function (ev) {
             // eslint-disable-next-line no-console
