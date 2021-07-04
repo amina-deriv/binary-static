@@ -789,7 +789,7 @@ var formatMoney = function formatMoney(currency_value, amount, exclude_currency)
 };
 
 var formatCurrency = function formatCurrency(currency) {
-    return '<span class="symbols">&nbsp;' + getCurrencyDisplayCode(currency) + '</span>';
+    return currency ? '<span class="symbols">&nbsp;' + getCurrencyDisplayCode(currency) + '</span>' : '';
 }; // defined in binary-style
 
 var addComma = function addComma(num, decimal_points, is_crypto) {
@@ -14158,8 +14158,6 @@ module.exports = DerivBanner;
 var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
     var key = ev.which;
     var char = String.fromCharCode(key);
-    // eslint-disable-next-line no-console
-    console.log(ev, key, char);
     var array_of_char = [0, 8, 37, 39, 46]; // special keypresses (tab, esc), delete, backspace, arrow keys
     if (optional_value && optional_value.length > 0) {
         array_of_char = array_of_char.concat(optional_value);
@@ -23507,30 +23505,10 @@ var TradingEvents = function () {
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
             CommonTrading.submitForm(getElementById('websocket_form'));
-            // eslint-disable-next-line no-console
-            console.log('input', e);
         }));
-        high_barrier_element.addEventListener('keydown', function (ev) {
-            // eslint-disable-next-line no-console
-            console.log('keydown', ev);
-            // onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
         high_barrier_element.addEventListener('keypress', function (ev) {
-            // eslint-disable-next-line no-console
-            console.log('keypress', ev);
-            // onlyNumericOnKeypress(ev, [43, 45, 46]);
+            onlyNumericOnKeypress(ev, [43, 45, 46]);
         });
-        high_barrier_element.addEventListener('beforeinput', function (ev) {
-            // eslint-disable-next-line no-console
-            console.log('beforeinput', ev);
-            // onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
-        high_barrier_element.addEventListener('change', function (ev) {
-            // eslint-disable-next-line no-console
-            console.log('onchange', ev);
-            // onlyNumericOnKeypress(ev, [43, 45, 46]);
-        });
-        // input.addEventListener('beforeinput', updateValue);
 
         /*
          * attach an event to change in digit prediction input
@@ -23869,6 +23847,12 @@ var _common_functions = __webpack_require__(/*! ../../../_common/common_function
 
 var _localize = __webpack_require__(/*! ../../../_common/localize */ "./src/javascript/_common/localize.js");
 
+var _client = __webpack_require__(/*! ../../base/client */ "./src/javascript/app/base/client.js");
+
+var _client2 = _interopRequireDefault(_client);
+
+var _storage = __webpack_require__(/*! ../../../_common/storage */ "./src/javascript/_common/storage.js");
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -23971,6 +23955,8 @@ var Markets = (_temp = _class = function (_React$Component) {
         _initialiseProps.call(_this);
 
         var market_symbol = _defaults2.default.get('market');
+        var final_markets_arr = void 0,
+            final_market_obj = void 0;
 
         var market_list = _symbols2.default.markets();
         _this.markets = (0, _active_symbols.getAvailableUnderlyings)(market_list);
@@ -23984,13 +23970,30 @@ var Markets = (_temp = _class = function (_React$Component) {
         var is_not_crypto = function is_not_crypto(symbol) {
             return !/^(cry|JD)/i.test(symbol);
         };
+        var is_synthetic = function is_synthetic(symbol) {
+            return (/^(synthetic)/i.test(symbol)
+            );
+        };
+        var is_uk = _storage.State.getResponse('authorize.country') === 'gb';
+        var is_malta = _storage.State.getResponse('landing_company.gaming_company.shortcode') === 'malta';
         var market_arr = Object.entries(_this.markets).sort(function (a, b) {
             return (0, _active_symbols.sortSubmarket)(a[0], b[0]);
         });
-        var non_crypto_markets_arr = market_arr.filter(function (market) {
-            return is_not_crypto(market);
-        });
-        _this.markets_all = non_crypto_markets_arr.slice();
+        if ((is_malta || is_uk) && _client2.default.getAccountOfType('virtual')) {
+            final_markets_arr = market_arr.filter(function (market) {
+                return is_synthetic(market);
+            });
+            final_market_obj = Object.fromEntries(final_markets_arr);
+            market_symbol = Object.keys(final_market_obj)[0];
+            var _submarket = Object.keys(final_market_obj[market_symbol].submarkets).sort(_active_symbols.sortSubmarket)[0];
+            underlying_symbol = Object.keys(final_market_obj[market_symbol].submarkets[_submarket].symbols).sort()[0];
+        } else {
+            final_markets_arr = market_arr.filter(function (market) {
+                return is_not_crypto(market);
+            });
+            final_market_obj = Object.fromEntries(final_markets_arr);
+        }
+        _this.markets_all = final_markets_arr.slice();
         if (!(market_symbol in _this.markets)) {
             market_symbol = Object.keys(_this.markets).find(function (m) {
                 return _this.markets[m].submarkets[market_symbol];
@@ -24003,13 +24006,13 @@ var Markets = (_temp = _class = function (_React$Component) {
             open: false,
             market: {
                 symbol: market_symbol,
-                name: _this.markets[market_symbol].name
+                name: final_market_obj[market_symbol].name
             },
             underlying: {
                 symbol: underlying_symbol,
                 name: _this.underlyings[underlying_symbol]
             },
-            markets: non_crypto_markets_arr,
+            markets: final_markets_arr,
             active_market: market_symbol,
             query: '',
             open_dropdown_scroll_id: 0
@@ -26872,6 +26875,7 @@ var DerivBanner = __webpack_require__(/*! ../../common/deriv_banner */ "./src/ja
 var Guide = __webpack_require__(/*! ../../common/guide */ "./src/javascript/app/common/guide.js");
 var TopUpVirtualPopup = __webpack_require__(/*! ../../pages/user/account/top_up_virtual/pop_up */ "./src/javascript/app/pages/user/account/top_up_virtual/pop_up.js");
 var State = __webpack_require__(/*! ../../../_common/storage */ "./src/javascript/_common/storage.js").State;
+var isMobile = __webpack_require__(/*! ../../../_common/os_detect */ "./src/javascript/_common/os_detect.js").isMobile;
 
 var TradePage = function () {
     var events_initialized = 0;
@@ -26880,7 +26884,7 @@ var TradePage = function () {
     var onLoad = function onLoad() {
         DerivBanner.onLoad();
 
-        BinarySocket.wait('authorize').then(function () {
+        BinarySocket.wait('authorize', 'landing_company').then(function () {
             init();
         });
     };
@@ -26939,6 +26943,10 @@ var TradePage = function () {
         TradingAnalysis.bindAnalysisTabEvent();
 
         ViewPopup.viewButtonOnClick('#contract_confirmation_container');
+        if (isMobile()) {
+            $('#barrier_high').attr('type', 'number');
+            $('#barrier_high').attr('step', 'any');
+        }
     };
 
     var reload = function reload() {
