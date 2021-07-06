@@ -772,10 +772,13 @@ li strong.margin-right {
         background-color: $COLOR_GRAY;
     }
     .name {
-        text-transform: capitalize !important;
+        text-transform: capitalize;
         color: $COLOR_BLACK;
         font-weight: 400;
         padding-left: 1rem;
+    }
+    .text-capitalize {
+        text-transform: capitalize !important;
     }
 
     @media screen and (max-width: 650px) {
