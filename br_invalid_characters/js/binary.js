@@ -23499,7 +23499,11 @@ var TradingEvents = function () {
         $('#barrier').on('keypress', function (ev) {
             onlyNumericOnKeypress(ev, [43, 45, 46]);
         }).on('input', CommonTrading.debounce(function (e) {
+            // eslint-disable-next-line no-console
+            console.log('barrier input', e.target.value);
             e.target.value = e.target.value.replace(/^[+-]?\d*(\.\d+)?$/g, '');
+            // eslint-disable-next-line no-console
+            console.log('replaced input', e.target.value);
             Barriers.validateBarrier();
             Defaults.set('barrier', e.target.value);
             Price.processPriceRequest();
