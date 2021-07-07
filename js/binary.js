@@ -23476,6 +23476,7 @@ var TradingEvents = function () {
         $('#barrier').on('keypress', function (ev) {
             onlyNumericOnKeypress(ev, [43, 45, 46]);
         }).on('input', CommonTrading.debounce(function (e) {
+            e.target.value = e.target.value.replace(/^[+-]?\d*(\.\d+)?$/g, '');
             Barriers.validateBarrier();
             Defaults.set('barrier', e.target.value);
             Price.processPriceRequest();
@@ -26875,7 +26876,6 @@ var DerivBanner = __webpack_require__(/*! ../../common/deriv_banner */ "./src/ja
 var Guide = __webpack_require__(/*! ../../common/guide */ "./src/javascript/app/common/guide.js");
 var TopUpVirtualPopup = __webpack_require__(/*! ../../pages/user/account/top_up_virtual/pop_up */ "./src/javascript/app/pages/user/account/top_up_virtual/pop_up.js");
 var State = __webpack_require__(/*! ../../../_common/storage */ "./src/javascript/_common/storage.js").State;
-var isMobile = __webpack_require__(/*! ../../../_common/os_detect */ "./src/javascript/_common/os_detect.js").isMobile;
 
 var TradePage = function () {
     var events_initialized = 0;
@@ -26943,10 +26943,6 @@ var TradePage = function () {
         TradingAnalysis.bindAnalysisTabEvent();
 
         ViewPopup.viewButtonOnClick('#contract_confirmation_container');
-        if (isMobile()) {
-            $('#barrier_high').attr('type', 'number');
-            $('#barrier_high').attr('step', 'any');
-        }
     };
 
     var reload = function reload() {
