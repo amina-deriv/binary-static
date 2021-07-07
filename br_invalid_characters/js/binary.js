@@ -23501,7 +23501,7 @@ var TradingEvents = function () {
         }).on('input', CommonTrading.debounce(function (e) {
             // eslint-disable-next-line no-console
             console.log('barrier input', e.target.value);
-            e.target.value = e.target.value.replace(/[^0-9.]/g, '');
+            e.target.value = e.target.value.replace(/[^0-9+-.]/g, '');
             // e.target.value = e.target.value.replace(/^[[+-]?\d+\.?\d*]$/g, '');
             // eslint-disable-next-line no-console
             console.log('d1 -replaced input', e.target.value);
