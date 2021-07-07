@@ -23504,7 +23504,7 @@ var TradingEvents = function () {
             e.target.value = e.target.value.replace(/[^0-9.]/g, '');
             // e.target.value = e.target.value.replace(/^[[+-]?\d+\.?\d*]$/g, '');
             // eslint-disable-next-line no-console
-            console.log('replaced input', e.target.value);
+            console.log('d1 -replaced input', e.target.value);
             Barriers.validateBarrier();
             Defaults.set('barrier', e.target.value);
             Price.processPriceRequest();
