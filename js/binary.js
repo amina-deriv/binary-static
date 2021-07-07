@@ -14631,12 +14631,22 @@ var Validation = function () {
             message = localize('Should be less than [_1]', addComma(options.max, options.format_money ? getDecimalPlaces(Client.get('currency')) : undefined));
         }
 
+        // Priority Validation
+        if ('balance' in options && isLessThanBalance(value, options)) {
+            is_ok = false;
+            message = localize('Insufficient balance.');
+        }
+
         ValidatorsMap.get().number.message = message;
         return is_ok;
     };
 
     var isMoreThanMax = function isMoreThanMax(value, options) {
         return options.type === 'float' ? +value > +options.max : compareBigUnsignedInt(value, options.max) === 1;
+    };
+
+    var isLessThanBalance = function isLessThanBalance(value, options) {
+        return options.balance < value;
     };
 
     var validTaxID = function validTaxID(value, options, field) {
@@ -17281,9 +17291,7 @@ var PaymentAgentWithdraw = function () {
 
                                 $form.find('.wrapper-row-agent').find('label').append($('<span />', { text: '*', class: 'required_field_asterisk' }));
                                 $form.find('label[for="txtAmount"]').text(localize('Amount in') + ' ' + Currency.getCurrencyDisplayCode(currency));
-                                FormManager.init(form_id, [{ selector: field_ids.txt_amount, validations: ['req', ['number', { type: 'float', decimals: Currency.getDecimalPlaces(currency), min: min, max: max }], ['custom', { func: function func() {
-                                            return +Client.get('balance') >= +$txt_amount.val();
-                                        }, message: localize('Insufficient balance.') }]], request_field: 'amount' }, { selector: field_ids.txt_payment_ref, validations: [['length', { min: 0, max: 30 }], ['regular', { regex: /^[0-9A-Za-z .,'-]{0,30}$/, message: localize('Only letters, numbers, space, hyphen, period, comma, and apostrophe are allowed.') }]], request_field: 'description', value: function value() {
+                                FormManager.init(form_id, [{ selector: field_ids.txt_amount, validations: ['req', ['number', { type: 'float', decimals: Currency.getDecimalPlaces(currency), min: min, max: max, balance: Client.get('balance') }]], request_field: 'amount' }, { selector: field_ids.txt_payment_ref, validations: [['length', { min: 0, max: 30 }], ['regular', { regex: /^[0-9A-Za-z .,'-]{0,30}$/, message: localize('Only letters, numbers, space, hyphen, period, comma, and apostrophe are allowed.') }]], request_field: 'description', value: function value() {
                                         return $txt_payment_ref.val() ? payment_ref_prefix + $txt_payment_ref.val() : '';
                                     } }, { request_field: 'currency', value: currency }, { request_field: 'paymentagent_loginid', value: getPALoginID }, { request_field: 'paymentagent_withdraw', value: 1 }, { request_field: 'dry_run', value: 1 }], true);
 
@@ -19228,6 +19236,7 @@ var DigitInfo = function () {
             plotBackgroundColor: '#fff',
             plotBorderWidth: 1,
             plotBorderColor: '#ccc',
+            marginBottom: 50,
             height: 225 // This is "unresponsive", but so is leaving it empty where it goes to 400px.
         },
         title: { text: '' },
@@ -19294,6 +19303,18 @@ var DigitInfo = function () {
                     return percentage + '%';
                 }
             }
+        },
+        responsive: {
+            rules: [{
+                condition: {
+                    maxWidth: 472
+                },
+                chartOptions: {
+                    chart: {
+                        marginBottom: 70
+                    }
+                }
+            }]
         }
     };
 
@@ -19416,7 +19437,9 @@ var DigitInfo = function () {
 
                                 var getTitle = function getTitle() {
                                     return {
-                                        text: template($('#last_digit_title').html(), [new_spots.length, $('#digit_underlying option:selected').text()])
+                                        text: template($('#last_digit_title').html(), [new_spots.length, $('#digit_underlying option:selected').text()]),
+                                        useHTML: true,
+                                        style: { 'text-align': 'center' }
                                     };
                                 };
 
@@ -24526,6 +24549,8 @@ module.exports = Notifications;
 "use strict";
 
 
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
 var moment = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 var commonTrading = __webpack_require__(/*! ./common */ "./src/javascript/app/pages/trade/common.js");
 var displayPriceMovement = __webpack_require__(/*! ./common_independent */ "./src/javascript/app/pages/trade/common_independent.js").displayPriceMovement;
@@ -24681,131 +24706,191 @@ var Price = function () {
         return proposal;
     };
 
-    var display = function display(details, contract_type) {
-        var proposal = details.proposal;
-        var id = proposal ? proposal.id : '';
-        var params = details.echo_req;
+    var display = function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(details, contract_type) {
+            var proposal, id, params, account_status, is_trading_disabled, type, position, container, h4, amount, payout_amount, contract_multiplier, stake, payout, multiplier, purchase, description, longcode, comment, error, currency, display_text, setData, setPurchaseStatus, error_message, multiplier_value, old_price, old_payout;
+            return regeneratorRuntime.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            proposal = details.proposal;
+                            id = proposal ? proposal.id : '';
+                            params = details.echo_req;
+                            _context.t0 = !!Client.isLoggedIn();
 
-        var type = params.contract_type;
-        if (id && !type) {
-            type = type_display_id_mapping[id];
-        }
+                            if (!_context.t0) {
+                                _context.next = 8;
+                                break;
+                            }
 
-        if (params && id && Object.getOwnPropertyNames(params).length > 0) {
-            type_display_id_mapping[id] = type;
-        }
+                            _context.next = 7;
+                            return BinarySocket.wait('get_account_status');
 
-        var position = commonTrading.contractTypeDisplayMapping(type);
+                        case 7:
+                            _context.t0 = _context.sent;
 
-        if (!position) {
-            return;
-        }
+                        case 8:
+                            account_status = _context.t0;
+                            is_trading_disabled = account_status && account_status.get_account_status.status.some(function (state) {
+                                return state === 'no_trading';
+                            });
+                            type = params.contract_type;
 
-        var container = CommonFunctions.getElementById('price_container_' + position);
-        if (!container) return;
-        if (!$(container).is(':visible')) {
-            $(container).fadeIn(200);
-        }
+                            if (id && !type) {
+                                type = type_display_id_mapping[id];
+                            }
 
-        var h4 = container.getElementsByClassName('contract_heading')[0];
-        var amount = container.getElementsByClassName('contract_amount')[0];
-        var payout_amount = container.getElementsByClassName('contract_payout')[0];
-        var contract_multiplier = container.getElementsByClassName('contract_multiplier')[0];
-        var stake = container.getElementsByClassName('stake')[0];
-        var payout = container.getElementsByClassName('payout')[0];
-        var multiplier = container.getElementsByClassName('multiplier')[0];
-        var purchase = container.getElementsByClassName('purchase_button')[0];
-        var description = container.getElementsByClassName('contract_description')[0];
-        var longcode = container.getElementsByClassName('contract_longcode')[0];
-        var comment = container.getElementsByClassName('price_comment')[0];
-        var error = container.getElementsByClassName('contract_error')[0];
-        var currency = CommonFunctions.getVisibleElement('currency');
+                            if (params && id && Object.getOwnPropertyNames(params).length > 0) {
+                                type_display_id_mapping[id] = type;
+                            }
 
-        if (!h4) return;
-        var display_text = type && contract_type ? contract_type[type] : '';
-        if (display_text) {
-            h4.setAttribute('class', 'contract_heading ' + type);
-            CommonFunctions.elementTextContent(h4, display_text);
-        }
+                            position = commonTrading.contractTypeDisplayMapping(type);
 
-        var setData = function setData() {
-            var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+                            if (position) {
+                                _context.next = 16;
+                                break;
+                            }
 
-            if (!data.display_value) {
-                amount.classList.remove('price_moved_up', 'price_moved_down');
-            }
-            CommonFunctions.elementTextContent(stake, localize('Stake') + ': ');
-            CommonFunctions.elementInnerHtml(amount, data.display_value ? formatMoney(currency.value || currency.getAttribute('value'), data.display_value) : '-');
+                            return _context.abrupt('return');
 
-            if (!data.payout) {
-                amount.classList.remove('price_moved_up', 'price_moved_down');
-            }
-            CommonFunctions.elementTextContent(payout, localize('Payout') + ': ');
-            CommonFunctions.elementInnerHtml(payout_amount, data.payout ? formatMoney(currency.value || currency.getAttribute('value'), data.payout) : '-');
-            // Lookback multiplier
-            CommonFunctions.elementTextContent(multiplier, localize('Multiplier') + ': ');
-            CommonFunctions.elementInnerHtml(contract_multiplier, data.multiplier ? formatMoney(currency.value || currency.getAttribute('value'), data.multiplier, false, 0, 2) : '-');
+                        case 16:
+                            container = CommonFunctions.getElementById('price_container_' + position);
 
-            if (data.longcode && window.innerWidth > 500) {
-                if (description) description.setAttribute('data-balloon', data.longcode);
-                if (longcode) CommonFunctions.elementTextContent(longcode, data.longcode);
-            } else {
-                if (description) description.removeAttribute('data-balloon');
-                if (longcode) CommonFunctions.elementTextContent(longcode, '');
-            }
-        };
+                            if (container) {
+                                _context.next = 19;
+                                break;
+                            }
 
-        var setPurchaseStatus = function setPurchaseStatus(enable) {
-            purchase.parentNode.classList[enable ? 'remove' : 'add']('button-disabled');
-        };
+                            return _context.abrupt('return');
 
-        if (details.error) {
-            setPurchaseStatus(0);
-            comment.hide();
-            setData();
-            error.show();
-            CommonFunctions.elementTextContent(error, details.error.message);
-        } else {
-            setData(proposal);
-            if ($('#websocket_form').find('.error-field:visible').length > 0) {
-                setPurchaseStatus(0);
-            } else {
-                setPurchaseStatus(1);
-            }
-            comment.show();
-            error.hide();
-            if (isLookback(type)) {
-                var multiplier_value = formatMoney(Client.get('currency'), proposal.multiplier, false, 3, 2);
-                CommonFunctions.elementInnerHtml(comment, localize('Payout') + ': ' + getLookBackFormula(type, multiplier_value));
-            } else {
-                commonTrading.displayCommentPrice(comment, currency.value || currency.getAttribute('value'), proposal.display_value, proposal.payout);
-            }
-            var old_price = purchase.getAttribute('data-display_value');
-            var old_payout = purchase.getAttribute('data-payout');
-            if (amount) displayPriceMovement(amount, old_price, proposal.display_value);
-            if (payout_amount) displayPriceMovement(payout_amount, old_payout, proposal.payout);
-            Array.from(purchase.attributes).filter(function (attr) {
-                if (!/^data/.test(attr.name) || /^data-balloon$/.test(attr.name) || /data-balloon/.test(attr.name) || /^data-passthrough$/.test(attr.name)) {
-                    return false;
+                        case 19:
+                            if (!$(container).is(':visible')) {
+                                $(container).fadeIn(200);
+                            }
+
+                            h4 = container.getElementsByClassName('contract_heading')[0];
+                            amount = container.getElementsByClassName('contract_amount')[0];
+                            payout_amount = container.getElementsByClassName('contract_payout')[0];
+                            contract_multiplier = container.getElementsByClassName('contract_multiplier')[0];
+                            stake = container.getElementsByClassName('stake')[0];
+                            payout = container.getElementsByClassName('payout')[0];
+                            multiplier = container.getElementsByClassName('multiplier')[0];
+                            purchase = container.getElementsByClassName('purchase_button')[0];
+                            description = container.getElementsByClassName('contract_description')[0];
+                            longcode = container.getElementsByClassName('contract_longcode')[0];
+                            comment = container.getElementsByClassName('price_comment')[0];
+                            error = container.getElementsByClassName('contract_error')[0];
+                            currency = CommonFunctions.getVisibleElement('currency');
+
+                            if (h4) {
+                                _context.next = 35;
+                                break;
+                            }
+
+                            return _context.abrupt('return');
+
+                        case 35:
+                            display_text = type && contract_type ? contract_type[type] : '';
+
+                            if (display_text) {
+                                h4.setAttribute('class', 'contract_heading ' + type);
+                                CommonFunctions.elementTextContent(h4, display_text);
+                            }
+
+                            setData = function setData() {
+                                var data = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+
+                                if (!data.display_value) {
+                                    amount.classList.remove('price_moved_up', 'price_moved_down');
+                                }
+                                CommonFunctions.elementTextContent(stake, localize('Stake') + ': ');
+                                CommonFunctions.elementInnerHtml(amount, data.display_value ? formatMoney(currency.value || currency.getAttribute('value'), data.display_value) : '-');
+
+                                if (!data.payout) {
+                                    amount.classList.remove('price_moved_up', 'price_moved_down');
+                                }
+                                CommonFunctions.elementTextContent(payout, localize('Payout') + ': ');
+                                CommonFunctions.elementInnerHtml(payout_amount, data.payout ? formatMoney(currency.value || currency.getAttribute('value'), data.payout) : '-');
+                                // Lookback multiplier
+                                CommonFunctions.elementTextContent(multiplier, localize('Multiplier') + ': ');
+                                CommonFunctions.elementInnerHtml(contract_multiplier, data.multiplier ? formatMoney(currency.value || currency.getAttribute('value'), data.multiplier, false, 0, 2) : '-');
+
+                                if (data.longcode && window.innerWidth > 500) {
+                                    if (description) description.setAttribute('data-balloon', data.longcode);
+                                    if (longcode) CommonFunctions.elementTextContent(longcode, data.longcode);
+                                } else {
+                                    if (description) description.removeAttribute('data-balloon');
+                                    if (longcode) CommonFunctions.elementTextContent(longcode, '');
+                                }
+                            };
+
+                            setPurchaseStatus = function setPurchaseStatus(enable) {
+                                purchase.parentNode.classList[enable ? 'remove' : 'add']('button-disabled');
+                            };
+
+                            if (details.error || is_trading_disabled) {
+                                error_message = details.error && details.error.message || is_trading_disabled && localize('Sorry, your account is not authorised for any further contract purchases.');
+
+                                setPurchaseStatus(0);
+                                comment.hide();
+                                setData();
+                                error.show();
+                                CommonFunctions.elementTextContent(error, error_message);
+                            } else {
+                                setData(proposal);
+                                if ($('#websocket_form').find('.error-field:visible').length > 0) {
+                                    setPurchaseStatus(0);
+                                } else {
+                                    setPurchaseStatus(1);
+                                }
+                                comment.show();
+                                error.hide();
+                                if (isLookback(type)) {
+                                    multiplier_value = formatMoney(Client.get('currency'), proposal.multiplier, false, 3, 2);
+
+                                    CommonFunctions.elementInnerHtml(comment, localize('Payout') + ': ' + getLookBackFormula(type, multiplier_value));
+                                } else {
+                                    commonTrading.displayCommentPrice(comment, currency.value || currency.getAttribute('value'), proposal.display_value, proposal.payout);
+                                }
+                                old_price = purchase.getAttribute('data-display_value');
+                                old_payout = purchase.getAttribute('data-payout');
+
+                                if (amount) displayPriceMovement(amount, old_price, proposal.display_value);
+                                if (payout_amount) displayPriceMovement(payout_amount, old_payout, proposal.payout);
+                                Array.from(purchase.attributes).filter(function (attr) {
+                                    if (!/^data/.test(attr.name) || /^data-balloon$/.test(attr.name) || /data-balloon/.test(attr.name) || /^data-passthrough$/.test(attr.name)) {
+                                        return false;
+                                    }
+                                    return true;
+                                }).forEach(function (attr) {
+                                    // remove all params before setting new ones
+                                    // to remove any leftover ones like barrier2
+                                    purchase.removeAttribute(attr.name);
+                                });
+                                purchase.setAttribute('data-purchase-id', id);
+                                purchase.setAttribute('data-ask-price', proposal.ask_price);
+                                purchase.setAttribute('data-display_value', proposal.display_value);
+                                purchase.setAttribute('data-payout', proposal.payout);
+                                purchase.setAttribute('data-symbol', id);
+                                Object.keys(params).forEach(function (key) {
+                                    if (key && key !== 'proposal') {
+                                        purchase.setAttribute('data-' + key, params[key]);
+                                    }
+                                });
+                            }
+
+                        case 40:
+                        case 'end':
+                            return _context.stop();
+                    }
                 }
-                return true;
-            }).forEach(function (attr) {
-                // remove all params before setting new ones
-                // to remove any leftover ones like barrier2
-                purchase.removeAttribute(attr.name);
-            });
-            purchase.setAttribute('data-purchase-id', id);
-            purchase.setAttribute('data-ask-price', proposal.ask_price);
-            purchase.setAttribute('data-display_value', proposal.display_value);
-            purchase.setAttribute('data-payout', proposal.payout);
-            purchase.setAttribute('data-symbol', id);
-            Object.keys(params).forEach(function (key) {
-                if (key && key !== 'proposal') {
-                    purchase.setAttribute('data-' + key, params[key]);
-                }
-            });
-        }
-    };
+            }, _callee, undefined);
+        }));
+
+        return function display(_x, _x2) {
+            return _ref.apply(this, arguments);
+        };
+    }();
 
     var clearMapping = function clearMapping() {
         type_display_id_mapping = {};
@@ -29044,9 +29129,7 @@ var PaymentAgentTransfer = function () {
 
         common_request_fields = [{ request_field: 'paymentagent_transfer', value: 1 }, { request_field: 'currency', value: currency }];
 
-        FormManager.init(form_id, [{ selector: '#client_id', validations: ['req', ['regular', { regex: /^\w+\d+$/, message: localize('Please enter a valid Login ID.') }]], request_field: 'transfer_to' }, { selector: '#amount', validations: ['req', ['number', { type: 'float', decimals: getDecimalPlaces(currency), min: pa ? pa.min_withdrawal : 10, max: max_withdrawal(balance, pa, 2000) }], ['custom', { func: function func() {
-                    return +Client.get('balance') >= +$('#amount').val();
-                }, message: localize('Insufficient balance.') }]] }, { selector: '#description', validations: ['general'] }, { request_field: 'dry_run', value: 1 }].concat(common_request_fields));
+        FormManager.init(form_id, [{ selector: '#client_id', validations: ['req', ['regular', { regex: /^\w+\d+$/, message: localize('Please enter a valid Login ID.') }]], request_field: 'transfer_to' }, { selector: '#amount', validations: ['req', ['number', { type: 'float', decimals: getDecimalPlaces(currency), min: pa ? pa.min_withdrawal : 10, max: max_withdrawal(balance, pa, 2000), balance: Client.get('balance') }]] }, { selector: '#description', validations: ['general'] }, { request_field: 'dry_run', value: 1 }].concat(common_request_fields));
 
         FormManager.handleSubmit({
             form_selector: form_id,
