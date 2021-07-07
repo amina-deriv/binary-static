@@ -23499,7 +23499,11 @@ var TradingEvents = function () {
         $('#barrier').on('keypress', function (ev) {
             onlyNumericOnKeypress(ev, [43, 45, 46]);
         }).on('input', CommonTrading.debounce(function (e) {
-            // e.target.value = e.target.value.replace(/[^0-9+-.]/g, '');
+            // eslint-disable-next-line no-console
+            console.log('input', e.target.value);
+            e.target.value = e.target.value.replace(/[^+-\d.]/g, '');
+            // eslint-disable-next-line no-console
+            console.log('validation', e.target.value);
             Barriers.validateBarrier();
             Defaults.set('barrier', e.target.value);
             Price.processPriceRequest();
@@ -23511,7 +23515,7 @@ var TradingEvents = function () {
          */
         var low_barrier_element = getElementById('barrier_low');
         low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
-            // e.target.value = e.target.value.replace(/[^0-9+-.]/g, '');
+            e.target.value = e.target.value.replace(/[^+-\d.]/g, '');
             Barriers.validateBarrier();
             Defaults.set('barrier_low', e.target.value);
             Price.processPriceRequest();
@@ -23526,7 +23530,7 @@ var TradingEvents = function () {
          */
         var high_barrier_element = getElementById('barrier_high');
         high_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
-            // e.target.value = e.target.value.replace(/[^0-9+-.]/g, '');
+            e.target.value = e.target.value.replace(/[^+-\d.]/g, '');
             Barriers.validateBarrier();
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
