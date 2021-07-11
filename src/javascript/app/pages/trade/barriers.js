@@ -81,6 +81,7 @@ const Barriers = (() => {
                 } else if (barrier.count === 2) {
                     getElementById('barrier_row').style.display = 'none';
                     getElementById('high_barrier_row').setAttribute('style', '');
+                    console.log(getElementById('high_barrier_row'));
                     getElementById('low_barrier_row').setAttribute('style', '');
 
                     const high_elm     = getElementById('barrier_high');
@@ -166,6 +167,7 @@ const Barriers = (() => {
     */
     const validateBarrier = () => {
         const barrier_element      = getElementById('barrier');
+         console.log(barrier_element);
         const barrier_high_element = getElementById('barrier_high');
         const empty = isNaN(parseFloat(barrier_element.value)) || isAbsoluteZero(barrier_element.value);
 

@@ -13,4 +13,16 @@ const onlyNumericOnKeypress = (ev, optional_value) => {
     }
 };
 
-module.exports = onlyNumericOnKeypress;
+const removeInvalidCharacters=(value)=>{
+    const validBarrier = value.replace(/[^\d.+-]/g, '')
+                                .replace(/(?!^)-/g, '')// Remove all dashes unless it is the first character
+                                .replace(/(?!^)\+/g, '')// Remove all + unless it is the first character
+                                .replace(/(\..*)\.$/, '')// Remove the last period if there is already one
+                                // .replace(/\.(?=.*\.)/g, '');// Remove all periods unless it is the last ONE
+    return validBarrier;
+}
+
+module.exports = {
+    onlyNumericOnKeypress,
+    removeInvalidCharacters,
+};
