@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: binary-static\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2021-07-06 13:43\n"
+"PO-Revision-Date: 2021-07-13 11:24\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "MIME-Version: 1.0\n"
@@ -4865,11 +4865,8 @@ msgstr "ฉ. มาร์จินและเลเวอเลจ"
 msgid "FIX API"
 msgstr "FIX API"
 
-msgid "FX-majors (standard), FX-minors, Commodities, Cryptocurrencies"
-msgstr "สกุลเงินหลัก (มาตรฐาน) สกุลเงินรอง หุ้นโภคภัณฑ์ สกุลเงินดิจิทัล"
-
-msgid "FX-majors (standard/micro lots), FX-minors, Commodities, Cryptocurrencies"
-msgstr "สกุลเงินหลัก (มาตรฐาน/ไมโครล็อต) สกุลเงินรอง หุ้นโภคภัณฑ์ สกุลเงินดิจิตอล"
+msgid "FX-majors (standard/micro lots), FX-minors, Commodities, Cryptocurrencies, Stocks, and Stock Indices"
+msgstr ""
 
 msgid "FX-majors, FX-minors, FX-exotics, Cryptocurrencies"
 msgstr "สกุลเงินหลัก สกุลเงินรอง สกุลเงินแปลกใหม่ สกุลเงินดิจิทัล"
@@ -8032,7 +8029,7 @@ msgid "Note: For any enquiries regarding disabled or excluded accounts, please c
 msgstr "หมายเหตุ: สำหรับคำถามใดๆ เกี่ยวกับบัญชีถูกปิดใช้งาน หรือ บัญชีที่ถูกตัดออก โปรดติดต่อ %1ฝ่ายลูกค้าสัมพันธ์%2"
 
 msgid "Note: Payment Agent transfers are only available for accounts registered with Deriv (SVG) LLC."
-msgstr ""
+msgstr "หมายเหตุ: การโอนเงินจากตัวแทนการชำระเงินจะใช้ได้เฉพาะกับบัญชีที่ลงทะเบียนกับ Deriv (SVG) LLC"
 
 msgid "Note: You are limited to one fiat currency account. The currency of your fiat account can be changed before you deposit into your fiat account for the first time or create an MT5 account. You may also open one account for each supported cryptocurrency."
 msgstr "หมายเหตุ: ท่านถูกจำกัดสิทธิ์ไว้ที่สกุลเงิน fiat หนึ่งบัญชี สกุลเงินของบัญชีเงิน fiat ของท่านสามารถเปลี่ยนแปลงได้ก่อนที่ท่านจะฝากเข้าบัญชีเงิน fiat ของท่านเป็นครั้งแรก หรือ ก่อนเปิดบัญชี MT5 ท่านสามารถเปิดได้เพียงหนึ่งบัญชีสำหรับแต่ละสกุลเงินดิจิทัลที่รองรับ"
@@ -10357,7 +10354,7 @@ msgid "Sorry, withdrawals for this currency are currently disabled."
 msgstr "ขออภัย การถอนเงินสำหรับสกุลเงินนี้ ขณะนี้ถูกปิดการใช้งาน"
 
 msgid "Sorry, your account is not authorised for any further contract purchases."
-msgstr ""
+msgstr "ขออภัย บัญชีของท่านไม่ได้รับอนุญาตในการซื้อสัญญาเพิ่ม"
 
 msgid "Source of income"
 msgstr "แหล่งที่มาของรายได้"
@@ -11559,11 +11556,11 @@ msgstr "ผลิตภัณฑ์ทางการเงินที่ DIEL 
 msgid "The Financial Straight-Through Processing (STP) account is a 100% A Book account where your trades are passed straight through to the market, giving you direct access to forex liquidity providers. Trade major, minor, exotic currency pairs, and cryptocurrencies with tight spreads and higher trade volumes."
 msgstr "บัญชี Financial (STP) เป็นการประมวลผลแบบตรง เป็นบัญชี 100% ที่หนังสือธุรกิจการค้าถูกส่งผ่านไปยังตลาดโดยตรง ซึ่งให้คุณเข้าถึงผู้ให้บริการสภาพคล่องอัตราแลกเปลี่ยนโดยตรงของฟอเร็กซ์ ซื้อขายคู่สกุลเงินหลัก สกุลเงินรอง สกุลเงินแปลกใหม่ และสกุลเงินดิจิทัล ที่มีสเปรดที่แคบและปริมาณการซื้อขายสูง"
 
-msgid "The Financial account (available in EUR and GBP) is suitable for a wide range of traders, both new or experienced. Trade commodities, cryptocurrencies, major and minor currency pairs with tight and variable spreads without commissions and a minimum deposit."
-msgstr "บัญชี Financial (มีให้บริการในสกุลเงิน EUR และ GBP) เหมาะสำหรับผู้ซื้อขายที่หลากหลายทั้งมือใหม่หรือผู้มีประสบการณ์ ซื้อขายหุ้นโภคภัณฑ์ สกุลเงินดิจิทัล คู่สกุลเงินหลักและรอง ด้วยสเปรดที่แคบและยืดหยุ่น โดยไม่มีค่าคอมมิชชั่นและเงินฝากขั้นต่ำ"
+msgid "The Financial account (available in EUR and GBP) is suitable for a wide range of traders, both new or experienced. Trade major (standard and micro-lots) and minor currency pairs, stocks, stock indices, commodities, and cryptocurrencies."
+msgstr ""
 
-msgid "The Financial account offers new and experienced traders high leverage and variable spreads for maximum flexibility. Trade commodities, cryptocurrencies, major (standard and micro-lots), and minor currency pairs with high leverage."
-msgstr "บัญชี Financial เหมาะกับผู้ซื้อขายรายใหม่ และผู้ซื้อขายที่มีประสบการณ์ ในเลเวอเรจที่สูง และตัวแปรที่หลากหลายเพื่อความยืดหยุ่นสูงสุด สามารถซื้อขายหุ้นโภคภัณฑ์ เงินสกุลดิจิทัล คู่สกุลเงินหลัก (มาตรฐานและไมโครล็อต) และคู่สกุลเงินรองที่มีเลเวอเรจสูง"
+msgid "The Financial account offers new and experienced traders high leverage and variable spreads for maximum flexibility. Trade major (standard and micro-lots) and minor currency pairs, stocks, stock indices, commodities, and cryptocurrencies with high leverage."
+msgstr ""
 
 msgid "The Foreign Exchange Market (forex) is the world's largest and most liquid market – where anyone can buy, sell, and exchange currencies."
 msgstr "ตลาดแลกเปลี่ยนเงินตราต่างประเทศ (ฟอเร็กซ์) เป็นตลาดที่ใหญ่ที่สุดและมีสภาพคล่องมากที่สุดในโลก ซึ่งทุกคนสามารถซื้อขายและแลกเปลี่ยนสกุลเงินได้"
@@ -14579,6 +14576,9 @@ msgstr "คุณมีตําแหน่งที่เปิดในบั
 msgid "You have open positions in these MT5 accounts:"
 msgstr "คุณมีตําแหน่งที่เปิดในบัญชี MT5 เหล่านี้:"
 
+msgid "You have pending withdrawal(s) in these Binary accounts:"
+msgstr ""
+
 msgid "You have probably seen the terms 'going long' and 'going short' being used by a lot of forex brokers and traders. Let's compare the differences between the two terms:"
 msgstr "คุณอาจจะเห็นโบรกเกอร์และนักลงทุนฟอเร็กซ์หลายคนใช้คำว่า 'ไปยาว' และ 'ไปสั้น' เรามาเปรียบเทียบความแตกต่างระหว่างสองคำนี้:"
 
@@ -15089,6 +15089,9 @@ msgstr "หรืออัปโหลดรูปภาพ – ไม่อน�
 msgid "paysafecard offers a voucher-based online payment method that does not require a bank account, credit card, or other personal information. For more information, please visit %1."
 msgstr "paysafecard เสนอวิธีการชำระเงินออนไลน์แบบใช้ใบสำคัญแทนการรับจ่ายเงินที่ไม่ต้องใช้บัญชีธนาคาร บัตรเครดิต หรือ ข้อมูลส่วนบุคคลอื่นๆ สำหรับข้อมูลเพิ่มเติม โปรดศึกษาจาก %1"
 
+msgid "position(s)"
+msgstr ""
+
 msgid "ratio of Account Equity to Total Margin, expressed as a percentage"
 msgstr "อัตราของทุนของบัญชีต่อมาร์จินรวม แสดงในรูปร้อยละ"
 
@@ -15154,6 +15157,9 @@ msgstr "วันนี้"
 
 msgid "today, Fridays"
 msgstr "วันนี้วันศุกร์"
+
+msgid "withdrawal(s)"
+msgstr ""
 
 msgid "{SPAIN ONLY}However, Binary Investments (Europe) Ltd has assessed your knowledge and experience and deems the product appropriate for you."
 msgstr "{SPAIN ONLY}However, Binary Investments (Europe) Ltd has assessed your knowledge and experience and deems the product appropriate for you."

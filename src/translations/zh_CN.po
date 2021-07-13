@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: binary-static\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2021-07-06 13:43\n"
+"PO-Revision-Date: 2021-07-13 11:24\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -4865,11 +4865,8 @@ msgstr "六、保证金和杠杆交易"
 msgid "FIX API"
 msgstr "FIX API"
 
-msgid "FX-majors (standard), FX-minors, Commodities, Cryptocurrencies"
-msgstr "外汇-主要货币对（标准）、 外汇-次要货币对、 大宗商品、 加密货币"
-
-msgid "FX-majors (standard/micro lots), FX-minors, Commodities, Cryptocurrencies"
-msgstr "外汇-主要货币对（标准/微手）， 外汇-次要货币对， 大宗商品， 加密货币"
+msgid "FX-majors (standard/micro lots), FX-minors, Commodities, Cryptocurrencies, Stocks, and Stock Indices"
+msgstr ""
 
 msgid "FX-majors, FX-minors, FX-exotics, Cryptocurrencies"
 msgstr "外汇-主要货币对、外汇-次要货币对、外汇-奇异货币对、加密货币"
@@ -8032,7 +8029,7 @@ msgid "Note: For any enquiries regarding disabled or excluded accounts, please c
 msgstr "注: 如有任何关于禁用或隔离账户的查询, 请与%1客服部%2联系。"
 
 msgid "Note: Payment Agent transfers are only available for accounts registered with Deriv (SVG) LLC."
-msgstr ""
+msgstr "注意：只有在 Deriv (SVG) LLC 注册的账户才能通过付款代理汇款。"
 
 msgid "Note: You are limited to one fiat currency account. The currency of your fiat account can be changed before you deposit into your fiat account for the first time or create an MT5 account. You may also open one account for each supported cryptocurrency."
 msgstr "注意: 您只能使用一个法定货币账户。首次将资金存入法定账户或开立 MT5 账户之前, 您可以更改法定账户的币种。您还可以为每种受支持的加密货币开立专用账户。"
@@ -10357,7 +10354,7 @@ msgid "Sorry, withdrawals for this currency are currently disabled."
 msgstr "抱歉，此货币的取款目前被禁用。"
 
 msgid "Sorry, your account is not authorised for any further contract purchases."
-msgstr ""
+msgstr "对不起，您的账户无权进一步买入任何合约。"
 
 msgid "Source of income"
 msgstr "收入来源"
@@ -11559,11 +11556,11 @@ msgstr "DIEL提供的金融产品交易为客户和DIEL之间的合约。在这�
 msgid "The Financial Straight-Through Processing (STP) account is a 100% A Book account where your trades are passed straight through to the market, giving you direct access to forex liquidity providers. Trade major, minor, exotic currency pairs, and cryptocurrencies with tight spreads and higher trade volumes."
 msgstr "财务直通式处理系统 （STP）账户是100% A Book 账户。让您直接进入市场交易，您也可直接访问外汇流动量提供商，并进行紧密利差、高交易量的主要、次要、特异货币对和加密货币外汇交易。"
 
-msgid "The Financial account (available in EUR and GBP) is suitable for a wide range of traders, both new or experienced. Trade commodities, cryptocurrencies, major and minor currency pairs with tight and variable spreads without commissions and a minimum deposit."
-msgstr "财务账户（可用欧元和英镑）适用于各种新手或有经验的交易者。以微小和可变的差价进行大宗商品、加密货币、主要和次要货币对交易, 不收佣金费，也没有最低存款限制。"
+msgid "The Financial account (available in EUR and GBP) is suitable for a wide range of traders, both new or experienced. Trade major (standard and micro-lots) and minor currency pairs, stocks, stock indices, commodities, and cryptocurrencies."
+msgstr ""
 
-msgid "The Financial account offers new and experienced traders high leverage and variable spreads for maximum flexibility. Trade commodities, cryptocurrencies, major (standard and micro-lots), and minor currency pairs with high leverage."
-msgstr "财务账户为新手或有经验的交易者提供高杠杆率和可变的差价，达到最大的灵活性，进行高杠杆大宗商品、加密货币、主要（标准和微手）和次要货币对交易。"
+msgid "The Financial account offers new and experienced traders high leverage and variable spreads for maximum flexibility. Trade major (standard and micro-lots) and minor currency pairs, stocks, stock indices, commodities, and cryptocurrencies with high leverage."
+msgstr ""
 
 msgid "The Foreign Exchange Market (forex) is the world's largest and most liquid market – where anyone can buy, sell, and exchange currencies."
 msgstr "外汇市场（forex）是世界上最大、流动性最高的市场 - 任何人都可以买、卖、交易货币。\n"
@@ -14578,6 +14575,9 @@ msgstr "您在以下 Binary 账户中持有未平仓头寸："
 msgid "You have open positions in these MT5 accounts:"
 msgstr "您在以下 MT5 账户中持有未平仓头寸："
 
+msgid "You have pending withdrawal(s) in these Binary accounts:"
+msgstr "您在以下 Binary 账户中有待定提款："
+
 msgid "You have probably seen the terms 'going long' and 'going short' being used by a lot of forex brokers and traders. Let's compare the differences between the two terms:"
 msgstr "您可能看过很多外汇经纪商和交易者使用“开多头头寸”和“开空头头寸”这两个术语。让我们来比较一下两个术语之间的差异："
 
@@ -15088,6 +15088,9 @@ msgstr "或上传照片 - 不接受扫描件或影印件"
 msgid "paysafecard offers a voucher-based online payment method that does not require a bank account, credit card, or other personal information. For more information, please visit %1."
 msgstr "paysafecard 提供基于凭证，不需要银行账户、信用卡或其他个人信息的在线支付方法 。欲知详情, 请访问 %1。"
 
+msgid "position(s)"
+msgstr "头寸"
+
 msgid "ratio of Account Equity to Total Margin, expressed as a percentage"
 msgstr "账户资金与保证金总额的比率，以百分比表示"
 
@@ -15153,6 +15156,9 @@ msgstr "今天"
 
 msgid "today, Fridays"
 msgstr "今天，周五"
+
+msgid "withdrawal(s)"
+msgstr "提款"
 
 msgid "{SPAIN ONLY}However, Binary Investments (Europe) Ltd has assessed your knowledge and experience and deems the product appropriate for you."
 msgstr "{SPAIN ONLY}However, Binary Investments (Europe) Ltd has assessed your knowledge and experience and deems the product appropriate for you."
