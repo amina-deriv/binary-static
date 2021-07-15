@@ -14,11 +14,10 @@ const onlyNumericOnKeypress = (ev, optional_value) => {
 };
 
 const removeInvalidCharacters=(value)=>{
-    const validBarrier = value.replace(/[^\d.+-]/g, '')
-                                .replace(/(?!^)-/g, '')// Remove all dashes unless it is the first character
+    const validBarrier = value.replace(/[^\d.+-]/g, '') // Remove all characters except +,-,. 
+                                .replace(/(?!^)-/g, '') // Remove all dashes unless it is the first character
                                 .replace(/(?!^)\+/g, '')// Remove all + unless it is the first character
-                                .replace(/(\..*)\.$/, '')// Remove the last period if there is already one
-                                // .replace(/\.(?=.*\.)/g, '');// Remove all periods unless it is the last ONE
+                                .replace(/^([^.]*\.)|\./g, '$1') // Remove all periods unless it is the first one
     return validBarrier;
 }
 
