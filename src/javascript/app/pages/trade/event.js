@@ -369,13 +369,11 @@ const TradingEvents = (() => {
          * attach an event to change in barrier
          */
         $('#barrier')
-            // .on('keypress', (ev) => { eventHandlers.onlyNumericOnKeypress(ev, [43, 45, 46]); })
+            .on('keypress', (ev) => { eventHandlers.onlyNumericOnKeypress(ev, [43, 45, 46]); })
             .on('input', CommonTrading.debounce((e) => {
-               const validBarrier = eventHandlers.removeInvalidCharacters(e.target.value);
-               console.log(validBarrier);
-               e.target.value=validBarrier;
+                e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);
                 Barriers.validateBarrier();
-                Defaults.set('barrier', validBarrier);
+                Defaults.set('barrier', e.target.value);
                 Price.processPriceRequest();
                 CommonTrading.submitForm(getElementById('websocket_form'));
             }, 1000));
@@ -400,8 +398,6 @@ const TradingEvents = (() => {
          */
         const high_barrier_element = getElementById('barrier_high');
         high_barrier_element.addEventListener('input', CommonTrading.debounce((e) => {
-            const validBarrier = eventHandlers.removeInvalidCharacters(e.target.value);
-
             Barriers.validateBarrier();
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
