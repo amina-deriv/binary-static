@@ -14170,7 +14170,7 @@ var onlyNumericOnKeypress = function onlyNumericOnKeypress(ev, optional_value) {
 };
 
 var removeInvalidCharacters = function removeInvalidCharacters(value) {
-    var validBarrier = value.replace(/[^\d.+-]/g, '') // Remove all characters except +,-,.
+    var validBarrier = value.replace(/[^\d.+-]/g, '') // Remove all characters except .,+,-
     .replace(/(?!^)-/g, '') // Remove all dashes unless it is the first character
     .replace(/(?!^)\+/g, '') // Remove all + unless it is the first character
     .replace(/^([^.]*\.)|\./g, '$1'); // Remove all periods unless it is the first one
@@ -23523,7 +23523,7 @@ var TradingEvents = function () {
          */
         var low_barrier_element = getElementById('barrier_low');
         low_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
-            // e.target.value = e.target.value.replace(/[^+-\d.]/g, '');
+            e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);
             Barriers.validateBarrier();
             Defaults.set('barrier_low', e.target.value);
             Price.processPriceRequest();
@@ -23538,6 +23538,7 @@ var TradingEvents = function () {
          */
         var high_barrier_element = getElementById('barrier_high');
         high_barrier_element.addEventListener('input', CommonTrading.debounce(function (e) {
+            e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);
             Barriers.validateBarrier();
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
