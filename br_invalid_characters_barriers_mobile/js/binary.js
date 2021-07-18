@@ -10712,6 +10712,9 @@ var Client = function () {
         // clear elev.io session storage
         sessionStorage.removeItem('_elevaddon-6app');
         sessionStorage.removeItem('_elevaddon-6create');
+        // clear session storage related to #financial-form
+        sessionStorage.removeItem('client_form_response');
+        sessionStorage.removeItem('is_risk_disclaimer');
         // clear trading session
         Defaults.remove('underlying', 'market');
         ClientBase.clearAllAccounts();
@@ -11330,6 +11333,9 @@ var Header = function () {
             var buildSpecificMessage = function buildSpecificMessage(string, additional) {
                 return template(string, [].concat(_toConsumableArray(additional)));
             };
+            var buildMessageHref = function buildMessageHref(string, href) {
+                return template(string, ['<a href="' + href + '" target="_blank">', '</a>']);
+            };
             var hasStatus = function hasStatus(string) {
                 return status.findIndex(function (s) {
                     return s === string;
@@ -11408,6 +11414,9 @@ var Header = function () {
                 cashier_locked: function cashier_locked() {
                     return localize('Deposits and withdrawals have been disabled on your account. Please check your email for more details.');
                 },
+                system_maintenance: function system_maintenance() {
+                    return buildMessageHref(localizeKeepPlaceholders('We’re updating our cashier system and it’ll be back online soon. Please see our [_1]status page[_2] for updates.'), 'https://deriv.statuspage.io/');
+                },
                 currency: function currency() {
                     return buildMessage(localizeKeepPlaceholders('Please set the [_1]currency[_2] of your account.'), 'user/set-currency');
                 },
@@ -11480,6 +11489,9 @@ var Header = function () {
                 cashier_locked: function cashier_locked() {
                     return hasStatus('cashier_locked');
                 },
+                system_maintenance: function system_maintenance() {
+                    return hasStatus('system_maintenance');
+                },
                 currency: function currency() {
                     return !Client.get('currency');
                 },
@@ -11549,7 +11561,7 @@ var Header = function () {
             };
 
             // real account checks in order
-            var check_statuses_real = ['excluded_until', 'tnc', 'required_fields', 'financial_limit', 'risk', 'tax', 'currency', 'unsubmitted', 'expired', 'expired_identity', 'expired_document', 'rejected', 'rejected_identity', 'rejected_document', 'identity', 'document', 'unwelcome', 'no_withdrawal_or_trading', 'cashier_locked', 'withdrawal_locked_review', 'withdrawal_locked', 'mt5_withdrawal_locked'];
+            var check_statuses_real = ['excluded_until', 'tnc', 'required_fields', 'financial_limit', 'risk', 'tax', 'currency', 'unsubmitted', 'expired', 'expired_identity', 'expired_document', 'rejected', 'rejected_identity', 'rejected_document', 'identity', 'document', 'unwelcome', 'no_withdrawal_or_trading', 'system_maintenance', 'cashier_locked', 'withdrawal_locked_review', 'withdrawal_locked', 'mt5_withdrawal_locked'];
 
             // virtual checks
             var check_statuses_virtual = ['residence'];
@@ -11570,9 +11582,12 @@ var Header = function () {
             } else {
                 var el_account_status = createElement('span', { class: 'authenticated', 'data-balloon': localize('Account Authenticated'), 'data-balloon-pos': 'down' });
                 BinarySocket.wait('website_status', 'get_account_status', 'get_settings', 'balance').then(function () {
+                    /* eslint-disable max-len */
                     authentication = State.getResponse('get_account_status.authentication') || {};
                     get_account_status = State.getResponse('get_account_status') || {};
-                    status = get_account_status.status;
+                    var has_cashier_validation = !!get_account_status.cashier_validation;
+                    var cashier_validation = has_cashier_validation ? [].concat(_toConsumableArray(get_account_status.cashier_validation)) : [];
+                    status = [].concat(_toConsumableArray(cashier_validation), _toConsumableArray(get_account_status.status));
                     checkStatus(check_statuses_real);
                     is_fully_authenticated = hasStatus('authenticated') && !+get_account_status.prompt_client_to_authenticate;
                     $('.account-id')[is_fully_authenticated ? 'append' : 'remove'](el_account_status);
@@ -16539,7 +16554,6 @@ var isBinaryApp = __webpack_require__(/*! ../../../config */ "./src/javascript/c
 
 var DepositWithdraw = function () {
     var default_iframe_height = 700;
-
     var response_withdrawal = {};
 
     var cashier_type = void 0,
@@ -16768,7 +16782,7 @@ var DepositWithdraw = function () {
 
     var onLoad = function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-            var response_get_account_status, account_currency_config, currency_config, promises;
+            var response_get_account_status, is_crypto, account_currency_config, currency_config, promises;
             return regeneratorRuntime.wrap(function _callee$(_context) {
                 while (1) {
                     switch (_context.prev = _context.next) {
@@ -16806,42 +16820,57 @@ var DepositWithdraw = function () {
                             response_get_account_status = State.get(['response', 'get_account_status']);
 
                             if (response_get_account_status.error) {
+                                _context.next = 30;
+                                break;
+                            }
+
+                            is_crypto = Currency.isCryptocurrency(Client.get('currency'));
+
+                            if (!/cashier_locked/.test(response_get_account_status.get_account_status.status)) {
                                 _context.next = 26;
                                 break;
                             }
 
-                            if (!/cashier_locked/.test(response_get_account_status.get_account_status.status)) {
-                                _context.next = 22;
+                            if (!/system_maintenance/.test(response_get_account_status.get_account_status.cashier_validation)) {
+                                _context.next = 18;
                                 break;
                             }
 
+                            if (is_crypto) {
+                                showError('custom_error', localize('Our cryptocurrency cashier is temporarily down due to system maintenance. You can access the cashier as soon as the maintenance is complete.'));
+                            } else {
+                                showError('custom_error', localize('Our cashier is temporarily down due to system maintenance. You can access the cashier as soon as the maintenance is complete.'));
+                            }
+                            return _context.abrupt('return');
+
+                        case 18:
                             if (!/ASK_UK_FUNDS_PROTECTION/.test(response_get_account_status.get_account_status.cashier_validation)) {
-                                _context.next = 17;
+                                _context.next = 21;
                                 break;
                             }
 
                             initUKGC();
                             return _context.abrupt('return');
 
-                        case 17:
+                        case 21:
                             if (!/ASK_SELF_EXCLUSION_MAX_TURNOVER_SET/.test(response_get_account_status.get_account_status.cashier_validation)) {
-                                _context.next = 20;
+                                _context.next = 24;
                                 break;
                             }
 
                             showError('limits_error');
                             return _context.abrupt('return');
 
-                        case 20:
+                        case 24:
 
                             showError('custom_error', localize('Your cashier is locked.')); // Locked from BO
                             return _context.abrupt('return');
 
-                        case 22:
+                        case 26:
                             account_currency_config = getPropertyValue(response_get_account_status.get_account_status, ['currency_config', Client.get('currency')]) || {};
 
                             if (!(cashier_type === 'deposit' && account_currency_config.is_deposit_suspended || cashier_type === 'withdraw' && account_currency_config.is_withdrawal_suspended)) {
-                                _context.next = 26;
+                                _context.next = 30;
                                 break;
                             }
 
@@ -16849,20 +16878,20 @@ var DepositWithdraw = function () {
                             showError('custom_error', localize('Please note that the selected currency is allowed for limited accounts only.'));
                             return _context.abrupt('return');
 
-                        case 26:
-                            _context.next = 28;
+                        case 30:
+                            _context.next = 32;
                             return BinarySocket.wait('website_status');
 
-                        case 28:
+                        case 32:
                             currency_config = getPropertyValue(getCurrencies(), [Client.get('currency')]) || {};
 
                             if (!(cashier_type === 'deposit')) {
-                                _context.next = 35;
+                                _context.next = 39;
                                 break;
                             }
 
                             if (!currency_config.is_deposit_suspended) {
-                                _context.next = 33;
+                                _context.next = 37;
                                 break;
                             }
 
@@ -16870,13 +16899,13 @@ var DepositWithdraw = function () {
                             showError('custom_error', localize('Sorry, deposits for this currency are currently disabled.'));
                             return _context.abrupt('return');
 
-                        case 33:
-                            _context.next = 38;
+                        case 37:
+                            _context.next = 42;
                             break;
 
-                        case 35:
+                        case 39:
                             if (!currency_config.is_withdrawal_suspended) {
-                                _context.next = 38;
+                                _context.next = 42;
                                 break;
                             }
 
@@ -16885,7 +16914,7 @@ var DepositWithdraw = function () {
                             showError('custom_error', localize('Sorry, withdrawals for this currency are currently disabled.'));
                             return _context.abrupt('return');
 
-                        case 38:
+                        case 42:
                             promises = [];
 
                             if (cashier_type === 'deposit') {
@@ -16915,7 +16944,7 @@ var DepositWithdraw = function () {
                                 });
                             });
 
-                        case 41:
+                        case 45:
                         case 'end':
                             return _context.stop();
                     }
