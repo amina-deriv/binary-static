@@ -383,7 +383,7 @@ const TradingEvents = (() => {
          */
         const low_barrier_element = getElementById('barrier_low');
         low_barrier_element.addEventListener('input', CommonTrading.debounce((e) => {
-            // e.target.value = e.target.value.replace(/[^+-\d.]/g, '');
+            e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);
             Barriers.validateBarrier();
             Defaults.set('barrier_low', e.target.value);
             Price.processPriceRequest();
@@ -398,6 +398,7 @@ const TradingEvents = (() => {
          */
         const high_barrier_element = getElementById('barrier_high');
         high_barrier_element.addEventListener('input', CommonTrading.debounce((e) => {
+            e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);
             Barriers.validateBarrier();
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();

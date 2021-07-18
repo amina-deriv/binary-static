@@ -14,7 +14,7 @@ const onlyNumericOnKeypress = (ev, optional_value) => {
 };
 
 const removeInvalidCharacters = (value)=>{
-    const validBarrier = value.replace(/[^\d.+-]/g, '')// Remove all characters except +,-,.
+    const validBarrier = value.replace(/[^\d.+-]/g, '')// Remove all characters except .,+,-
         .replace(/(?!^)-/g, '')// Remove all dashes unless it is the first character
         .replace(/(?!^)\+/g, '')// Remove all + unless it is the first character
         .replace(/^([^.]*\.)|\./g, '$1');// Remove all periods unless it is the first one
