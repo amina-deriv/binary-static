@@ -371,7 +371,7 @@ const TradingEvents = (() => {
         $('#barrier')
             .on('keypress', (ev) => { eventHandlers.onlyNumericOnKeypress(ev, [43, 45, 46]); })
             .on('input', CommonTrading.debounce((e) => {
-                e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);//remove invalid characters on mobile
+                e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);// remove invalid characters on mobile
                 Barriers.validateBarrier();
                 Defaults.set('barrier', e.target.value);
                 Price.processPriceRequest();
@@ -383,7 +383,7 @@ const TradingEvents = (() => {
          */
         const low_barrier_element = getElementById('barrier_low');
         low_barrier_element.addEventListener('input', CommonTrading.debounce((e) => {
-            e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);//remove invalid characters on mobile
+            e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);// remove invalid characters on mobile
             Barriers.validateBarrier();
             Defaults.set('barrier_low', e.target.value);
             Price.processPriceRequest();
@@ -398,7 +398,7 @@ const TradingEvents = (() => {
          */
         const high_barrier_element = getElementById('barrier_high');
         high_barrier_element.addEventListener('input', CommonTrading.debounce((e) => {
-            e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);//remove invalid characters on mobile
+            e.target.value = eventHandlers.removeInvalidCharacters(e.target.value);// remove invalid characters on mobile
             Barriers.validateBarrier();
             Defaults.set('barrier_high', e.target.value);
             Price.processPriceRequest();
