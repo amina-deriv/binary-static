@@ -385,7 +385,7 @@ const Metatrader = () => (
                                         </p>
                                         <a
                                             href={it.url_for('user/security/change_passwordws')}
-                                            className='button mt5-web-link'
+                                            className='button'
                                         >
                                             <span>{it.L('Manage trading password')}</span>
                                         </a>
@@ -397,7 +397,7 @@ const Metatrader = () => (
                                         </p>
                                         <a
                                             href={it.url_for('user/security/change_passwordws')}
-                                            className='button mt5-web-link'
+                                            className='button'
                                         >
                                             <span>{it.L('Set trading password')}</span>
                                         </a>
