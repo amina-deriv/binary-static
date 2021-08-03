@@ -50,10 +50,7 @@ const ResetPassword = (() => {
                 localized_message: localize('You have a new binary password.'),
                 localized_title  : localize('Binary password'),
                 ok_text          : localize('Done'),
-                onConfirm        : () => {
-                    Login.redirectToLogin(true);
-                    Client.sendLogoutRequest(true);
-                },
+                onConfirm        : () => Client.sendLogoutRequest(true),
             });
         }
     };
