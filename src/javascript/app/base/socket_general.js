@@ -19,7 +19,7 @@ const LocalStore             = require('../../_common/storage').LocalStore;
 const State                  = require('../../_common/storage').State;
 const getPropertyValue       = require('../../_common/utility').getPropertyValue;
 const isLoginPages           = require('../../_common/utility').isLoginPages;
-const Login = require('../../_common/base/login')
+
 const BinarySocketGeneral = (() => {
     const onOpen = (is_ready) => {
         Header.hideNotification();
