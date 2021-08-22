@@ -18,6 +18,18 @@
     }
 }
 
+.payment-methods__noIconText {
+    color: $COLOR_RED;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    height: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .box-row {
     border-bottom: 1px solid $COLOR_GRAY;
 
