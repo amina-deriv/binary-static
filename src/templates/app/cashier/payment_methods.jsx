@@ -1,11 +1,11 @@
 import React from 'react';
 import fs from  'fs';
-// import Client from '../../../javascript/app/base/client';
 import { CashierNote } from './index.jsx';
 import { Table } from '../../_common/components/elements.jsx';
 import payment_method_json from './payment_methods.json'
+// import Client from '../../../javascript/app/base/client';
 
-
+// import { State } from '../../_common/storage';
 const Button = ({ url, real, className, text }) => (
     <a href={it.url_for(url)} className={`toggle button ${real ? 'client_real' : 'client_logged_out'} invisible ${className || undefined}`}>
         <span>{text}</span>
@@ -169,9 +169,31 @@ const CustomTableData = ({ data }) => (
             return (<TableValues value={[it.L(`${deposit}${deposit_time}`), it.L(`${withdrawal}${withdrawal_time}`)]} /> )
         }
         // const getClientCountry = () => {
-        //     let current_client_country = Client.get('residence')|| State.getResponse('website_status.clients_country');
+        //  let current_client_country = '';
+        //     if(Client.get('residence')) current_client_country = Client.get('residence')
+        //     else current_client_country = State.getResponse('website_status.clients_country')
         //     return current_client_country
+        //     // return ''
         // }
+
+        const getReferenceFiles=(key,reference)=>{
+            const ispdfAvailable = fs.existsSync(`src/download/payment/Binary.com_${key}.pdf`)
+            if (reference!='' && ispdfAvailable) {
+               return <ReferenceLinks pdf_file={`Binary.com_${key}.pdf` }/>
+            }
+            else  {
+                return (<ReferenceLinks />)
+        }
+    }
+    const createLink = (href) => (`<a href="${href}" target="_blank" rel="noopener noreferrer">${href}</a>`);
+
+    const getDescription=(description,link)=>{
+        if(!link) return (it.L(`${description}`))
+        else {
+            return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`))
+
+    }
+}
 
 const getTableHead = (categoryName) => {
     let is_crypto=false;
@@ -198,13 +220,13 @@ const getTableBody =(data=> data.map(item=>{
             row: [
                 { text: <PaymentLogo logo= {`${item.logo}`} name={`${item.name}`} /> },
                 { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-                    { td: it.L( `${item.description}`) },
+                    { td: getDescription(item.description, item.link_binary) },
                     { td_list: [
                         { text: getCurrency(item.currencies) },
                         { text: getDepositLimit(item.min_deposit,item.max_deposit) },
                         { text: getWithdrawalLimit(item.min_withdrawal,item.max_withdrawal) },
                         { text: getProcessingTime(item.deposit_time,item.withdrawal_time) },
-                        
+                        { text: getReferenceFiles(item.key,item.reference)}
                     ],
                     },
                 ]}
@@ -214,16 +236,11 @@ const getTableBody =(data=> data.map(item=>{
         }
     })
 )
-// const is_uk_residence = (Client.get('residence') === 'gb' || State.getResponse('website_status.clients_country') === 'gb');
-
-
-
-
-
 
     const PaymentDataGenerator = () => {
         const categorized_method = CategorizePaymentMethod(payment_method_json)
         const sortedCategories = getsortedCategories(Object.keys(categorized_method))
+       
         return sortedCategories.map((category) => {
             const payment_methods = categorized_method[category]
             const data =
@@ -240,7 +257,7 @@ const getTableBody =(data=> data.map(item=>{
                         max_withdrawal,
                         min_withdrawal,
                         withdrawal_processing_time,
-                        link_deriv,
+                        link_binary,
                         reference,
                         key,
                         countries,
@@ -269,17 +286,19 @@ const getTableBody =(data=> data.map(item=>{
 
                         return {
                                 name,
-                                // method: payment_method_logo,
-                                currencies: currencies,
-                                min_deposit: min_deposit,
-                                max_deposit:max_deposit,
-                                min_withdrawal: min_withdrawal, 
-                                max_withdrawal:max_withdrawal,
+                                key,
+                                currencies,
+                                min_deposit,
+                                max_deposit,
+                                min_withdrawal, 
+                                max_withdrawal,
                                 deposit_time: deposit_proccessing_time,
                                 withdrawal_time:withdrawal_processing_time,
-                                description: description,
+                                description,
                                 countries,
-                                logo
+                                logo,
+                                reference,
+                                link_binary
                                 // ...(reference !== '' && { reference: `${key}-payment-method.pdf` }),
                                 // ...(link_deriv !== '' && { url: link_deriv }),
                                 // ...(locale.length && { locales: locale }),
@@ -318,20 +337,22 @@ const getTableBody =(data=> data.map(item=>{
    
 
 const renderpaymentData = (payment_data) => {
+     console.log(payment_data);
     if (!payment_data.length) {
         return <p>Sorry! No payment options are available for your country</p>;
     }
     else {
        
-
+       
 
         return (
             <div id='payment_methods' className='table-container'>
 
-                { payment_data.map(({name,data}) => {
+                { payment_data.map(({name,data},index) => {
+                   
                     return (
-                        <React.Fragment>
-                        <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`} key={`${name}`} />
+                        <React.Fragment key={index}>
+                        <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`}/>
                         
                         <Table
                          data={{
@@ -377,7 +398,6 @@ const PaymentMethods = () => {
     const not_applicable           = 'Not applicable';
     const blockchain_confirmations = '[_1] blockchain confirmations';
 
-    const createLink = (href) => (`<a href="${href}" target="_blank" rel="noopener noreferrer">${href}</a>`);
    
 
       
@@ -400,7 +420,7 @@ const PaymentMethods = () => {
             </div>
 
 
-            <div id='payment_methods' className='table-container'>
+            {/* <div id='payment_methods' className='table-container'> */}
             
               
 
@@ -441,7 +461,7 @@ const PaymentMethods = () => {
 
 {/*  */}
 
-                </div>
+                {/* </div> */}
 
 
 
