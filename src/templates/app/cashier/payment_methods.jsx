@@ -195,9 +195,7 @@ const CustomTableData = ({ data }) => (
     }
 }
 
-const getTableHead = (categoryName) => {
-    let is_crypto=false;
-   if (categoryName.includes('Crypto')) is_crypto=true; 
+const getTableHead = (is_crypto) => {
     
       return  ([[
             { text: it.L('Method') },
@@ -240,7 +238,6 @@ const getTableBody =(data=> data.map(item=>{
     const PaymentDataGenerator = () => {
         const categorized_method = CategorizePaymentMethod(payment_method_json)
         const sortedCategories = getsortedCategories(Object.keys(categorized_method))
-       
         return sortedCategories.map((category) => {
             const payment_methods = categorized_method[category]
             const data =
@@ -264,25 +261,6 @@ const getTableBody =(data=> data.map(item=>{
                         locale,
                     }) => {
                        
-                        // const payment_method_logo = PaymentLogos[logo] ? (
-                        //     <StyledIcon src={PaymentLogos[logo]} alt={name} />
-                        // ) : (
-                        //     <NoIconText>{name}</NoIconText>
-                        // )
-                        // return {
-                        //     name,
-                        //     method: payment_method_logo,
-                        //     currencies: getCurrency(currencies),
-                        //     min_max_deposit: getDepositLimit(min_deposit, max_deposit),
-                        //     min_max_withdrawal: getWithdrawalLimit(min_withdrawal, max_withdrawal),
-                        //     deposit_time: <Localize translate_text={deposit_proccessing_time} />,
-                        //     withdrawal_time: <Localize translate_text={withdrawal_processing_time} />,
-                        //     description: <Localize translate_text={description} />,
-                        //     countries,
-                        //     ...(reference !== '' && { reference: `${key}-payment-method.pdf` }),
-                        //     ...(link_deriv !== '' && { url: link_deriv }),
-                        //     ...(locale.length && { locales: locale }),
-                        // }
 
                         return {
                                 name,
@@ -308,10 +286,9 @@ const getTableBody =(data=> data.map(item=>{
 
 
                 )
-    
             return {
                 name: it.L(category),
-                data,
+                data
                 // ...(category.includes('Credit') && {
                 //     is_cards: true,
                 //     note: (
@@ -334,17 +311,32 @@ const getTableBody =(data=> data.map(item=>{
         })
     }
    
-   
+   const CategoryNote=({category})=>{
+    if(category.includes('Credit')) {
+      return (<div className='gr-padding-10'>
+              <p className='hint'>{`${it.L('Note:')} ${it.L('Mastercard and Maestro withdrawals are only available for UK Clients.')}`}</p>
+          </div>
+      )
+      
+    }
+     else if(category.includes('Crypto')) {
+         return(<div className='gr-padding-10'>
+         <p className='hint'>{`${it.L('Note:')} ${it.L('Figures have been rounded.')}`}</p>
+     </div>
+         )
+      }
+      else return null
+   }
+
+//    const TableTitle = ({ title, className, dataShow, dataAnchor }) => (
+//     <h3 className={`gr-padding-10${className ? ` ${className}` : ''}`} data-show={dataShow} data-anchor={dataAnchor}>{title}</h3>
+// );
 
 const renderpaymentData = (payment_data) => {
-     console.log(payment_data);
     if (!payment_data.length) {
         return <p>Sorry! No payment options are available for your country</p>;
     }
     else {
-       
-       
-
         return (
             <div id='payment_methods' className='table-container'>
 
@@ -356,13 +348,10 @@ const renderpaymentData = (payment_data) => {
                         
                         <Table
                          data={{
-                        // thead: [ head ],
                         thead: getTableHead(name),
                         tbody: getTableBody(data)
-                        
-                        
-                    }}
-                />
+                         }} />
+                         <CategoryNote category={`${name}`}></CategoryNote>
                        </React.Fragment>
 
                     )
