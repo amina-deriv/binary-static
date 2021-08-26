@@ -1,6 +1,6 @@
 import React from 'react';
 import fs from 'fs';
-import payment_method_json from './payment_methods.json'
+import payment_method_json from './payment_methods.json';
 import { CashierNote } from './index.jsx';
 import { Table } from '../../_common/components/elements.jsx';
 
@@ -15,16 +15,12 @@ const TableTitle = ({ title, className, dataShow, dataAnchor }) => (
     <h3 className={`gr-padding-10${className ? ` ${className}` : ''}`} data-show={dataShow} data-anchor={dataAnchor}>{title}</h3>
 );
 
-
-
 const PaymentLogo = ({ logo, name }) => {
     const logoFilePath = `src/images/pages/home/payment/${logo}.svg`;
-    if (fs.existsSync(logoFilePath)) {
-        return <img src={it.url_for(`images/pages/home/payment/${logo}.svg`)} />
-    } else {
+    if (!fs.existsSync(logoFilePath)) {
         return <div className='payment-methods__noIconText'>{`${name}`}</div>
-
     }
+    return <img src={it.url_for(`images/pages/home/payment/${logo}.svg`)} />
 };
 
 const TableValues = ({ value }) => {
@@ -87,78 +83,60 @@ const CustomTableData = ({ data }) => (
 );
 
 const CategorizePaymentMethod = (json) => {
-    const categories = {}
+    const categories = {};
     json.map((data) => {
-
-        const { category, platform } = data
+        const { category } = data
         if (categories[category] === undefined) {
-            categories[category] = []
+            categories[category] = [];
         }
-
-        delete data.category
-
-        const show_method =
-            (platform && platform.toLowerCase().includes('binary')) || platform === ''
-
-        if (show_method) {
-            categories[category].push({ ...data })
-        } else {
-            delete categories[category]
-        }
+        delete data.category;
+        categories[category].push({ ...data });
     })
-
-    return categories
+    return categories;
 }
 
 const getsortedCategories = (categories) => {
-    const final_categories = []
-    const default_order = ['Banking', 'Credit', 'wallet', 'Crypto', 'Fiat']
-
+    const sorted_categories = [];
+    const default_order = ['Banking', 'Credit', 'wallet', 'Crypto', 'Fiat'];
     categories.map((category) => {
         default_order.forEach((order, index) => {
             if (category.includes(order)) {
-                final_categories[index] = category
+                sorted_categories[index] = category
             }
         })
     })
-
-    return final_categories
+    return sorted_categories;
 }
-
 
 const getDepositLimit = (min_deposit, max_deposit) => {
     if (min_deposit === 'Not Available' && max_deposit === 'Not Available')
         return ('-')
     if (min_deposit.includes('|') && max_deposit.includes('|')) {
-        let min_deposit_array = min_deposit.split('|')
-        let max_deposit_array = max_deposit.split('|')
-        return (
-            // <Localize
-            //     translate_text={`${min_deposit_array[0]} - ${max_deposit_array[0]} <0></0>${min_deposit_array[1]} - ${max_deposit_array[1]}  `}
-            //     components={[<br key={0} />]}
-            // />
-            it.L(`${min_deposit_array[0]} - ${max_deposit_array[0]} <0></0>${min_deposit_array[1]} - ${max_deposit_array[1]}`)
-        )
+        const min_deposit_array = min_deposit.split('|');
+        const max_deposit_array = max_deposit.split('|');
+        const values = min_deposit_array.map((amount, i) => amount +'-'+ max_deposit_array[i]);
+        return (<TableValues value={values} />)
     }
-    return it.L(`${min_deposit} - ${max_deposit}`)
+    return (`${min_deposit} - ${max_deposit}`)
 }
 
 const getWithdrawalLimit = (min_withdrawal, max_withdrawal) => {
     if (max_withdrawal === 'Not Available')
-        return it.L(`${min_withdrawal}`)
+        return (it.L(`${min_withdrawal}`))
     if (min_withdrawal.includes('|') && max_withdrawal.includes('|')) {
-        let min_withdrawal_array = min_withdrawal.split('|')
-        let max_withdrawal_array = max_withdrawal.split('|')
-        return (
-            it.L(`${min_withdrawal_array[0]} - ${max_withdrawal_array[0]} <0></0>${min_withdrawal_array[1]} - ${max_withdrawal_array[1]}`)
-        )
+        const min_withdrawal_array = min_withdrawal.split('|');
+        const max_withdrawal_array = max_withdrawal.split('|');
+        const values = min_withdrawal_array.map((amount, i) => amount +'-'+ max_withdrawal_array[i]);
+        return (<TableValues value={values} /> )
     }
-    return it.L(`${min_withdrawal} - ${max_withdrawal}`)
+    return (`${min_withdrawal} - ${max_withdrawal}`)
 }
 
+
 const getCurrency = (currencies) => {
-    if (currencies.length != 2) return currencies[0].join(' ')
-    else return `${currencies[0].join(' ')}\n${currencies[1].join(' ')}`
+    if (currencies.length === 1) return currencies[0].join(' ');
+    const values = currencies.map(group=>`${group.join(' ')}`)
+    return( <TableValues value={values} />)
 }
 
 const getProcessingTime = (deposit_time, withdrawal_time) => {
@@ -166,36 +144,24 @@ const getProcessingTime = (deposit_time, withdrawal_time) => {
     const withdrawal = 'Withdrawal: ';
     return (<TableValues value={[it.L(`${deposit}${deposit_time}`), it.L(`${withdrawal}${withdrawal_time}`)]} />)
 }
-// const getClientCountry = () => {
-//  let current_client_country = '';
-//     if(Client.get('residence')) current_client_country = Client.get('residence')
-//     else current_client_country = State.getResponse('website_status.clients_country')
-//     return current_client_country
-//     // return ''
-// }
+
 
 const getReferenceFiles = (key, reference) => {
     const ispdfAvailable = fs.existsSync(`src/download/payment/Binary.com_${key}.pdf`)
-    if (reference != '' && ispdfAvailable) {
+    if (reference !== '' && ispdfAvailable) {
         return <ReferenceLinks pdf_file={`Binary.com_${key}.pdf`} />
     }
-    else {
-        return (<ReferenceLinks />)
-    }
+    return (<ReferenceLinks />)
 }
+
 const createLink = (href) => (`<a href="${href}" target="_blank" rel="noopener noreferrer">${href}</a>`);
 
 const getDescription = (description, link) => {
     if (!link) return (it.L(`${description}`))
-    else {
-        return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`))
-
-    }
+    return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`))
 }
 
-const getTableHead = (is_crypto) => {
-
-    return ([[
+const getTableHead = (is_crypto) =>  ([[
         { text: it.L('Method') },
         {
             attributes: { colSpan: 5, className: 'th-list' }, custom_th: <CustomTableHead data={[
@@ -208,7 +174,7 @@ const getTableHead = (is_crypto) => {
             />,
         },
     ]])
-}
+
 
 const getTableBody = (data => data.map(item => {
     return {
@@ -223,7 +189,7 @@ const getTableBody = (data => data.map(item => {
                             { text: getCurrency(item.currencies) },
                             { text: getDepositLimit(item.min_deposit, item.max_deposit) },
                             { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal) },
-                            { text: getProcessingTime(item.deposit_time, item.withdrawal_time) },
+                            { text: getProcessingTime(item.deposit_proccessing_time, item.withdrawal_processing_time) },
                             { text: getReferenceFiles(item.key, item.reference) }
                         ],
                     },
@@ -235,54 +201,14 @@ const getTableBody = (data => data.map(item => {
 })
 )
 
+
 const PaymentDataGenerator = () => {
-    const categorized_method = CategorizePaymentMethod(payment_method_json)
-    const sortedCategories = getsortedCategories(Object.keys(categorized_method))
+    
+    const categorized_payment_methods = CategorizePaymentMethod(payment_method_json)
+    const sortedCategories = getsortedCategories(Object.keys(categorized_payment_methods))
     return sortedCategories.map((category) => {
-        const payment_methods = categorized_method[category]
-        const data =
-            payment_methods &&
-            payment_methods.map(
-                ({
-                    currencies,
-                    deposit_proccessing_time,
-                    description,
-                    logo,
-                    name,
-                    max_deposit,
-                    min_deposit,
-                    max_withdrawal,
-                    min_withdrawal,
-                    withdrawal_processing_time,
-                    link_binary,
-                    reference,
-                    key,
-                    countries,
-                    locale,
-                }) => {
-
-
-                    return {
-                        name,
-                        key,
-                        currencies,
-                        min_deposit,
-                        max_deposit,
-                        min_withdrawal,
-                        max_withdrawal,
-                        deposit_time: deposit_proccessing_time,
-                        withdrawal_time: withdrawal_processing_time,
-                        description,
-                        countries,
-                        logo,
-                        reference,
-                        link_binary
-                    }
-
-                },
-
-
-            )
+        const payment_methods = categorized_payment_methods[category];
+        const data = payment_methods && payment_methods.map(item =>  ({...item}));
         return {
             name: it.L(category),
             data
@@ -307,18 +233,16 @@ const CategoryNote = ({ category }) => {
     else return null
 }
 
-const RenderpaymentData = () => {
-    const payment_data = PaymentDataGenerator()
-
+const RenderPaymentData = () => {
+    const payment_data = PaymentDataGenerator();
+    console.log(payment_data);
     if (!payment_data.length) {
         return <p>Sorry! No payment options are available for your country</p>;
     }
     else {
         return (
             <div id='payment_methods' className='table-container'>
-
                 { payment_data.map(({ name, data }, index) => {
-
                     return (
                         <React.Fragment key={index}>
                             <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`} />
@@ -328,34 +252,20 @@ const RenderpaymentData = () => {
                                     thead: getTableHead(name),
                                     tbody: getTableBody(data)
                                 }} />
-                            <CategoryNote category={`${name}`}></CategoryNote>
+                            <CategoryNote category={`${name}`}/>
                         </React.Fragment>
-
                     )
                 })
                 }
             </div>
-
         )
-
     }
 }
 
-const PaymentMethods = () => {
-    // // const payment_methods_able = renderpaymentData(payment_data)
-    // const deposit                  = 'Deposit: ';
-    // const withdrawal               = 'Withdrawal: ';
-    // const period                   = '[_1] day';
-    // const instant                  = 'Instant';
-    // const period_range             = '[_1] to [_2] days';
-    // const not_applicable           = 'Not applicable';
-    // const blockchain_confirmations = '[_1] blockchain confirmations';
-
-    return (
+const PaymentMethods = () => (
 
         <div id='cashier-content'>
             <h1>{it.L('Available payment methods')}</h1>
-
             <p className='pm-description'>{it.L('This is a complete list of supported payment methods. We\'ll show you which payment methods are available in your location on the deposit page.')}</p>
             <CashierNote className='gr-parent' text={it.L('Please do not share your bank account, credit card, or e-wallet with another client, as this may cause delays in your withdrawals.')} />
             <div className='center-text'>
@@ -365,8 +275,7 @@ const PaymentMethods = () => {
                     <Button url='cashier/forwardws?action=withdraw' real className='withdraw' text={it.L('Withdraw')} />
                 </p>
             </div>
-            <RenderpaymentData />
-
+            <RenderPaymentData />
 
             <div className='gr-padding-10'>
                 <p className='hint'>{it.L('Note:')}</p>
@@ -377,9 +286,16 @@ const PaymentMethods = () => {
             </div>
         </div>
     );
-};
 
 export default PaymentMethods;
+    // // const payment_methods_able = renderpaymentData(payment_data)
+    // const deposit                  = 'Deposit: ';
+    // const withdrawal               = 'Withdrawal: ';
+    // const period                   = '[_1] day';
+    // const instant                  = 'Instant';
+    // const period_range             = '[_1] to [_2] days';
+    // const not_applicable           = 'Not applicable';
+    // const blockchain_confirmations = '[_1] blockchain confirmations';
 {/* <TableTitle title={it.L('Credit/Debit Card')} dataAnchor='credit_debit' /> */ }
 {/* <Table
                     data={{
@@ -779,5 +695,53 @@ export default PaymentMethods;
             //         <p className='hint'>{it.L('Note:')} {it.L('Figures have been rounded.')}</p>
             //     </div>
             // </div>
-
+// const PaymentDataGenerator = () => {
+//     const categorized_payment_methods = CategorizePaymentMethod(payment_method_json)
+//     const sortedCategories = getsortedCategories(Object.keys(categorized_payment_methods))
+//     return sortedCategories.map((category) => {
+//         const payment_methods = categorized_payment_methods[category]
+//         const data =
+//             payment_methods &&
+//             payment_methods.map(
+//                 ({
+//                     currencies,
+//                     deposit_proccessing_time,
+//                     description,
+//                     logo,
+//                     name,
+//                     max_deposit,
+//                     min_deposit,
+//                     max_withdrawal,
+//                     min_withdrawal,
+//                     withdrawal_processing_time,
+//                     link_binary,
+//                     reference,
+//                     key,
+//                     countries,
+//                     locale,
+//                 }) => {
+//                     return {
+//                         name,
+//                         key,
+//                         currencies,
+//                         min_deposit,
+//                         max_deposit,
+//                         min_withdrawal,
+//                         max_withdrawal,
+//                         deposit_time: deposit_proccessing_time,
+//                         withdrawal_time: withdrawal_processing_time,
+//                         description,
+//                         countries,
+//                         logo,
+//                         reference,
+//                         link_binary
+//                     }
+//                 },
+//             )
+//         return {
+//             name: it.L(category),
+//             data
+//         }
+//     })
+// }
 

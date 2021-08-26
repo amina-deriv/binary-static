@@ -8,7 +8,7 @@ const localize         = require('../../../_common/localize').localize;
 const State            = require('../../../_common/storage').State;
 const Url              = require('../../../_common/url');
 const getPropertyValue = require('../../../_common/utility').getPropertyValue;
-
+const getFilteredData = require('./payments_page/payments_data')
 const Cashier = (() => {
     let href = '';
     const default_virtual_balance = 10000;
@@ -270,6 +270,7 @@ const Cashier = (() => {
                 showContent();
                 checkLockStatusPA();
                 setCryptoMinimumWithdrawal();
+                getFilteredData()
             },
         },
     };
