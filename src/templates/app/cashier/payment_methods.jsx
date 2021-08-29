@@ -1,6 +1,6 @@
 import React from 'react';
 import fs from 'fs';
-import payment_method_json from './payment_methods.json';
+import payment_method_json from '../../../javascript/app/pages/cashier/payments_page/payment_methods.json';
 import { CashierNote } from './index.jsx';
 import { Table } from '../../_common/components/elements.jsx';
 
@@ -89,7 +89,6 @@ const CategorizePaymentMethod = (json) => {
         if (categories[category] === undefined) {
             categories[category] = [];
         }
-        delete data.category;
         categories[category].push({ ...data });
     })
     return categories;
@@ -235,16 +234,18 @@ const CategoryNote = ({ category }) => {
 
 const RenderPaymentData = () => {
     const payment_data = PaymentDataGenerator();
-    console.log(payment_data);
+   
     if (!payment_data.length) {
         return <p>Sorry! No payment options are available for your country</p>;
     }
+    
+
     else {
         return (
             <div id='payment_methods' className='table-container'>
-                { payment_data.map(({ name, data }, index) => {
+                { payment_data.map(({ name, data }) => {
                     return (
-                        <React.Fragment key={index}>
+                        <div key={name} id={`${name.replace(/\W/g, '')}`}>
                             <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`} />
 
                             <Table
@@ -253,7 +254,7 @@ const RenderPaymentData = () => {
                                     tbody: getTableBody(data)
                                 }} />
                             <CategoryNote category={`${name}`}/>
-                        </React.Fragment>
+                        </div>
                     )
                 })
                 }
