@@ -120,7 +120,9 @@ const getDepositLimit = (min_deposit, max_deposit) => {
     if (min_deposit.includes('|') && max_deposit.includes('|')) {
         const min_deposit_array = min_deposit.split('|');
         const max_deposit_array = max_deposit.split('|');
-        const values = min_deposit_array.map((amount, i) => `${amount} + '-' + ${max_deposit_array[i]}`);
+        const values = min_deposit_array.map((amount, i) => `${amount} - ${max_deposit_array[i]}`);
+        console.log(values);
+
         return (<TableValues value={values} />);
     }
     return (`${min_deposit} - ${max_deposit}`);
@@ -133,7 +135,8 @@ const getWithdrawalLimit = (min_withdrawal, max_withdrawal) => {
     if (min_withdrawal.includes('|') && max_withdrawal.includes('|')) {
         const min_withdrawal_array = min_withdrawal.split('|');
         const max_withdrawal_array = max_withdrawal.split('|');
-        const values = min_withdrawal_array.map((amount, i) => `${amount} + '-' + ${max_withdrawal_array[i]}`);
+        const values = min_withdrawal_array.map((amount, i) => `${amount} - ${max_withdrawal_array[i]}`);
+        console.log(values);
         return (<TableValues value={values} />);
     }
     return (`${min_withdrawal} - ${max_withdrawal}`);
