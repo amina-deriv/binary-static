@@ -12,7 +12,7 @@ const filterItem = (item, current_client_country) => {
             return true;
         }
         if (includedCountries.includes('eu')) {
-            return isEuCountry(current_client_country);
+            return isEuCountry();
         }
     }
     if (item.countries.excluded.length) {
@@ -21,7 +21,7 @@ const filterItem = (item, current_client_country) => {
             return false;
         }
         if (excludedCountries.includes('eu')) {
-            return !isEuCountry(current_client_country);
+            return !isEuCountry();
         }
     } else {
         return false;
