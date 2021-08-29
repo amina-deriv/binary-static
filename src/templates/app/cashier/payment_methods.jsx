@@ -1,9 +1,9 @@
 import React from 'react';
 import fs from 'fs';
-import payment_method_json from '../../../javascript/app/pages/cashier/payments_page/payment_methods.json';
 import { CashierNote } from './index.jsx';
+import payment_method_json from '../../../javascript/app/pages/cashier/payments_page/payment_methods.json';
 import { Table } from '../../_common/components/elements.jsx';
-
+import Loading from '../../_common/components/loading.jsx';
 
 const Button = ({ url, real, className, text }) => (
     <a href={it.url_for(url)} className={`toggle button ${real ? 'client_real' : 'client_logged_out'} invisible ${className || undefined}`}>
@@ -15,14 +15,6 @@ const TableTitle = ({ title, className, dataShow, dataAnchor }) => (
     <h3 className={`gr-padding-10${className ? ` ${className}` : ''}`} data-show={dataShow} data-anchor={dataAnchor}>{title}</h3>
 );
 
-const PaymentLogo = ({ logo, name }) => {
-    const logoFilePath = `src/images/pages/home/payment/${logo}.svg`;
-    if (!fs.existsSync(logoFilePath)) {
-        return <div className='payment-methods__noIconText'>{`${name}`}</div>
-    }
-    return <img src={it.url_for(`images/pages/home/payment/${logo}.svg`)} />
-};
-
 const TableValues = ({ value }) => {
     const values = Array.isArray(value) ? value : [value];
     return (
@@ -30,6 +22,14 @@ const TableValues = ({ value }) => {
             { values.reduce((arr, e, inx) => arr === null ? [e] : [...arr, <br key={inx} />, e], null)}
         </React.Fragment>
     );
+};
+
+const PaymentLogo = ({ logo, name }) => {
+    const logoFilePath = `src/images/pages/home/payment/${logo}.svg`;
+    if (!fs.existsSync(logoFilePath)) {
+        return <div className='payment-methods__noIconText'>{`${name}`}</div>;
+    }
+    return <img src={it.url_for(`images/pages/home/payment/${logo}.svg`)} />;
 };
 
 const ReferenceLink = ({ href, className = '', title = '' }) => (
@@ -85,14 +85,14 @@ const CustomTableData = ({ data }) => (
 const CategorizePaymentMethod = (json) => {
     const categories = {};
     json.map((data) => {
-        const { category } = data
+        const { category } = data;
         if (categories[category] === undefined) {
             categories[category] = [];
         }
         categories[category].push({ ...data });
-    })
+    });
     return categories;
-}
+};
 
 const getsortedCategories = (categories) => {
     const sorted_categories = [];
@@ -100,649 +100,200 @@ const getsortedCategories = (categories) => {
     categories.map((category) => {
         default_order.forEach((order, index) => {
             if (category.includes(order)) {
-                sorted_categories[index] = category
+                sorted_categories[index] = category;
             }
-        })
-    })
+        });
+    });
     return sorted_categories;
-}
-
-const getDepositLimit = (min_deposit, max_deposit) => {
-    if (min_deposit === 'Not Available' && max_deposit === 'Not Available')
-        return ('-')
-    if (min_deposit.includes('|') && max_deposit.includes('|')) {
-        const min_deposit_array = min_deposit.split('|');
-        const max_deposit_array = max_deposit.split('|');
-        const values = min_deposit_array.map((amount, i) => amount +'-'+ max_deposit_array[i]);
-        return (<TableValues value={values} />)
-    }
-    return (`${min_deposit} - ${max_deposit}`)
-}
-
-const getWithdrawalLimit = (min_withdrawal, max_withdrawal) => {
-    if (max_withdrawal === 'Not Available')
-        return (it.L(`${min_withdrawal}`))
-    if (min_withdrawal.includes('|') && max_withdrawal.includes('|')) {
-        const min_withdrawal_array = min_withdrawal.split('|');
-        const max_withdrawal_array = max_withdrawal.split('|');
-        const values = min_withdrawal_array.map((amount, i) => amount +'-'+ max_withdrawal_array[i]);
-        return (<TableValues value={values} /> )
-    }
-    return (`${min_withdrawal} - ${max_withdrawal}`)
-}
-
+};
 
 const getCurrency = (currencies) => {
     if (currencies.length === 1) return currencies[0].join(' ');
-    const values = currencies.map(group=>`${group.join(' ')}`)
-    return( <TableValues value={values} />)
-}
+    const values = currencies.map(group => `${group.join(' ')}`);
+    return (<TableValues value={values} />);
+};
+
+const getDepositLimit = (min_deposit, max_deposit) => {
+    if (min_deposit === 'Not Available' && max_deposit === 'Not Available') {
+        return ('-');
+    }
+    if (min_deposit.includes('|') && max_deposit.includes('|')) {
+        const min_deposit_array = min_deposit.split('|');
+        const max_deposit_array = max_deposit.split('|');
+        const values = min_deposit_array.map((amount, i) => `${amount} + '-' + ${max_deposit_array[i]}`);
+        return (<TableValues value={values} />);
+    }
+    return (`${min_deposit} - ${max_deposit}`);
+};
+
+const getWithdrawalLimit = (min_withdrawal, max_withdrawal) => {
+    if (max_withdrawal === 'Not Available') {
+        return (it.L(`${min_withdrawal}`));
+    }
+    if (min_withdrawal.includes('|') && max_withdrawal.includes('|')) {
+        const min_withdrawal_array = min_withdrawal.split('|');
+        const max_withdrawal_array = max_withdrawal.split('|');
+        const values = min_withdrawal_array.map((amount, i) => `${amount} + '-' + ${max_withdrawal_array[i]}`);
+        return (<TableValues value={values} />);
+    }
+    return (`${min_withdrawal} - ${max_withdrawal}`);
+};
 
 const getProcessingTime = (deposit_time, withdrawal_time) => {
     const deposit = 'Deposit: ';
     const withdrawal = 'Withdrawal: ';
-    return (<TableValues value={[it.L(`${deposit}${deposit_time}`), it.L(`${withdrawal}${withdrawal_time}`)]} />)
-}
-
+    return (<TableValues value={[it.L(`${deposit}${deposit_time}`), it.L(`${withdrawal}${withdrawal_time}`)]} />);
+};
 
 const getReferenceFiles = (key, reference) => {
-    const ispdfAvailable = fs.existsSync(`src/download/payment/Binary.com_${key}.pdf`)
+    const ispdfAvailable = fs.existsSync(`src/download/payment/Binary.com_${key}.pdf`);
     if (reference !== '' && ispdfAvailable) {
-        return <ReferenceLinks pdf_file={`Binary.com_${key}.pdf`} />
+        return <ReferenceLinks pdf_file={`Binary.com_${key}.pdf`} />;
     }
-    return (<ReferenceLinks />)
-}
+    return (<ReferenceLinks />);
+};
 
 const createLink = (href) => (`<a href="${href}" target="_blank" rel="noopener noreferrer">${href}</a>`);
 
 const getDescription = (description, link) => {
-    if (!link) return (it.L(`${description}`))
-    return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`))
-}
+    if (!link) return (it.L(`${description}`));
+    return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`));
+};
 
-const getTableHead = (is_crypto) =>  ([[
-        { text: it.L('Method') },
-        {
-            attributes: { colSpan: 5, className: 'th-list' }, custom_th: <CustomTableHead data={[
-                { text: it.L('Currencies') },
-                { text: is_crypto ? `${it.L('Min Deposit')}` : `${it.L('Min-Max Deposit')}` },
-                { text: is_crypto ? `${it.L('Min Withdrawal')}` : `${it.L('Min-Max Withdrawal')}` },
-                { text: `${it.L('Processing Time')}*` },
-                { text: it.L('Reference') },
-            ]}
-            />,
-        },
-    ]])
+const getTableHead = (is_crypto) => ([[
+    { text: it.L('Method') },
+    {
+        attributes: { colSpan: 5, className: 'th-list' }, custom_th : <CustomTableHead data={[
+            { text: it.L('Currencies') },
+            { text: is_crypto ? `${it.L('Min Deposit')}` : `${it.L('Min-Max Deposit')}` },
+            { text: is_crypto ? `${it.L('Min Withdrawal')}` : `${it.L('Min-Max Withdrawal')}` },
+            { text: `${it.L('Processing Time')}*` },
+            { text: it.L('Reference') },
+        ]}
+        />,
+    },
+]]);
 
-
-const getTableBody = (data => data.map(item => {
-    return {
-        id: `${item.name}`,
-        row: [
-            { text: <PaymentLogo logo={`${item.logo}`} name={`${item.name}`} /> },
-            {
-                attributes: { colSpan: 5, className: 'toggler' }, custom_td: <CustomTableData data={[
-                    { td: getDescription(item.description, item.link_binary) },
-                    {
-                        td_list: [
-                            { text: getCurrency(item.currencies) },
-                            { text: getDepositLimit(item.min_deposit, item.max_deposit) },
-                            { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal) },
-                            { text: getProcessingTime(item.deposit_proccessing_time, item.withdrawal_processing_time) },
-                            { text: getReferenceFiles(item.key, item.reference) }
-                        ],
-                    },
-                ]}
-                />,
-            },
-        ],
-    }
-})
-)
-
+const getTableBody = (data) =>
+    (
+        data.map(item => ({
+            id : `${item.name}`,
+            row: [
+                { text: <PaymentLogo logo={`${item.logo}`} name={`${item.name}`} /> },
+                {
+                    attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
+                        { td: getDescription(item.description, item.link_binary) },
+                        {
+                            td_list: [
+                                { text: getCurrency(item.currencies) },
+                                { text: getDepositLimit(item.min_deposit, item.max_deposit) },
+                                { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal) },
+                                {
+                                    text: getProcessingTime(
+                                        item.deposit_proccessing_time,
+                                        item.withdrawal_processing_time
+                                    ),
+                                },
+                                { text: getReferenceFiles(item.key, item.reference) },
+                            ],
+                        },
+                    ]}
+                    />,
+                },
+            ],
+        })
+        )
+    );
 
 const PaymentDataGenerator = () => {
-    
-    const categorized_payment_methods = CategorizePaymentMethod(payment_method_json)
-    const sortedCategories = getsortedCategories(Object.keys(categorized_payment_methods))
+
+    const categorized_payment_methods = CategorizePaymentMethod(payment_method_json);
+    const sortedCategories = getsortedCategories(Object.keys(categorized_payment_methods));
     return sortedCategories.map((category) => {
         const payment_methods = categorized_payment_methods[category];
-        const data = payment_methods && payment_methods.map(item =>  ({...item}));
+        const data = payment_methods && payment_methods.map(item => ({ ...item }));
         return {
             name: it.L(category),
-            data
-        }
-    })
-}
+            data,
+        };
+    });
+};
 
 const CategoryNote = ({ category }) => {
     if (category.includes('Credit')) {
-        return (<div className='gr-padding-10'>
-            <p className='hint'>{`${it.L('Note:')} ${it.L('Mastercard and Maestro withdrawals are only available for UK Clients.')}`}</p>
-        </div>
-        )
-
+        return (
+            <div className='gr-padding-10'>
+                <p className='hint'>{`${it.L('Note:')} ${it.L('Mastercard and Maestro withdrawals are only available for UK Clients.')}`}</p>
+            </div>
+        );
+    } else if (category.includes('Crypto')) {
+        return (
+            <div className='gr-padding-10'>
+                <p className='hint'>{`${it.L('Note:')} ${it.L('Figures have been rounded.')}`}</p>
+            </div>
+        );
     }
-    else if (category.includes('Crypto')) {
-        return (<div className='gr-padding-10'>
-            <p className='hint'>{`${it.L('Note:')} ${it.L('Figures have been rounded.')}`}</p>
-        </div>
-        )
-    }
-    else return null
-}
+    return null;
+};
 
 const RenderPaymentData = () => {
     const payment_data = PaymentDataGenerator();
-   
-    if (!payment_data.length) {
-        return <p>Sorry! No payment options are available for your country</p>;
-    }
-    
 
-    else {
-        return (
-            <div id='payment_methods' className='table-container'>
-                { payment_data.map(({ name, data }) => {
-                    return (
+    if (!payment_data.length) {
+        return <p> `${it.L('Sorry! No payment options are available for your country')}`</p>;
+    }
+    return (
+        <React.Fragment>
+
+            <div id='payment_methods_loading'>
+                <Loading />
+            </div>
+
+            <div id='payment_methods' className='table-container invisible'>
+                {payment_data.map(({ name, data }) =>
+                    (
                         <div key={name} id={`${name.replace(/\W/g, '')}`}>
                             <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`} />
-
                             <Table
                                 data={{
                                     thead: getTableHead(name),
-                                    tbody: getTableBody(data)
-                                }} />
-                            <CategoryNote category={`${name}`}/>
+                                    tbody: getTableBody(data),
+                                }}
+                            />
+                            <CategoryNote category={`${name}`} />
                         </div>
                     )
-                })
+                )
                 }
             </div>
-        )
-    }
-}
+        </React.Fragment>
+    );
+};
 
 const PaymentMethods = () => (
 
-        <div id='cashier-content'>
-            <h1>{it.L('Available payment methods')}</h1>
-            <p className='pm-description'>{it.L('This is a complete list of supported payment methods. We\'ll show you which payment methods are available in your location on the deposit page.')}</p>
-            <CashierNote className='gr-parent' text={it.L('Please do not share your bank account, credit card, or e-wallet with another client, as this may cause delays in your withdrawals.')} />
-            <div className='center-text'>
-                <p>
-                    <Button url='new-account' text={it.L('Open an account now')} />
-                    <Button url='cashier/forwardws?action=deposit' real className='deposit' text={it.L('Deposit')} />
-                    <Button url='cashier/forwardws?action=withdraw' real className='withdraw' text={it.L('Withdraw')} />
-                </p>
-            </div>
-            <RenderPaymentData />
+    <div id='cashier-content'>
 
-            <div className='gr-padding-10'>
-                <p className='hint'>{it.L('Note:')}</p>
-                <ol>
-                    <li className='hint' data-show='-eucountry'>{it.L('The minimum amount for withdrawal will vary depending on the latest exchange rates.')}</li>
-                    <li className='hint'>{it.L('Additional processing time may be required by your bank or money transfer services for the funds to be credited to your payment account.')}</li>
-                </ol>
-            </div>
+        <h1>{it.L('Available payment methods')}</h1>
+        <p className='pm-description'>{it.L('This is a complete list of supported payment methods. We\'ll show you which payment methods are available in your location on the deposit page.')}</p>
+        <CashierNote className='gr-parent' text={it.L('Please do not share your bank account, credit card, or e-wallet with another client, as this may cause delays in your withdrawals.')} />
+        <div className='center-text'>
+            <p>
+                <Button url='new-account' text={it.L('Open an account now')} />
+                <Button url='cashier/forwardws?action=deposit' real className='deposit' text={it.L('Deposit')} />
+                <Button url='cashier/forwardws?action=withdraw' real className='withdraw' text={it.L('Withdraw')} />
+            </p>
         </div>
-    );
+        <RenderPaymentData />
+
+        <div className='gr-padding-10 invisible' id='payments_footer'>
+            <p className='hint'>{it.L('Note:')}</p>
+            <ol>
+                <li className='hint' data-show='-eucountry'>{it.L('The minimum amount for withdrawal will vary depending on the latest exchange rates.')}</li>
+                <li className='hint'>{it.L('Additional processing time may be required by your bank or money transfer services for the funds to be credited to your payment account.')}</li>
+            </ol>
+        </div>
+    </div>
+);
 
 export default PaymentMethods;
-    // // const payment_methods_able = renderpaymentData(payment_data)
-    // const deposit                  = 'Deposit: ';
-    // const withdrawal               = 'Withdrawal: ';
-    // const period                   = '[_1] day';
-    // const instant                  = 'Instant';
-    // const period_range             = '[_1] to [_2] days';
-    // const not_applicable           = 'Not applicable';
-    // const blockchain_confirmations = '[_1] blockchain confirmations';
-{/* <TableTitle title={it.L('Credit/Debit Card')} dataAnchor='credit_debit' /> */ }
-{/* <Table
-                    data={{
-                        thead: [ head ],
-                        tbody: [ */}
-// {
-//     id : 'visa',
-//     row: [
-//         { text: <PaymentLogo logo='visa' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Visa is an international company that supports digital payments around the world, most commonly through their brand of credit and debit cards. For more information, please visit [_1].', `${createLink('http://visa.com')}`) },
-//             { td_list: [
-//                 { text: 'USD GBP EUR AUD' },
-//                 { text: '10 - 10,000' },
-//                 { text: '10 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_Credit_Debit.pdf' video_link='https://youtu.be/n_qQbML_qAI' */ /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'mastercard',
-//     row: [
-//         { text: <PaymentLogo logo='mastercard' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Mastercard is an international company that processes payments made with Mastercard-branded credit and debit cards. For more information, please visit [_1].', `${createLink('https://www.mastercard.us')}`) },
-//             { td_list: [
-//                 { text: 'USD GBP EUR AUD' },
-//                 { text: '10 - 10,000' },
-//                 { text: '10 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_Credit_Debit.pdf'  video_link='https://youtu.be/n_qQbML_qAI' *//> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'maestro',
-//     row: [
-//         { text: <PaymentLogo logo='maestro' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Maestro is an international debit card service by Mastercard. For more information, please visit [_1].', `${createLink('https://brand.mastercard.com/brandcenter/more-about-our-brands.html')}`) },
-//             { td_list: [
-//                 { text: 'USD GBP EUR AUD' },
-//                 { text: '10 - 10,000' },
-//                 { text: '10 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-//         ],
-//     }}
-// />
-{/* 
-                <div className='gr-padding-10'>
-                    <p className='hint'>{it.L('Note:')} {it.L('Mastercard and Maestro withdrawals are only available for UK Clients.')}</p>
-                </div> */}
-
-{/* <TableTitle title={it.L('E-wallet')} dataAnchor='ewallet' />
-                <Table
-                    data={{
-                        thead: [ head ], */}
-{/* tbody: [ */ }
-// {
-//     id      : 'fasapay',
-//     dataShow: '-eucountry',
-//     row     : [
-//         { text: <PaymentLogo logo='fasapay' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('FasaPay enables electronic money transfers for individuals and payment gateways for merchants. For more information, please visit [_1].', `${createLink('https://www.fasapay.com')}`) },
-//             { td_list: [
-//                 { text: 'USD' },
-//                 { text: '5 - 10,000' },
-//                 { text: '5 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_Fasapay.pdf' video_link='https://youtu.be/PTHLbIRLP58' */ /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id      : 'perfect-money',
-//     dataShow: '-eucountry',
-//     row     : [
-//         { text: <PaymentLogo logo='perfect_money' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Perfect Money allows individuals to make instant payments and money transfers securely on the Internet. For more information, please visit [_1].', `${createLink('https://perfectmoney.is')}`) },
-//             { td_list: [
-//                 { text: 'USD EUR' },
-//                 { text: '5 - 10,000' },
-//                 { text: '5 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_PerfectMoney.pdf' video_link='https://youtu.be/fBt71VBp2Pw' */ /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'skrill',
-//     row: [
-//         { text: <PaymentLogo logo='skrill' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Skrill offers global payment solutions for individuals who wish to deposit funds, shop online, and transfer money to family and friends. For more information, please visit [_1].', `${createLink('https://www.skrill.com')}`) },
-//             { td_list: [
-//                 { text: 'USD GBP EUR AUD' },
-//                 { text: '10 - 10,000' },
-//                 { text: '5 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_Skrill.pdf' video_link='https://youtu.be/pQDVDC-mWuA' */ /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'neteller',
-//     row: [
-//         { text: <PaymentLogo logo='neteller' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('NETELLER provides businesses and individuals with a fast, simple, and secure way to transfer money online. For more information, please visit [_1].', `${createLink('https://www.neteller.com')}`) },
-//             { td_list: [
-//                 { text: 'USD GBP EUR AUD' },
-//                 { text: '5 - 10,000' },
-//                 { text: '5 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_Neteller.pdf' video_link='https://youtu.be/uHjRXzMQ8FY' */ /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'webmoney',
-//     row: [
-//         { text: <PaymentLogo logo='webmoney' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('WebMoney is an online payment settlement system that\'s been operating since 1998. For more information, please visit [_1].', `${createLink('https://www.wmtransfer.com')}`) },
-//             { td_list: [
-//                 { text: 'USD EUR' },
-//                 { text: '5 - 10,000' },
-//                 { text: '5 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_WebMoney.pdf' video_link='https://youtu.be/e0THC3c-fEE' */ /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id      : 'qiwi',
-//     dataShow: '-eucountry',
-//     row     : [
-//         { text: <PaymentLogo logo='qiwi' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Qiwi is a payment service provider that was founded in 2007. It provides individuals with a simple way to transfer money, receive payments, and pay online. For more information, please visit [_1].', `${createLink('https://qiwi.com')}`) },
-//             { td_list: [
-//                 { text: 'USD EUR' },
-//                 { text: <TableValues value={['5 - 200 (USD)', '5 - 150 (EUR)']} /> },
-//                 { text: <TableValues value={['5 - 180 (USD)', '5 - 150 (EUR)']} /> },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_Qiwi.pdf' video_link='https://youtu.be/CMAF29cn9XQ' */ /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'paysafe',
-//     row: [
-//         { text: <PaymentLogo logo='paysafe' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('paysafecard offers a voucher-based online payment method that does not require a bank account, credit card, or other personal information. For more information, please visit [_1].', `${createLink('https://www.paysafecard.com')}`) },
-//             { td_list: [
-//                 { text: 'USD GBP EUR AUD' },
-//                 { text: '5 - 1,000' },
-//                 { text: '5 - 750' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /* pdf_file='Binary.com_PaySafeCard.pdf' video_link='https://youtu.be/5QzGc1nleQo' */ /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'jeton',
-//     row: [
-//         { text: <PaymentLogo logo='jeton' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Jeton is an international e-wallet for money transfers and online payments. For more information, please visit [_1].', '<a href="https://www.jeton.com/" target="_blank">www.jeton.com</a>') },
-//             { td_list: [
-//                 { text: 'USD EUR' },
-//                 { text: '5 - 10,000' },
-//                 { text: 'N/A' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'sticpay',
-//     row: [
-//         { text: <PaymentLogo logo='sticpay' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Sticpay is a global e-wallet service for money transfers and online payments. For more information, please visit [_1].', '<a href="https://www.sticpay.com" target="_blank">https://www.sticpay.com</a>') },
-//             { td_list: [
-//                 { text: 'USD GBP EUR' },
-//                 { text: '5 - 10,000' },
-//                 { text: '5 - 10,000' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-// {
-//     id : 'airtm',
-//     row: [
-//         { text: <PaymentLogo logo='airtm' /> },
-//         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-//             { td: it.L('Airtm is a global e-wallet service for money transfers and online payments. For more information, please visit [_1].', '<a href="https://www.airtm.io/#/" target="_blank">https://www.airtm.io</a>') },
-//             { td_list: [
-//                 { text: 'USD' },
-//                 { text: '5 - 2,500' },
-//                 { text: '5 - 2,500' },
-//                 { text: <TableValues value={[it.L(`${deposit}${instant}`), it.L(`${withdrawal}${period}`, 1)]} /> },
-//                 { text: <ReferenceLinks /> },
-//             ],
-//             },
-//         ]}
-//         />,
-//         },
-//     ],
-// },
-//         ],
-//     }}
-// />
-{/* <TableTitle
-                    dataShow='-eucountry'
-                    title={it.L('Cryptocurrencies')}
-                    withdrawal={it.L('Min Withdrawal')}
-                    dataAnchor='cryptocurrency'
-                /> */}
-{/* <Table
-                    id='cryptocurrency'
-                    dataShow='-eucountry'
-                    data={{ */}
-{/* // thead: [
-                        //     [
-                        //         { text: it.L('Method') },
-                        //         { attributes: { colSpan: 5, className: 'th-list' }, custom_th : <CustomTableHead data={[ */}
-{/* //             { text: it.L('Currencies') },
-                        //             { text: it.L('Min Deposit') },
-                        //             { text: it.L('Min Withdrawal') },
-                        //             { text: `${it.L('Processing Time')}*` },
-                        //             { text: it.L('Reference') },
-                        //         ]}
-                        //         />,
-                        //         },
-                        //     ],
-                        // ],
-                        // tbody: [ */}
-                            // {
-                            //     id : 'bitcoin',
-                            //     row: [
-                            //         { text: <PaymentLogo logo='bitcoin' /> },
-                            //         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-                            //             { td: it.L('Bitcoin is the world\'s first decentralised cryptocurrency, created in 2009. For more information, please visit [_1].', `${createLink('https://bitcoin.org')}`) },
-                            //             { td_list: [
-                            //                 { text: 'BTC' },
-                            //                 { text: '—' },
-                            //                 { text: <span data-currency='BTC' /> },
-                            //                 { text: <TableValues value={[it.L(`${deposit}${blockchain_confirmations}`, 3), it.L(`${withdrawal}${period}`, 1)]} /> },
-                            //                 { text: <ReferenceLinks /* pdf_file='Binary.com_Bitcoin.pdf' video_link='https://youtu.be/StIW7CviBTw' */ /> },
-                            //             ],
-                            //             },
-                            //         ]}
-                            //         />,
-                            //         },
-                            //     ],
-                            // },
-                            // {
-                            //     id : 'usdc',
-                            //     row: [
-                            //         { text: <PaymentLogo logo='usdc' /> },
-                            //         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-                            //             { td: it.L('For more information, please visit [_1].', `${createLink('https://www.centre.io/usdc')}`) },
-                            //             { td_list: [
-                            //                 { text: 'USDC' },
-                            //                 { text: '—' },
-                            //                 { text: <span data-currency='USDC' /> },
-                            //                 { text: <TableValues value={[it.L(`${deposit}${blockchain_confirmations}`, 3), it.L(`${withdrawal}${period}`, 1)]} /> },
-                            //                 { text: '—' },
-                            //             ],
-                            //             },
-                            //         ]}
-                            //         />,
-                            //         },
-                            //     ],
-                            // },
-                            // {
-                            //     id : 'ethereum-black',
-                            //     row: [
-                            //         { text: <PaymentLogo logo='ethereum_black' /> },
-                            //         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-                            //             { td: it.L('Ether is a cryptocurrency that is used to pay for transactions on the Ethereum platform. For more information, please visit [_1].', `${createLink('https://www.ethereum.org')}`) },
-                            //             { td_list: [
-                            //                 { text: 'ETH' },
-                            //                 { text: '—' },
-                            //                 { text: <span data-currency='ETH' /> },
-                            //                 { text: <TableValues value={[it.L(`${deposit}${blockchain_confirmations}`, 3), it.L(`${withdrawal}${period}`, 1)]} /> },
-                            //                 { text: <ReferenceLinks /* pdf_file='Binary.com_Ethereum.pdf' video_link='https://youtu.be/B7EVLt3lIMs' */ /> },
-                            //             ],
-                            //             },
-                            //         ]}
-                            //         />,
-                            //         },
-                            //     ],
-                            // },
-                            // {
-                            //     id : 'litecoin',
-                            //     row: [
-                            //         { text: <PaymentLogo logo='litecoin' /> },
-                            //         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-                            //             { td: it.L('Litecoin is a cryptocurrency similar to Bitcoin, but capable of a higher transaction volume and faster confirmation times. For more information, please visit [_1].', `${createLink('https://www.litecoin.org')}`) },
-                            //             { td_list: [
-                            //                 { text: 'LTC' },
-                            //                 { text: '—' },
-                            //                 { text: <span data-currency='LTC' /> },
-                            //                 { text: <TableValues value={[it.L(`${deposit}${blockchain_confirmations}`, 3), it.L(`${withdrawal}${period}`, 1)]} /> },
-                            //                 { text: <ReferenceLinks /* pdf_file='Binary.com_Litecoin.pdf' video_link='https://youtu.be/DJhP5UjKPpI' */ /> },
-                            //             ],
-                            //             },
-                            //         ]}
-                            //         />,
-                            //         },
-                            //     ],
-                            // },
-                            // {
-                            //     id : 'tether',
-                            //     row: [
-                            //         { text: <PaymentLogo logo='tether' /> },
-                            //         { attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-                            //             { td: it.L('Tether is a blockchain-based cryptocurrency whose cryptocoins in circulation are backed by an equivalent amount of traditional fiat currencies. For more information, please visit [_1].', `${createLink('https://www.tether.to')}`) },
-                            //             { td_list: [
-                            //                 { text: 'USDT' },
-                            //                 { text: '—' },
-                            //                 { text: <span data-currency='UST' /> },
-                            //                 { text: <TableValues value={[it.L(`${deposit}${blockchain_confirmations}`, 3), it.L(`${withdrawal}${period}`, 1)]} /> },
-                            //                 { text: <ReferenceLinks /* pdf_file='Binary.com_Tether.pdf' video_link='https://youtu.be/N1WPsq67290' */ /> },
-                            //             ],
-                            //             },
-                            //         ]}
-                            //         />,
-                            //         },
-                            //     ],
-                            // },
-                        // ],
-                    // }}
-                // />
-
-            //     <div className='gr-padding-10' data-show='-eucountry'>
-            //         <p className='hint'>{it.L('Note:')} {it.L('Figures have been rounded.')}</p>
-            //     </div>
-            // </div>
-// const PaymentDataGenerator = () => {
-//     const categorized_payment_methods = CategorizePaymentMethod(payment_method_json)
-//     const sortedCategories = getsortedCategories(Object.keys(categorized_payment_methods))
-//     return sortedCategories.map((category) => {
-//         const payment_methods = categorized_payment_methods[category]
-//         const data =
-//             payment_methods &&
-//             payment_methods.map(
-//                 ({
-//                     currencies,
-//                     deposit_proccessing_time,
-//                     description,
-//                     logo,
-//                     name,
-//                     max_deposit,
-//                     min_deposit,
-//                     max_withdrawal,
-//                     min_withdrawal,
-//                     withdrawal_processing_time,
-//                     link_binary,
-//                     reference,
-//                     key,
-//                     countries,
-//                     locale,
-//                 }) => {
-//                     return {
-//                         name,
-//                         key,
-//                         currencies,
-//                         min_deposit,
-//                         max_deposit,
-//                         min_withdrawal,
-//                         max_withdrawal,
-//                         deposit_time: deposit_proccessing_time,
-//                         withdrawal_time: withdrawal_processing_time,
-//                         description,
-//                         countries,
-//                         logo,
-//                         reference,
-//                         link_binary
-//                     }
-//                 },
-//             )
-//         return {
-//             name: it.L(category),
-//             data
-//         }
-//     })
-// }
-
