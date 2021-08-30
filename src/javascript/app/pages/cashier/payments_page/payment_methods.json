@@ -68,23 +68,7 @@
     ],
     "countries": {
       "included": [],
-      "excluded": [
-        "AF",
-        "AE",
-        "CA",
-        "CF",
-        "HK",
-        "IL",
-        "IR",
-        "IQ",
-        "JE",
-        "MY",
-        "MT",
-        "RW",
-        "PY",
-        "US",
-        "SY"
-      ]
+      "excluded": ["EU"]
     },
     "reference": "",
     "locale": [],
@@ -580,8 +564,6 @@
     ],
     "countries": {
       "included": [
-        "FR",
-        "TR"
       ],
       "excluded": [
         "AX",

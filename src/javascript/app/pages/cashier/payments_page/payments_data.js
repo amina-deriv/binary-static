@@ -5,26 +5,26 @@ const BinarySocket = require('../../../base/socket');
 const isEuCountry = require('../../../common/country_base').isEuCountry;
 
 const filterItem = (item, current_client_country) => {
-
     if (item.countries.included.length) {
-        const includedCountries = item.countries.included.map((i) => i.toLowerCase());
+        
+        const includedCountries = item.countries.included.map(country => country.toLowerCase());
         if (includedCountries.includes(current_client_country)) {
             return true;
-        }
-        if (includedCountries.includes('eu')) {
+        } else if (includedCountries.includes('eu')) {
             return isEuCountry();
         }
-    }
-    if (item.countries.excluded.length) {
-        const excludedCountries = item.countries.excluded.map((i) => i.toLowerCase());
+        return false;
+
+    } else if (item.countries.excluded.length) {
+       
+        const excludedCountries = item.countries.excluded.map(country => country.toLowerCase());
         if (excludedCountries.includes(current_client_country)) {
             return false;
-        }
-        if (excludedCountries.includes('eu')) {
+        } else if (excludedCountries.includes('eu')) {
             return !isEuCountry();
         }
-    } else {
-        return false;
+        return true;
+
     }
     return true;
 };
@@ -37,8 +37,8 @@ const showPaymentData = () => {
 
         setTimeout(() => {
             payment_method_json.map(item => {
-                const isVisible = filterItem(item, current_client_country);
-                if (!isVisible) {
+                const showItem = filterItem(item, current_client_country);
+                if (!showItem) {
                     $(`tr[data-anchor='${item.key}']`).remove();
                     $('#payment_methods > div').each(function () {
                         const rowContents = $(this).find('tbody').html();
