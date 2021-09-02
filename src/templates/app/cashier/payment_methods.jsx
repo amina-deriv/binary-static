@@ -160,13 +160,13 @@ const getDescription = (description, link) => {
     return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`));
 };
 
-const getTableHead = (is_crypto) => ([[
+const getTableHead = (categoryName) => ([[
     { text: it.L('Method') },
     {
-        attributes: { colSpan: 5, className: 'th-list' }, custom_th : <CustomTableHead data={[
+        attributes: { colSpan: 5, className: 'th-list' }, custom_th: <CustomTableHead data={[
             { text: it.L('Currencies') },
-            { text: is_crypto ? `${it.L('Min Deposit')}` : `${it.L('Min-Max Deposit')}` },
-            { text: is_crypto ? `${it.L('Min Withdrawal')}` : `${it.L('Min-Max Withdrawal')}` },
+            { text: categoryName.includes('Crypto') ? `${it.L('Min Deposit')}` : `${it.L('Min-Max Deposit')}` },
+            { text: categoryName.includes('Crypto') ? `${it.L('Min Withdrawal')}` : `${it.L('Min-Max Withdrawal')}` },
             { text: `${it.L('Processing Time')}*` },
             { text: it.L('Reference') },
         ]}
@@ -175,35 +175,30 @@ const getTableHead = (is_crypto) => ([[
 ]]);
 
 const getTableBody = (data) =>
-    (
-        data.map(item => ({
-            id : `${item.name}`,
-            row: [
-                { text: <PaymentLogo logo={`${item.logo}`} name={`${item.name}`} /> },
-                {
-                    attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-                        { td: getDescription(item.description, item.link_binary) },
-                        {
-                            td_list: [
-                                { text: getCurrency(item.currencies) },
-                                { text: getDepositLimit(item.min_deposit, item.max_deposit) },
-                                { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal) },
-                                {
-                                    text: getProcessingTime(
-                                        item.deposit_proccessing_time,
-                                        item.withdrawal_processing_time
-                                    ),
-                                },
-                                { text: getReferenceFiles(item.key, item.reference) },
-                            ],
-                        },
-                    ]}
-                    />,
-                },
-            ],
-        })
-        )
-    );
+(
+    data.map(item => ({
+        id: `${item.name}`,
+        row: [
+            { text: <PaymentLogo logo={`${item.logo}`} name={`${item.name}`} /> },
+            {
+                attributes: { colSpan: 5, className: 'toggler' }, custom_td: <CustomTableData data={[
+                    { td: getDescription(item.description, item.link_binary) },
+                    {
+                        td_list: [
+                            { text: getCurrency(item.currencies) },
+                            { text: getDepositLimit(item.min_deposit, item.max_deposit) },
+                            { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal) },
+                            { text: getProcessingTime(item.deposit_proccessing_time, item.withdrawal_processing_time) },
+                            { text: getReferenceFiles(item.key, item.reference) },
+                        ],
+                    },
+                ]}
+                />,
+            },
+        ],
+    })
+    )
+);
 
 const PaymentDataGenerator = () => {
 
@@ -213,7 +208,7 @@ const PaymentDataGenerator = () => {
         const payment_methods = categorized_payment_methods[category];
         const data = payment_methods && payment_methods.map(item => ({ ...item }));
         return {
-            name: it.L(category),
+            name: category,
             data,
         };
     });
@@ -238,11 +233,6 @@ const CategoryNote = ({ category }) => {
 
 const RenderPaymentData = () => {
     const payment_data = PaymentDataGenerator();
-    console.log(payment_data.length);
-
-    if (!payment_data.length) {
-        return ;
-    }
     return (
         <React.Fragment>
 
@@ -255,18 +245,18 @@ const RenderPaymentData = () => {
 
             <div id='payment_methods' className='table-container invisible'>
                 {payment_data.map(({ name, data }) =>
-                    (
-                        <div key={name} id={`${name.replace(/\W/g, '')}`}>
-                            <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`} />
-                            <Table
-                                data={{
-                                    thead: getTableHead(name),
-                                    tbody: getTableBody(data),
-                                }}
-                            />
-                            <CategoryNote category={`${name}`} />
-                        </div>
-                    )
+                (
+                    <div key={name} id={`${name.replace(/\W/g, '')}`}>
+                        <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`} />
+                        <Table
+                            data={{
+                                thead: getTableHead(name),
+                                tbody: getTableBody(data),
+                            }}
+                        />
+                        <CategoryNote category={`${name}`} />
+                    </div>
+                )
                 )
                 }
             </div>

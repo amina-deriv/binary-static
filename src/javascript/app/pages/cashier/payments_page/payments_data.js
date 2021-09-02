@@ -52,7 +52,6 @@ const showPaymentData = () => {
                 if(!$('#payment_methods').children().length){
                     $('#no_payment_methods').setVisibility(1);
                 }else{
-                    $('#no_payment_methods').setVisibility(0);
                     $('#payment_methods').setVisibility(1);
                     $('#payments_footer').setVisibility(1);
                 }
