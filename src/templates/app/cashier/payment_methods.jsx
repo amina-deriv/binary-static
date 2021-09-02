@@ -238,15 +238,19 @@ const CategoryNote = ({ category }) => {
 
 const RenderPaymentData = () => {
     const payment_data = PaymentDataGenerator();
+    console.log(payment_data.length);
 
     if (!payment_data.length) {
-        return <p> `${it.L('Sorry! No payment options are available for your country')}`</p>;
+        return ;
     }
     return (
         <React.Fragment>
 
             <div id='payment_methods_loading'>
                 <Loading />
+            </div>
+            <div id='no_payment_methods' className='invisible'>
+                <p> `${it.L('Sorry! No payment options are available for your country')}`</p>
             </div>
 
             <div id='payment_methods' className='table-container invisible'>

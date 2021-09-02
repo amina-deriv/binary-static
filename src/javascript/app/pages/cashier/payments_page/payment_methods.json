@@ -9,9 +9,16 @@
     "max_deposit": "10,000",
     "withdrawal_processing_time": "1 working day",
     "min_withdrawal": "10",
-    "max_withdrawal": "",
+    "max_widthdrawal": "10,000",
     "link_binary": "",
-    "currencies": [["USD", "EUR", "AUD", "GBP"]],
+    "currencies": [
+      [
+        "USD",
+        "EUR",
+        "AUD",
+        "GBP"
+      ]
+    ],
     "countries": {
       "included": [],
       "excluded": [
@@ -46,9 +53,16 @@
     "max_deposit": "10,000",
     "withdrawal_processing_time": "1 working day",
     "min_withdrawal": "10",
-    "max_withdrawal": "10,000",
+    "max_widthdrawal": "10,000",
     "link_binary": "",
-    "currencies": [["USD", "EUR", "AUD", "GBP"]],
+    "currencies": [
+      [
+        "USD",
+        "EUR",
+        "AUD",
+        "GBP"
+      ]
+    ],
     "countries": {
       "included": [],
       "excluded": [
@@ -83,9 +97,16 @@
     "max_deposit": "10,000",
     "withdrawal_processing_time": "1 working day",
     "min_withdrawal": "10",
-    "max_withdrawal": "10,000",
+    "max_widthdrawal": "10,000",
     "link_binary": "",
-    "currencies": [["USD", "EUR", "AUD", "GBP"]],
+    "currencies": [
+      [
+        "USD",
+        "EUR",
+        "AUD",
+        "GBP"
+      ]
+    ],
     "countries": {
       "included": [],
       "excluded": [
@@ -120,9 +141,16 @@
     "max_deposit": "10,000",
     "withdrawal_processing_time": "1 working day",
     "min_withdrawal": "10",
-    "max_withdrawal": "10,000",
+    "max_widthdrawal": "10,000",
     "link_binary": "",
-    "currencies": [["USD", "EUR", "AUD", "GBP"]],
+    "currencies": [
+      [
+        "USD",
+        "EUR",
+        "AUD",
+        "GBP"
+      ]
+    ],
     "countries": {
       "included": [],
       "excluded": [
@@ -157,9 +185,16 @@
     "max_deposit": "10,000",
     "withdrawal_processing_time": "1 working day",
     "min_withdrawal": "10",
-    "max_withdrawal": "10,000",
+    "max_widthdrawal": "10,000",
     "link_binary": "",
-    "currencies": [["USD", "EUR", "AUD", "GBP"]],
+    "currencies": [
+      [
+        "USD",
+        "EUR",
+        "AUD",
+        "GBP"
+      ]
+    ],
     "countries": {
       "included": [],
       "excluded": [
@@ -194,9 +229,13 @@
     "max_deposit": "10,000",
     "withdrawal_processing_time": "1 working day",
     "min_withdrawal": "10",
-    "max_withdrawal": "10,000",
+    "max_widthdrawal": "10,000",
     "link_binary": "",
-    "currencies": [["USD"]],
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
     "countries": {
       "included": [],
       "excluded": [
@@ -231,9 +270,13 @@
     "max_deposit": "50,000",
     "withdrawal_processing_time": "1 working day",
     "min_withdrawal": "5",
-    "max_withdrawal": "50,000",
+    "max_widthdrawal": "50,000",
     "link_binary": "",
-    "currencies": [["USD"]],
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
     "countries": {
       "included": [],
       "excluded": [
@@ -268,11 +311,19 @@
     "max_deposit": "17,000",
     "withdrawal_processing_time": "Not Available",
     "min_withdrawal": "Not Available",
-    "max_withdrawal": "Not Available",
+    "max_widthdrawal": "Not Available",
     "link_binary": "",
-    "currencies": [["USD"]],
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
     "countries": {
-      "included": ["ID", "TH", "VN"],
+      "included": [
+        "ID",
+        "TH",
+        "VN"
+      ],
       "excluded": []
     },
     "reference": "",
@@ -289,11 +340,19 @@
     "max_deposit": "10,000",
     "withdrawal_processing_time": "Not Available",
     "min_withdrawal": "Not Available",
-    "max_withdrawal": "Not Available",
+    "max_widthdrawal": "Not Available",
     "link_binary": "",
-    "currencies": [["USD"]],
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
     "countries": {
-      "included": ["ID", "TH", "VN"],
+      "included": [
+        "ID",
+        "TH",
+        "VN"
+      ],
       "excluded": []
     },
     "reference": "",
@@ -310,15 +369,23 @@
     "max_deposit": "2,500",
     "withdrawal_processing_time": "1 - 3 working days",
     "min_withdrawal": "10",
-    "max_withdrawal": "2,500",
+    "max_widthdrawal": "2,500",
     "link_binary": "",
-    "currencies": [["USD"]],
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
     "countries": {
-      "included": ["VN"],
+      "included": [
+        "VN"
+      ],
       "excluded": []
     },
     "reference": "",
-    "locale": ["vi"],
+    "locale": [
+      "vn"
+    ],
     "logo": "ngan_luong"
   },
   {
@@ -331,11 +398,19 @@
     "max_deposit": "10,000",
     "withdrawal_processing_time": "Not Available",
     "min_withdrawal": "Not Available",
-    "max_withdrawal": "Not Available",
+    "max_widthdrawal": "Not Available",
     "link_binary": "",
-    "currencies": [["USD"]],
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
     "countries": {
-      "included": ["ID", "TH", "VN"],
+      "included": [
+        "ID",
+        "TH",
+        "VN"
+      ],
       "excluded": []
     },
     "reference": "",
@@ -352,16 +427,568 @@
     "max_deposit": "500",
     "withdrawal_processing_time": "1 working day",
     "min_withdrawal": "10",
-    "max_withdrawal": "6,000",
+    "max_widthdrawal": "6,000",
     "link_binary": "",
-    "currencies": [["USD", "EUR", "AUD", "GBP"]],
+    "currencies": [
+      [
+        "USD",
+        "EUR",
+        "AUD",
+        "GBP"
+      ]
+    ],
     "countries": {
-      "included": ["SA"],
+      "included": [
+        "SA"
+      ],
       "excluded": []
     },
     "reference": "",
     "locale": [],
     "logo": "zingpay"
+  },
+  {
+    "name": "Fasapay",
+    "category": "E-wallets",
+    "key": "fasapay",
+    "description": "Features fast deposits and withdrawals, low fees, and downloadable transaction history.",
+    "deposit_proccessing_time": "Instant",
+    "min_deposit": "5",
+    "max_deposit": "10,000",
+    "withdrawal_processing_time": "1 working day",
+    "min_withdrawal": "5",
+    "max_widthdrawal": "10,000",
+    "link_binary": "https://www.fasapay.com/",
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
+    "countries": {
+      "included": [],
+      "excluded": [
+        "AF",
+        "AE",
+        "CA",
+        "CF",
+        "HK",
+        "IL",
+        "IR",
+        "IQ",
+        "JE",
+        "MY",
+        "MT",
+        "RW",
+        "PY",
+        "US",
+        "SY"
+      ]
+    },
+    "reference": "",
+    "locale": [],
+    "logo": "fasapay"
+  },
+  {
+    "name": "Perfect Money",
+    "category": "E-wallets",
+    "key": "perfect-money",
+    "description": "A cheap and easy method for deposits and withdrawals. Features auto payments, annual interest, and real-time statements",
+    "deposit_proccessing_time": "Instant",
+    "min_deposit": "5",
+    "max_deposit": "10,000",
+    "withdrawal_processing_time": "1 working day",
+    "min_withdrawal": "5",
+    "max_widthdrawal": "10,000",
+    "link_binary": "http://perfectmoney.com/?welcome=1",
+    "currencies": [
+      [
+        "USD",
+        "EUR"
+      ]
+    ],
+    "countries": {
+      "included": [],
+      "excluded": [
+        "AF",
+        "AE",
+        "CA",
+        "CF",
+        "HK",
+        "IL",
+        "IR",
+        "IQ",
+        "JE",
+        "MY",
+        "MT",
+        "RW",
+        "PY",
+        "US",
+        "SY"
+      ]
+    },
+    "reference": "",
+    "locale": [],
+    "logo": "perfect_money"
+  },
+  {
+    "name": "Skrill",
+    "category": "E-wallets",
+    "key": "skrill",
+    "description": "Quick, simple to use, and available anywhere, anytime. Used by millions of clients worldwide.",
+    "deposit_proccessing_time": "Instant",
+    "min_deposit": "10",
+    "max_deposit": "10,000",
+    "withdrawal_processing_time": "1 working day",
+    "min_withdrawal": "10",
+    "max_widthdrawal": "10,000",
+    "link_binary": "https://account.skrill.com/wallet/account/sign-up?locale=en",
+    "currencies": [
+      [
+        "USD",
+        "EUR",
+        "AUD",
+        "GBP"
+      ]
+    ],
+    "countries": {
+      "included": [],
+      "excluded": [
+        "AX",
+        "AS",
+        "AO",
+        "AI",
+        "AQ",
+        "AG",
+        "AT",
+        "BB",
+        "BE",
+        "BZ",
+        "BJ",
+        "BT",
+        "BV",
+        "BG",
+        "BF",
+        "BI",
+        "CA",
+        "CV",
+        "CF",
+        "TD",
+        "CN",
+        "CC",
+        "KM",
+        "CG",
+        "CD",
+        "CK",
+        "CI",
+        "HR",
+        "CU",
+        "CW",
+        "CY",
+        "CZ",
+        "DK",
+        "DJ",
+        "ER",
+        "EE",
+        "FO",
+        "FJ",
+        "FI",
+        "FR",
+        "GF",
+        "PF",
+        "TF",
+        "GA",
+        "GM",
+        "DE",
+        "GI",
+        "GR",
+        "GL",
+        "GD",
+        "GP",
+        "GU",
+        "GW",
+        "GY",
+        "HT",
+        "HM",
+        "VA",
+        "HK",
+        "HU",
+        "IR",
+        "IQ",
+        "IE",
+        "IL",
+        "IT",
+        "JP",
+        "KI",
+        "KP",
+        "KG",
+        "LA",
+        "LV",
+        "LB",
+        "LR",
+        "LY",
+        "LI",
+        "LT",
+        "LU",
+        "MO",
+        "MY",
+        "ML",
+        "MT",
+        "MH",
+        "MQ",
+        "MR",
+        "YT",
+        "FM",
+        "MS",
+        "MM",
+        "NA",
+        "NL",
+        "AN",
+        "NC",
+        "NE",
+        "NU",
+        "NF",
+        "MP",
+        "NO",
+        "PS",
+        "PG",
+        "PN",
+        "PL",
+        "PT",
+        "PR",
+        "RE",
+        "RO",
+        "RW",
+        "KN",
+        "LC",
+        "VC",
+        "WS",
+        "ST",
+        "SC",
+        "SL",
+        "SG",
+        "SK",
+        "SI",
+        "SB",
+        "SO",
+        "GS",
+        "ES",
+        "SH",
+        "PM",
+        "SD",
+        "SR",
+        "SJ",
+        "SE",
+        "SY",
+        "TL",
+        "TG",
+        "TK",
+        "TO",
+        "TR",
+        "TM",
+        "TC",
+        "TV",
+        "AE",
+        "GB",
+        "US",
+        "UM",
+        "VU",
+        "VE",
+        "VI",
+        "WF",
+        "EH",
+        "YE",
+        "ZW"
+      ]
+    },
+    "reference": "",
+    "locale": [],
+    "logo": "skrill"
+  },
+  {
+    "name": "Neteller",
+    "category": "E-wallets",
+    "key": "neteller",
+    "description": "Used by over 20 million clients worldwide. Enjoy instant access, free withdrawals, and reward points that you can redeem for cash. ",
+    "deposit_proccessing_time": "Instant",
+    "min_deposit": "10",
+    "max_deposit": "10,000",
+    "withdrawal_processing_time": "1 working day",
+    "min_withdrawal": "5",
+    "max_widthdrawal": "10,000",
+    "link_binary": "https://member.neteller.com/wallet/account/sign-up?lang=en&btag=a_94953b_2560c_&program=NTAFFILIATE",
+    "currencies": [
+      [
+        "USD",
+        "EUR",
+        "AUD",
+        "GBP"
+      ]
+    ],
+    "countries": {
+      "included": [],
+      "excluded": [
+        "AX",
+        "AS",
+        "AO",
+        "AI",
+        "AQ",
+        "AG",
+        "AT",
+        "BB",
+        "BE",
+        "BZ",
+        "BJ",
+        "BT",
+        "BV",
+        "BG",
+        "BF",
+        "BI",
+        "CA",
+        "CV",
+        "CF",
+        "TD",
+        "CN",
+        "CC",
+        "KM",
+        "CG",
+        "CD",
+        "CK",
+        "CI",
+        "HR",
+        "CU",
+        "CW",
+        "CY",
+        "CZ",
+        "DK",
+        "DJ",
+        "ER",
+        "EE",
+        "FO",
+        "FJ",
+        "FI",
+        "FR",
+        "GF",
+        "PF",
+        "TF",
+        "GA",
+        "GM",
+        "DE",
+        "GI",
+        "GR",
+        "GL",
+        "GD",
+        "GP",
+        "GU",
+        "GW",
+        "GY",
+        "HT",
+        "HM",
+        "VA",
+        "HK",
+        "HU",
+        "IR",
+        "IQ",
+        "IE",
+        "IL",
+        "IT",
+        "JP",
+        "KI",
+        "KP",
+        "KG",
+        "LA",
+        "LV",
+        "LB",
+        "LR",
+        "LY",
+        "LI",
+        "LT",
+        "LU",
+        "MO",
+        "MY",
+        "ML",
+        "MT",
+        "MH",
+        "MQ",
+        "MR",
+        "YT",
+        "FM",
+        "MS",
+        "MM",
+        "NA",
+        "NL",
+        "AN",
+        "NC",
+        "NE",
+        "NU",
+        "NF",
+        "MP",
+        "NO",
+        "PS",
+        "PG",
+        "PN",
+        "PL",
+        "PT",
+        "PR",
+        "RE",
+        "RO",
+        "RW",
+        "KN",
+        "LC",
+        "VC",
+        "WS",
+        "ST",
+        "SC",
+        "SL",
+        "SG",
+        "SK",
+        "SI",
+        "SB",
+        "SO",
+        "GS",
+        "ES",
+        "SH",
+        "PM",
+        "SD",
+        "SR",
+        "SJ",
+        "SE",
+        "SY",
+        "TL",
+        "TG",
+        "TK",
+        "TO",
+        "TR",
+        "TM",
+        "TC",
+        "TV",
+        "AE",
+        "GB",
+        "US",
+        "UM",
+        "VU",
+        "VE",
+        "VI",
+        "WF",
+        "EH",
+        "YE",
+        "ZW"
+      ]
+    },
+    "reference": "",
+    "locale": [],
+    "logo": "neteller"
+  },
+  {
+    "name": "WebMoney",
+    "category": "E-wallets",
+    "key": "webmoney",
+    "description": "A complete payment service with over 30 million clients, 10,000  daily signups, and is supported by more than 100,000 merchants.",
+    "deposit_proccessing_time": "Instant",
+    "min_deposit": "5",
+    "max_deposit": "3,000",
+    "withdrawal_processing_time": "1 working day",
+    "min_withdrawal": "5",
+    "max_widthdrawal": "5,000",
+    "link_binary": "https://www.wmtransfer.com/",
+    "currencies": [
+      [
+        "USD",
+        "EUR"
+      ]
+    ],
+    "countries": {
+      "included": [],
+      "excluded": [
+        "AS",
+        "BS",
+        "BW",
+        "KH",
+        "ET",
+        "GH",
+        "GU",
+        "GY",
+        "IR",
+        "IQ",
+        "KP",
+        "LA",
+        "LY",
+        "ML",
+        "MR",
+        "MP",
+        "PK",
+        "PA",
+        "SO",
+        "SS",
+        "LK",
+        "SD",
+        "SY",
+        "TT",
+        "TN",
+        "UG",
+        "US",
+        "VU",
+        "YE"
+      ]
+    },
+    "reference": "",
+    "locale": [],
+    "logo": "webmoney"
+  },
+  {
+    "name": "Paysafecard",
+    "category": "E-wallets",
+    "key": "paysafecard",
+    "description": "A convenient payment service that doesn’t need a bank account or credit card. Accepted by thousands of merchants worldwide.",
+    "deposit_proccessing_time": "Instant",
+    "min_deposit": "5",
+    "max_deposit": "1,000",
+    "withdrawal_processing_time": "1 working day",
+    "min_withdrawal": "5",
+    "max_widthdrawal": "750",
+    "link_binary": "https://www.paysafecard.com/en/",
+    "currencies": [
+      [
+        "USD",
+        "AUD"
+      ]
+    ],
+    "countries": {
+      "included": [
+        ""
+      ],
+      "excluded": []
+    },
+    "reference": "",
+    "locale": [],
+    "logo": "paysafecard"
+  },
+  {
+    "name": "",
+    "category": "",
+    "key": "",
+    "description": "",
+    "deposit_proccessing_time": "",
+    "min_deposit": "5",
+    "max_deposit": "10,000",
+    "withdrawal_processing_time": "1 working day",
+    "min_withdrawal": "5",
+    "max_widthdrawal": "750",
+    "link_binary": "",
+    "currencies": [
+      [
+        "GBP",
+        "EUR"
+      ]
+    ],
+    "countries": {
+      "included": [
+        ""
+      ],
+      "excluded": []
+    },
+    "reference": "",
+    "locale": [],
+    "logo": ""
   },
   {
     "name": "PayLivre",
@@ -373,11 +1000,17 @@
     "max_deposit": "4000",
     "withdrawal_processing_time": "1 - 2 working days",
     "min_withdrawal": "5",
-    "max_withdrawal": "10,000",
+    "max_widthdrawal": "10,000",
     "link_binary": "https://www.paylivre.com/",
-    "currencies": [["USD"]],
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
     "countries": {
-      "included": ["BR"],
+      "included": [
+        "BR"
+      ],
       "excluded": []
     },
     "reference": "",
@@ -393,12 +1026,25 @@
     "min_deposit": "5",
     "max_deposit": "2500",
     "withdrawal_processing_time": "1 working day",
-    "min_withdrawal": "5|10",
-    "max_withdrawal": "2,500|5,000",
+    "min_withdrawal": "5",
+    "max_widthdrawal": "2,500",
     "link_binary": "https://www.astropay.com/?lang=en",
-    "currencies": [["USD"], ["EUR"]],
+    "currencies": [
+      [
+        "USD"
+      ]
+    ],
     "countries": {
-      "included": ["AR", "BR", "CO", "CL", "EC", "IN", "MX", "PE"],
+      "included": [
+        "AR",
+        "BR",
+        "CO",
+        "CL",
+        "EC",
+        "IN",
+        "MX",
+        "PE"
+      ],
       "excluded": []
     },
     "reference": "",
@@ -406,20 +1052,21 @@
     "logo": "astropay"
   },
   {
-    "name": "Banxa",
-    "category": "Fiat onramp - Buy crypto on popular exchanges.",
-    "key": "banxa",
-    "description": "Make fast, easy, and secure deposits with this internationally compliant fiat-to-crypto exchange using your credit or debit card. Registrations are hassle-free.",
-    "deposit_proccessing_time": "5 - 30 minutes",
-    "min_deposit": "50|100",
-    "max_deposit": "1000|5000",
-    "withdrawal_processing_time": "Not Available",
-    "min_withdrawal": "Not Available",
-    "max_withdrawal": "Not Available",
-    "link_binary": "https://banxa.com/",
+    "name": "Bitcoin",
+    "category": "Cryptocurrencies",
+    "key": "bitcoin",
+    "description": "Deposit and withdraw in Bitcoin, the world’s first cryptocurrency.",
+    "deposit_proccessing_time": "Funds available as soon as confirmed",
+    "min_deposit": "Not Available",
+    "max_deposit": "Not Available",
+    "withdrawal_processing_time": "Subject to internal checks",
+    "min_withdrawal": "0.0022",
+    "max_widthdrawal": "Not Available",
+    "link_binary": "",
     "currencies": [
-      ["USD", "EUR"],
-      ["GBP", "AUD"]
+      [
+        "BTC"
+      ]
     ],
     "countries": {
       "included": [],
@@ -445,6 +1092,6 @@
     },
     "reference": "",
     "locale": [],
-    "logo": "banxa"
+    "logo": "bitcoin"
   }
 ]
