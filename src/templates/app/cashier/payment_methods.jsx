@@ -186,7 +186,7 @@ const getDescription = (description, link) => {
     return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`));
 };
 
-const getTableHead = (categoryName) => ([[
+const getTableHead = (id) => ([[
     { text: it.L('Method') },
     {
         attributes: { colSpan: 5, className: 'th-list' }, custom_th: <CustomTableHead data={[
@@ -235,6 +235,7 @@ const PaymentDataGenerator = () => {
         const data = payment_methods && payment_methods.map(item => ({ ...item }));
         return {
             name: category,
+            id: `${category.replace(/\W/g, '').toLowerCase()}`,
             data,
         };
     });
@@ -259,6 +260,7 @@ const CategoryNote = ({ category }) => {
 
 const RenderPaymentData = () => {
     const payment_data = PaymentDataGenerator();
+    console.log(payment_data);
     return (
         <React.Fragment>
 
@@ -270,13 +272,13 @@ const RenderPaymentData = () => {
             </div>
 
             <div id='payment_methods' className='table-container invisible'>
-                {payment_data.map(({ name, data }) =>
+                {payment_data.map(({ categoryName, categoryId, data }) =>
                 (
-                    <div key={name} id={`${name.replace(/\W/g, '').toLowerCase()}`}>
-                        <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`} />
+                    <div key={categoryName} id={id}>
+                        <TableTitle title={it.L(`${categoryName}`)} dataAnchor={`${categoryId}`} />
                         <Table
                             data={{
-                                thead: getTableHead(name),
+                                thead: getTableHead(categoryId),
                                 tbody: getTableBody(data),
                             }}
                         />
