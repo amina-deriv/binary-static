@@ -136,7 +136,8 @@ const Cashier = (() => {
 
     const setCryptoMinimumWithdrawal = () => {
         BinarySocket.wait('website_status').then((response) => {
-            $('#cryptocurrency tbody tr').each(function () {
+            $('#cryptocurrencies tbody tr').each(function () {
+                console.log('here');
                 const $row = $(this);
                 const $columns = $row.find('td:nth-child(2) div:nth-child(2)');
 
@@ -145,7 +146,7 @@ const Cashier = (() => {
 
                 if (shortname && $crypto_min_withdrawal) {
                     const minimum_withdrawal = getPropertyValue(response, ['website_status', 'crypto_config', shortname, 'minimum_withdrawal']);
-
+                     console.log(minimum_withdrawal);
                     let to_fixed = 0;
                     // cut long numbers off after two non-zero decimals
                     // examples: 0.00123456 -> 0.0012, 0.01234567 -> 0.012, 0.12345678 -> 0.12, 0.00102345 -> 0.00102

@@ -126,9 +126,35 @@ const getDepositLimit = (min_deposit, max_deposit) => {
     return (`${min_deposit} - ${max_deposit}`);
 };
 
-const getWithdrawalLimit = (min_withdrawal, max_withdrawal) => {
+
+const getCryptoMinWithdrawal = (item) => {
+    let data_currency = '';
+
+    switch (item) {
+        case 'bitcoin': data_currency = 'BTC'; break;
+        case 'usdc': data_currency = 'USDC'; break;
+        case 'ethereumblack': data_currency = 'ETH'; break;
+        case 'litecoin': data_currency = 'LTC'; break;
+        case 'tether': data_currency = 'UST'; break;
+    }
+
+    return data_currency;
+}
+
+
+
+
+
+
+
+{/* <span data-currency="BTC">0.00050</span> */ }
+
+
+const getWithdrawalLimit = (min_withdrawal, max_withdrawal, item) => {
     if (max_withdrawal === 'Not Available') {
-        return (it.L(`${min_withdrawal}`));
+        const data_currency = getCryptoMinWithdrawal(item);
+        // return (<span data-currency={`${data_currency}`} />);
+        return (<span data-currency='BTC' />)
     }
     if (min_withdrawal.includes('|') && max_withdrawal.includes('|')) {
         const min_withdrawal_array = min_withdrawal.split('|');
@@ -177,7 +203,7 @@ const getTableHead = (categoryName) => ([[
 const getTableBody = (data) =>
 (
     data.map(item => ({
-        id: `${item.name}`,
+        id: `${item.key}`,
         row: [
             { text: <PaymentLogo logo={`${item.logo}`} name={`${item.name}`} /> },
             {
@@ -187,7 +213,7 @@ const getTableBody = (data) =>
                         td_list: [
                             { text: getCurrency(item.currencies) },
                             { text: getDepositLimit(item.min_deposit, item.max_deposit) },
-                            { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal) },
+                            { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal, item.key) },
                             { text: getProcessingTime(item.deposit_proccessing_time, item.withdrawal_processing_time) },
                             { text: getReferenceFiles(item.key, item.reference) },
                         ],
@@ -246,7 +272,7 @@ const RenderPaymentData = () => {
             <div id='payment_methods' className='table-container invisible'>
                 {payment_data.map(({ name, data }) =>
                 (
-                    <div key={name} id={`${name.replace(/\W/g, '')}`}>
+                    <div key={name} id={`${name.replace(/\W/g, '').toLowerCase()}`}>
                         <TableTitle title={it.L(`${name}`)} dataAnchor={`${name}`} />
                         <Table
                             data={{
