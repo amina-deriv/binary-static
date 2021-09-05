@@ -126,7 +126,6 @@ const getDepositLimit = (min_deposit, max_deposit) => {
     return (`${min_deposit} - ${max_deposit}`);
 };
 
-
 const getCryptoMinWithdrawal = (item) => {
     let data_currency = '';
     switch (item) {
@@ -135,10 +134,11 @@ const getCryptoMinWithdrawal = (item) => {
         case 'ethereumblack': data_currency = 'ETH'; break;
         case 'litecoin': data_currency = 'LTC'; break;
         case 'tether': data_currency = 'UST'; break;
+        // no default
     }
 
     return data_currency;
-}
+};
 
 const getWithdrawalLimit = (min_withdrawal, max_withdrawal, categoryId, item) => {
     if (max_withdrawal === 'Not Available') {
@@ -175,7 +175,6 @@ const createLink = (href) => (`<a href="${href}" target="_blank" rel="noopener n
 
 const isCrypto = (categoryId) => categoryId.includes('crypto');
 
-
 const getDescription = (description, link) => {
     if (!link) return (it.L(`${description}`));
     return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`));
@@ -184,7 +183,7 @@ const getDescription = (description, link) => {
 const getTableHead = (categoryId) => ([[
     { text: it.L('Method') },
     {
-        attributes: { colSpan: 5, className: 'th-list' }, custom_th: <CustomTableHead data={[
+        attributes: { colSpan: 5, className: 'th-list' }, custom_th : <CustomTableHead data={[
             { text: it.L('Currencies') },
             { text: categoryId.includes('crypto') ? `${it.L('Min Deposit')}` : `${it.L('Min-Max Deposit')}` },
             { text: categoryId.includes('crypto') ? `${it.L('Min Withdrawal')}` : `${it.L('Min-Max Withdrawal')}` },
@@ -196,30 +195,30 @@ const getTableHead = (categoryId) => ([[
 ]]);
 
 const getTableBody = (categoryId, data) =>
-(
-    data.map(item => ({
-        id: `${item.key}`,
-        row: [
-            { text: <PaymentLogo logo={`${item.logo}`} name={`${item.name}`} /> },
-            {
-                attributes: { colSpan: 5, className: 'toggler' }, custom_td: <CustomTableData data={[
-                    { td: getDescription(item.description, item.link_binary) },
-                    {
-                        td_list: [
-                            { text: getCurrency(item.currencies) },
-                            { text: getDepositLimit(item.min_deposit, item.max_deposit) },
-                            { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal, categoryId, item.key) },
-                            { text: getProcessingTime(item.deposit_proccessing_time, item.withdrawal_processing_time) },
-                            { text: getReferenceFiles(item.key, item.reference) },
-                        ],
-                    },
-                ]}
-                />,
-            },
-        ],
-    })
-    )
-);
+    (
+        data.map(item => ({
+            id : `${item.key}`,
+            row: [
+                { text: <PaymentLogo logo={`${item.logo}`} name={`${item.name}`} /> },
+                {
+                    attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
+                        { td: getDescription(item.description, item.link_binary) },
+                        {
+                            td_list: [
+                                { text: getCurrency(item.currencies) },
+                                { text: getDepositLimit(item.min_deposit, item.max_deposit) },
+                                { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal, categoryId, item.key) },
+                                { text: getProcessingTime(item.deposit_proccessing_time, item.withdrawal_processing_time) },
+                                { text: getReferenceFiles(item.key, item.reference) },
+                            ],
+                        },
+                    ]}
+                    />,
+                },
+            ],
+        })
+        )
+    );
 
 const paymentDataGenerator = () => {
 
@@ -230,7 +229,7 @@ const paymentDataGenerator = () => {
         const data = payment_methods && payment_methods.map(item => ({ ...item }));
         return {
             name: category,
-            id: `${category.replace(/\W/g, '').toLowerCase()}`,
+            id  : `${category.replace(/\W/g, '').toLowerCase()}`,
             data,
         };
     });
@@ -253,25 +252,24 @@ const CategoryNote = ({ categoryId }) => {
     return null;
 };
 
-
 const RenderPaymentData = () => {
     const payment_data = paymentDataGenerator();
 
     return (
         <div id='payment_methods' className='table-container invisible'>
             {payment_data.map(({ name, id, data }) =>
-            (
-                <div key={name} id={id}>
-                    <TableTitle title={it.L(`${name}`)} dataAnchor={`${id}`} />
-                    <Table
-                        data={{
-                            thead: getTableHead(id),
-                            tbody: getTableBody(id, data),
-                        }}
-                    />
-                    <CategoryNote categoryId={`${id}`} />
-                </div>
-            )
+                (
+                    <div key={name} id={id}>
+                        <TableTitle title={it.L(`${name}`)} dataAnchor={`${id}`} />
+                        <Table
+                            data={{
+                                thead: getTableHead(id),
+                                tbody: getTableBody(id, data),
+                            }}
+                        />
+                        <CategoryNote categoryId={`${id}`} />
+                    </div>
+                )
             )
             }
         </div>

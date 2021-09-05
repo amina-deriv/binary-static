@@ -49,9 +49,9 @@ const showPaymentData = () => {
                 }
                 $('#payment_methods_loading').remove();
               
-                if(!$('#payment_methods').children().length){
+                if (!$('#payment_methods').children().length){
                     $('#no_payment_methods').setVisibility(1);
-                }else{
+                } else {
                     $('#payment_methods').setVisibility(1);
                     $('#payments_footer').setVisibility(1);
                 }
