@@ -129,7 +129,6 @@ const getDepositLimit = (min_deposit, max_deposit) => {
 
 const getCryptoMinWithdrawal = (item) => {
     let data_currency = '';
-
     switch (item) {
         case 'bitcoin': data_currency = 'BTC'; break;
         case 'usdc': data_currency = 'USDC'; break;
@@ -141,20 +140,13 @@ const getCryptoMinWithdrawal = (item) => {
     return data_currency;
 }
 
-
-
-
-
-
-
-{/* <span data-currency="BTC">0.00050</span> */ }
-
-
-const getWithdrawalLimit = (min_withdrawal, max_withdrawal, item) => {
+const getWithdrawalLimit = (min_withdrawal, max_withdrawal, categoryId, item) => {
     if (max_withdrawal === 'Not Available') {
-        const data_currency = getCryptoMinWithdrawal(item);
-        // return (<span data-currency={`${data_currency}`} />);
-        return (<span data-currency='BTC' />)
+        if (isCrypto(categoryId)) {
+            const data_currency = getCryptoMinWithdrawal(item);
+            return (<span data-currency={`${data_currency}`} />);
+        }
+        return (`${min_withdrawal}`);
     }
     if (min_withdrawal.includes('|') && max_withdrawal.includes('|')) {
         const min_withdrawal_array = min_withdrawal.split('|');
@@ -181,18 +173,21 @@ const getReferenceFiles = (key, reference) => {
 
 const createLink = (href) => (`<a href="${href}" target="_blank" rel="noopener noreferrer">${href}</a>`);
 
+const isCrypto = (categoryId) => categoryId.includes('crypto');
+
+
 const getDescription = (description, link) => {
     if (!link) return (it.L(`${description}`));
     return (it.L(`${description} For more information, please visit [_1].`, `${createLink(`${link}`)}`));
 };
 
-const getTableHead = (id) => ([[
+const getTableHead = (categoryId) => ([[
     { text: it.L('Method') },
     {
         attributes: { colSpan: 5, className: 'th-list' }, custom_th: <CustomTableHead data={[
             { text: it.L('Currencies') },
-            { text: categoryName.includes('Crypto') ? `${it.L('Min Deposit')}` : `${it.L('Min-Max Deposit')}` },
-            { text: categoryName.includes('Crypto') ? `${it.L('Min Withdrawal')}` : `${it.L('Min-Max Withdrawal')}` },
+            { text: categoryId.includes('crypto') ? `${it.L('Min Deposit')}` : `${it.L('Min-Max Deposit')}` },
+            { text: categoryId.includes('crypto') ? `${it.L('Min Withdrawal')}` : `${it.L('Min-Max Withdrawal')}` },
             { text: `${it.L('Processing Time')}*` },
             { text: it.L('Reference') },
         ]}
@@ -200,7 +195,7 @@ const getTableHead = (id) => ([[
     },
 ]]);
 
-const getTableBody = (data) =>
+const getTableBody = (categoryId, data) =>
 (
     data.map(item => ({
         id: `${item.key}`,
@@ -213,7 +208,7 @@ const getTableBody = (data) =>
                         td_list: [
                             { text: getCurrency(item.currencies) },
                             { text: getDepositLimit(item.min_deposit, item.max_deposit) },
-                            { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal, item.key) },
+                            { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal, categoryId, item.key) },
                             { text: getProcessingTime(item.deposit_proccessing_time, item.withdrawal_processing_time) },
                             { text: getReferenceFiles(item.key, item.reference) },
                         ],
@@ -226,7 +221,7 @@ const getTableBody = (data) =>
     )
 );
 
-const PaymentDataGenerator = () => {
+const paymentDataGenerator = () => {
 
     const categorized_payment_methods = CategorizePaymentMethod(payment_method_json);
     const sortedCategories = getsortedCategories(Object.keys(categorized_payment_methods));
@@ -241,54 +236,45 @@ const PaymentDataGenerator = () => {
     });
 };
 
-const CategoryNote = ({ category }) => {
-    if (category.includes('Credit')) {
-        return (
-            <div className='gr-padding-10'>
-                <p className='hint'>{`${it.L('Note:')} ${it.L('Mastercard and Maestro withdrawals are only available for UK Clients.')}`}</p>
-            </div>
-        );
-    } else if (category.includes('Crypto')) {
+const CategoryNote = ({ categoryId }) => {
+    if (isCrypto(categoryId)) {
         return (
             <div className='gr-padding-10'>
                 <p className='hint'>{`${it.L('Note:')} ${it.L('Figures have been rounded.')}`}</p>
+            </div>
+        );
+    } else if (categoryId.includes('credit')) {
+        return (
+            <div className='gr-padding-10'>
+                <p className='hint'>{`${it.L('Note:')} ${it.L('Mastercard and Maestro withdrawals are only available for UK Clients.')}`}</p>
             </div>
         );
     }
     return null;
 };
 
+
 const RenderPaymentData = () => {
-    const payment_data = PaymentDataGenerator();
-    console.log(payment_data);
+    const payment_data = paymentDataGenerator();
+
     return (
-        <React.Fragment>
-
-            <div id='payment_methods_loading'>
-                <Loading />
-            </div>
-            <div id='no_payment_methods' className='invisible'>
-                <p> `${it.L('Sorry! No payment options are available for your country')}`</p>
-            </div>
-
-            <div id='payment_methods' className='table-container invisible'>
-                {payment_data.map(({ categoryName, categoryId, data }) =>
-                (
-                    <div key={categoryName} id={id}>
-                        <TableTitle title={it.L(`${categoryName}`)} dataAnchor={`${categoryId}`} />
-                        <Table
-                            data={{
-                                thead: getTableHead(categoryId),
-                                tbody: getTableBody(data),
-                            }}
-                        />
-                        <CategoryNote category={`${name}`} />
-                    </div>
-                )
-                )
-                }
-            </div>
-        </React.Fragment>
+        <div id='payment_methods' className='table-container invisible'>
+            {payment_data.map(({ name, id, data }) =>
+            (
+                <div key={name} id={id}>
+                    <TableTitle title={it.L(`${name}`)} dataAnchor={`${id}`} />
+                    <Table
+                        data={{
+                            thead: getTableHead(id),
+                            tbody: getTableBody(id, data),
+                        }}
+                    />
+                    <CategoryNote categoryId={`${id}`} />
+                </div>
+            )
+            )
+            }
+        </div>
     );
 };
 
@@ -306,6 +292,14 @@ const PaymentMethods = () => (
                 <Button url='cashier/forwardws?action=withdraw' real className='withdraw' text={it.L('Withdraw')} />
             </p>
         </div>
+
+        <div id='payment_methods_loading'>
+            <Loading />
+        </div>
+        <div id='no_payment_methods' className='invisible'>
+            <p>{it.L('Sorry! No payment options are available for your country')}</p>
+        </div>
+
         <RenderPaymentData />
 
         <div className='gr-padding-10 invisible' id='payments_footer'>
