@@ -196,20 +196,33 @@ const getTableHead = (categoryId) => ([[
 
 const getTableBody = (categoryId, data) =>
     (
-        data.map(item => ({
-            id : `${item.key}`,
+        data.map(({ key,
+            name,
+            logo,
+            description,
+            link_binary,
+            currencies,
+            min_deposit,
+            max_deposit,
+            min_withdrawal,
+            max_withdrawal,
+            deposit_proccessing_time,
+            withdrawal_processing_time,
+            reference,
+        }) => ({
+            id : `${key}`,
             row: [
-                { text: <PaymentLogo logo={`${item.logo}`} name={`${item.name}`} /> },
+                { text: <PaymentLogo logo={`${logo}`} name={`${name}`} /> },
                 {
                     attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
-                        { td: getDescription(item.description, item.link_binary) },
+                        { td: getDescription(description, link_binary) },
                         {
                             td_list: [
-                                { text: getCurrency(item.currencies) },
-                                { text: getDepositLimit(item.min_deposit, item.max_deposit) },
-                                { text: getWithdrawalLimit(item.min_withdrawal, item.max_withdrawal, categoryId, item.key) },
-                                { text: getProcessingTime(item.deposit_proccessing_time, item.withdrawal_processing_time) },
-                                { text: getReferenceFiles(item.key, item.reference) },
+                                { text: getCurrency(currencies) },
+                                { text: getDepositLimit(min_deposit,max_deposit) },
+                                { text: getWithdrawalLimit(min_withdrawal, max_withdrawal, categoryId, key) },
+                                { text: getProcessingTime(deposit_proccessing_time, withdrawal_processing_time) },
+                                { text: getReferenceFiles(key, reference) },
                             ],
                         },
                     ]}

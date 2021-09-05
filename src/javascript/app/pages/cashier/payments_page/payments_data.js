@@ -34,7 +34,7 @@ const showPaymentData = () => {
 
     BinarySocket.wait('website_status', 'authorize', 'landing_company').then(() => {
         current_client_country = Client.get('residence') || State.getResponse('website_status.clients_country');
-        console.log(current_client_country);
+        console.log(current_client_country); // eslint-disable-line no-console
         setTimeout(() => {
             payment_method_json.map(item => {
                 const showItem = filterItem(item, current_client_country);
