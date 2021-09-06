@@ -96,7 +96,7 @@ const CategorizePaymentMethod = (json) => {
 
 const getsortedCategories = (categories) => {
     const sorted_categories = [];
-    const default_order = ['Banking', 'Credit', 'wallet', 'Crypto', 'Fiat'];
+    const default_order = ['Banking', 'Credit', 'wallet', 'Crypto'];
     categories.map((category) => {
         default_order.forEach((order, index) => {
             if (category.includes(order)) {
