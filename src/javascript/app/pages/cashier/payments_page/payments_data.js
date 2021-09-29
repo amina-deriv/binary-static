@@ -34,7 +34,7 @@ const showPaymentData = () => {
 
     BinarySocket.wait('website_status', 'authorize', 'landing_company').then(() => {
         current_client_country = Client.get('residence') || State.getResponse('website_status.clients_country');
-        setTimeout(() => {
+        console.log(current_client_country);
             payment_method_json.map(item => {
                 const showItem = filterItem(item, current_client_country);
                 if (!showItem) {
@@ -54,8 +54,6 @@ const showPaymentData = () => {
                     $('#payment_methods').setVisibility(1);
                     $('#payments_footer').setVisibility(1);
                 }
-            }, 5);
-
         }
         );
     });
