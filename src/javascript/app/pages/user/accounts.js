@@ -91,13 +91,18 @@ const Accounts = (() => {
 
     const populateNewAccounts = (upgrade_info) => {
         const table_headers = TableHeaders.get();
+        const residence = Client.get('residence');
+         
         upgrade_info.type.forEach((new_account_type, index) => {
             const getAccountTitle = () => {
                 if (new_account_type === 'financial') {
-                    return localize('Financial Account');
+                    return localize('Multipliers Account');
                 }
-                if (upgrade_info.can_upgrade_to[index] === 'malta') {
+                if (residence === 'gb' && upgrade_info.can_upgrade_to[index] === 'iom'){
                     return localize('Gaming Account');
+                }
+                if (['malta', 'iom'].includes(upgrade_info.can_upgrade_to[index])) {
+                    return localize('Options Account');
                 }
 
                 return localize('Real Account');
@@ -128,7 +133,7 @@ const Accounts = (() => {
                                 ),
                             },
                         )
-                            .html($('<span/>', { text: localize('Create account') })))));
+                            .html($('<span/>', { text: localize('Create account'), class: 'padding-x-30' })))));
         });
     };
 
