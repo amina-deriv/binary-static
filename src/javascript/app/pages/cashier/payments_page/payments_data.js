@@ -3,6 +3,7 @@ const Client = require('../../../base/client');
 const State = require('../../../../_common/storage').State;
 const BinarySocket = require('../../../base/socket');
 const isEuCountry = require('../../../common/country_base').isEuCountry;
+const urlParam            = require('../../../../_common/url').param;
 
 const filterItem = (item, current_client_country) => {
     if (item.countries.included.length) {
@@ -33,9 +34,10 @@ const showPaymentData = () => {
     let current_client_country = '';
 
     BinarySocket.wait('website_status', 'authorize', 'landing_company').then(() => {
-        current_client_country = Client.get('residence') || State.getResponse('website_status.clients_country');
+        current_client_country = urlParam('country') || Client.get('residence') || State.getResponse('website_status.clients_country');
         // eslint-disable-next-line no-console
         console.log(current_client_country);
+       
         payment_method_json.map(item => {
             const showItem = filterItem(item, current_client_country);
             if (!showItem) {
