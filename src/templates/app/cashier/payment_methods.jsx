@@ -29,7 +29,7 @@ const PaymentLogo = ({ logo, name }) => {
     if (!fs.existsSync(logoFilePath)) {
         return <div className='payment-methods__noIconText'>{`${name}`}</div>;
     }
-    return <img src={it.url_for(`images/pages/home/payment/${logo}.svg`)} />;
+    return <img src={it.url_for(`images/pages/payment_methods/${logo}.svg`)} />;
 };
 
 const ReferenceLink = ({ href, className = '', title = '' }) => (
