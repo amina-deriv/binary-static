@@ -40,8 +40,8 @@ const showPaymentData = () => {
     let current_client_country = '';
 
     BinarySocket.wait('website_status', 'authorize', 'landing_company').then(() => {
-      const client_country = urlParam('country') || Client.get('residence') || State.getResponse('website_status.clients_country');
-      const current_client_country = client_country.toLowerCase();
+        const client_country = urlParam('country') || Client.get('residence') || State.getResponse('website_status.clients_country');
+        current_client_country = client_country.toLowerCase();
         // eslint-disable-next-line no-console
         console.log(current_client_country);
        
