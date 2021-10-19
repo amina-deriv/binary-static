@@ -25,7 +25,7 @@ const TableValues = ({ value }) => {
 };
 
 const PaymentLogo = ({ logo, name }) => {
-    const logoFilePath = `src/images/pages/home/payment/${logo}.svg`;
+    const logoFilePath = `src/images/pages/payment_methods/${logo}.svg`;
     if (!fs.existsSync(logoFilePath)) {
         return <div className='payment-methods__noIconText'>{`${name}`}</div>;
     }
