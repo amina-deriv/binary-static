@@ -131,7 +131,7 @@ const getCryptoMinWithdrawal = (item) => {
     switch (item) {
         case 'bitcoin': data_currency = 'BTC'; break;
         case 'usdc': data_currency = 'USDC'; break;
-        case 'ethereumblack': data_currency = 'ETH'; break;
+        case 'ethereum': data_currency = 'ETH'; break;
         case 'litecoin': data_currency = 'LTC'; break;
         case 'tether': data_currency = 'UST'; break;
         // no default
