@@ -1391,7 +1391,7 @@
   {
     "name": "1ForYou",
     "category": "E-wallets",
-    "key": "1foryou",
+    "key": "oneforyou",
     "description": "Make deposits easily with cash voucher payment solution for South Africa.",
     "deposit_proccessing_time": "Instant ",
     "min_deposit": "10",
@@ -1413,7 +1413,7 @@
     },
     "reference": "",
     "locale": [],
-    "logo": "1foryou"
+    "logo": "oneforyou"
   },
   {
     "name": "AdvCash",
