@@ -26,6 +26,7 @@ const TableValues = ({ value }) => {
 
 const PaymentLogo = ({ logo, name }) => {
     const logoFilePath = `src/images/pages/payment_methods/${logo}.svg`;
+    // eslint-disable-next-line no-console
     console.log(logoFilePath,fs.existsSync(logoFilePath));
     if (!fs.existsSync(logoFilePath)) {
         return <div className='payment-methods__noIconText'>{`${name}`}</div>;
