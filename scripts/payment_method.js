@@ -262,6 +262,10 @@ fs.createReadStream(source_path)
         json.push(data);
     })
     .on('end', () => {
+        console.log(`Payment methods are being generated, and page is going to be updated. For more info visit payment-methods.md file. 
+        Icon Directory: ('src/images/pages/home/payment')
+        PDF Directory: ('src/download/payment')`)
+
         const parsed_json = filterFunctions.flatten(json);
         const final_json = JSON.stringify(parsed_json, null, 2);
         
@@ -269,6 +273,6 @@ fs.createReadStream(source_path)
             output_path,
             final_json,
             'utf8',
-            () => `${output_path} has been generated`
+            () => console.log(`${Object.keys(parsed_json).length} payment methods found. ${output_path} has been generated`)
         );
     });
