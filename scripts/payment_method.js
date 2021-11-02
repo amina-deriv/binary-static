@@ -139,8 +139,6 @@ const filterFunctions = {
                     const added_value = d[name];
                     const current_value = parent[name];
 
-                    //   console.log(key, name + "=" + current_value);
-
                     if (added_value !== '') {
                         let final_data = null;
 
@@ -151,7 +149,6 @@ const filterFunctions = {
 
                             final_data = current_value;
                         } else {
-                            //   console.log(key, name + "=" + current_value);
                             const new_data = current_value.toString().split(delimeter);
 
                             new_data.push(added_value);
@@ -262,17 +259,17 @@ fs.createReadStream(source_path)
         json.push(data);
     })
     .on('end', () => {
+        // eslint-disable-next-line no-console
         console.log(`Payment methods are being generated, and page is going to be updated. For more info visit payment-methods.md file. 
         Icon Directory: ('src/images/pages/home/payment')
-        PDF Directory: ('src/download/payment')`)
+        PDF Directory: ('src/download/payment')`);
 
         const parsed_json = filterFunctions.flatten(json);
         const final_json = JSON.stringify(parsed_json, null, 2);
-        
         fs.writeFile(
             output_path,
             final_json,
             'utf8',
-            () => console.log(`${Object.keys(parsed_json).length} payment methods found. ${output_path} has been generated`)
-        );
+            () => console.log(`${Object.keys(parsed_json).length} payment methods found. ${output_path} has been generated`)); // eslint-disable-line no-console
     });
+   
