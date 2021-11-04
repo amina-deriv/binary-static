@@ -290,7 +290,9 @@ const PaymentMethods = () => (
     <div id='cashier-content'>
 
         <h1>{it.L('Available payment methods')}</h1>
-        {/* <p className='pm-description'>{it.L('This is a complete list of supported payment methods. We\'ll show you which payment methods are available in your location on the deposit page.')}</p> */}
+        {/* <p className='pm-description'>
+            {it.L('This is a complete list of supported payment methods. We\'ll show you which payment methods are available in your location on the deposit page.')}
+        </p> */}
         <CashierNote className='gr-parent' text={it.L('Please do not share your bank account, credit card, or e-wallet with another client, as this may cause delays in your withdrawals.')} />
         <div className='center-text'>
             <p>
