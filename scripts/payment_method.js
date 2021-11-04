@@ -219,8 +219,8 @@ fs.createReadStream(source_path)
                 return header_text;
             },
             // eslint-disable-next-line
-      mapValues: ({ header, index, value }) => {
-                let final_value = value;
+      mapValues: ({ header, value }) => {
+                let final_value = value.trim();
 
                 const filter_option = column_filters[header];
 

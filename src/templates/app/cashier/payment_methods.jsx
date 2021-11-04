@@ -158,9 +158,9 @@ const getWithdrawalLimit = (min_withdrawal, max_withdrawal, categoryId, item) =>
 };
 
 const getProcessingTime = (deposit_time, withdrawal_time) => {
-    const deposit = 'Deposit: ';
-    const withdrawal = 'Withdrawal: ';
-    return (<TableValues value={[it.L(`${deposit}${deposit_time}`), it.L(`${withdrawal}${withdrawal_time}`)]} />);
+    return (<TableValues value={[`${it.L(`Deposit: ${deposit_time}`)}`, `${it.L(`Withdrawal: ${withdrawal_time}`)}`]} />);
+
+  
 };
 
 const getReferenceFiles = (key, reference) => {
