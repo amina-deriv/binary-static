@@ -2,7 +2,7 @@ const payment_method_json = require('./payment_methods.json');
 const Client = require('../../../base/client');
 const State = require('../../../../_common/storage').State;
 const BinarySocket = require('../../../base/socket');
-const isEuCountry = require('../../../common/country_base').isEuCountry;
+const isEuCountrySelected  = require('../../../../_common/utility').isEuCountrySelected;
 
 const filterItem = (item, current_client_country) => {
     if (item.countries.included.length) {
@@ -10,7 +10,7 @@ const filterItem = (item, current_client_country) => {
         if (includedCountries.includes(current_client_country)) {
             return true;
         } else if (includedCountries.includes('eu')) {
-            return isEuCountry();
+            return isEuCountrySelected(current_client_country);
         }
         return false;
     } else if (item.countries.excluded.length) {
@@ -18,7 +18,7 @@ const filterItem = (item, current_client_country) => {
         if (excludedCountries.includes(current_client_country)) {
             return false;
         } else if (excludedCountries.includes('eu')) {
-            return !isEuCountry();
+            return !isEuCountrySelected(current_client_country);
         }
         return true;
 
