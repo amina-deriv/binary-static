@@ -157,11 +157,7 @@ const getWithdrawalLimit = (min_withdrawal, max_withdrawal, categoryId, item) =>
     return (`${min_withdrawal} - ${max_withdrawal}`);
 };
 
-const getProcessingTime = (deposit_time, withdrawal_time) => {
-    return (<TableValues value={[`${it.L(`Deposit: ${deposit_time}`)}`, `${it.L(`Withdrawal: ${withdrawal_time}`)}`]} />);
-
-  
-};
+const getProcessingTime = (deposit_time, withdrawal_time) =>  (<TableValues value={[`${it.L(`Deposit: ${deposit_time}`)}`, `${it.L(`Withdrawal: ${withdrawal_time}`)}`]} />);
 
 const getReferenceFiles = (key, reference) => {
     const ispdfAvailable = fs.existsSync(`src/download/payment/Binary.com_${key}.pdf`);
