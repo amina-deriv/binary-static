@@ -92,6 +92,10 @@ button.button-disabled {
     }
 }
 
+a.button-disabled {
+    pointer-events: none;
+}
+
 span.checked {
     background: url('../images/pages/authenticate/checked.svg') no-repeat;
     width: 16px;
@@ -207,6 +211,9 @@ label {
 .form-row {
     padding: 10px 0;
 
+    .required_field_label {
+        font-size: 13px;
+    }
     div:first-child label {
         display: block;
         text-align: right;
