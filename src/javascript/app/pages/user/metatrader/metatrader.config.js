@@ -466,14 +466,14 @@ const MetaTraderConfig = (() => {
                         decimals    : Currency.getDecimalPlaces(Client.get('currency')),
                         format_money: true,
                     }],
-                    // check if balance is less than the minimum limit for transfer
+                     // check if balance is less than the minimum limit for transfer
                     // e.g. client balance could be 0.45 but min limit could be 1
                     ['custom', {
                         func: () => {
                             const deposit_input_value   = document.querySelector('#txt_amount_deposit').value;
                             const min_req_balance = Currency.getTransferLimits(Client.get('currency'), 'min', 'mt5');
 
-                            return +deposit_input_value > +min_req_balance;
+                            return +deposit_input_value >= +min_req_balance;
                         },
                         message: localize('To transfer funds to your MT5 account, enter an amount of [_1] or more', Currency.getTransferLimits(Client.get('currency'), 'min', 'mt5')),
                     }],
