@@ -466,7 +466,7 @@ const MetaTraderConfig = (() => {
                         decimals    : Currency.getDecimalPlaces(Client.get('currency')),
                         format_money: true,
                     }],
-                     // check if balance is less than the minimum limit for transfer
+                    // check if balance is less than the minimum limit for transfer
                     // e.g. client balance could be 0.45 but min limit could be 1
                     ['custom', {
                         func: () => {
