@@ -4,26 +4,22 @@ const State = require('../../../../_common/storage').State;
 const BinarySocket = require('../../../base/socket');
 const isEuCountrySelected  = require('../../../../_common/utility').isEuCountrySelected;
 
-const filterItem = (item, current_client_country) => {
-    if (item.countries.included.length) {
-        const includedCountries = item.countries.included.map(country => country.toLowerCase());
-        if (includedCountries.includes(current_client_country)) {
-            return true;
-        } else if (includedCountries.includes('eu')) {
-            return isEuCountrySelected(current_client_country);
-        }
-        return false;
-    } else if (item.countries.excluded.length) {
-        const excludedCountries = item.countries.excluded.map(country => country.toLowerCase());
-        if (excludedCountries.includes(current_client_country)) {
-            return false;
-        } else if (excludedCountries.includes('eu')) {
-            return !isEuCountrySelected(current_client_country);
-        }
+const filterCountry = (countriesArray, client_country) => {
+    const countries = countriesArray.map((i) => i.toLowerCase());
+    if (countries.includes(client_country)) {
         return true;
-
+    } else if (countries.includes('eu')) {
+        return isEuCountrySelected(client_country);
     }
-    return true;
+    return false;
+};
+
+const getPaymentsBasedOnCountry = (item, client_country) => {
+    if (item.countries.included.length){
+        return filterCountry(item.countries.included, client_country);
+    } else if (item.countries.excluded.length){
+        return !filterCountry(item.countries.excluded, client_country);
+    } return true;
 };
 
 const showPaymentData = () => {
@@ -33,7 +29,7 @@ const showPaymentData = () => {
         const client_country = Client.get('residence') || State.getResponse('website_status.clients_country');
         current_client_country = client_country.toLowerCase();
         payment_method_json.map(item => {
-            const showItem = filterItem(item, current_client_country);
+            const showItem = getPaymentsBasedOnCountry(item, current_client_country);
             if (!showItem) {
                 $(`tr[data-anchor='${item.key}']`).remove();
                 $('#payment_methods > div').each(function () {
