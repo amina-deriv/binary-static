@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: binary-static\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2021-11-03 06:15\n"
+"PO-Revision-Date: 2021-11-23 11:59\n"
 "Last-Translator: \n"
 "Language-Team: Indonesian\n"
 "MIME-Version: 1.0\n"
@@ -2263,6 +2263,9 @@ msgstr "Binary.com Graduate Program"
 msgid "Binary.com in Numbers"
 msgstr "Binary.com dalam Angka"
 
+msgid "Binary.com is moving to Deriv on 30 November"
+msgstr "Binary.com berpindah ke Deriv pada 30 November"
+
 msgid "Binary.com recommends 1.1.1.1"
 msgstr "Binary.com merekomendasikan 1.1.1.1"
 
@@ -3979,8 +3982,8 @@ msgstr "Deriv Investments (Europe) Limited."
 msgid "Deriv Limited"
 msgstr "Deriv Limited"
 
-msgid "Deriv Limited, with registered office at 47 Esplanade, St Helier, Jersey JE1 0BD, Channel Islands, is the holding company for the subsidiaries listed below."
-msgstr "Deriv Limited, yang beralamat di 47 Esplanade, St Helier, Jersey JE1 0BD, Channel Islands, adalah perusahaan induk dari anak perusahaan yang tercantum di bawah ini."
+msgid "Deriv Limited, with registered office at 13 Castle Street, St. Helier, JE2 3BT, Jersey, is the holding company for the subsidiaries listed below."
+msgstr "Deriv Limited, yang beralamat di 13 Castle Street, St. Helier, JE2 3BT, Jersey adalah perusahaan induk dari anak perusahaan yang tercantum di bawah ini."
 
 msgid "Deriv.com launched"
 msgstr "Deriv.com diluncurkan"
@@ -10580,6 +10583,9 @@ msgstr "Waktu mulai"
 msgid "Start trading"
 msgstr "Mulai trading"
 
+msgid "Start using Deriv with your Binary.com email and password."
+msgstr "Mulai gunakan Deriv menggunakan email dan kata sandi Binary.com."
+
 msgid "State Benefits"
 msgstr "Manfaat Negara"
 
@@ -11163,7 +11169,7 @@ msgid "The %1 website's static content (CSS, Javascript) is available as the %2b
 msgstr "Konten statik %1 (CSS, Javascript) tersedia pada proyek open-source %2binary-static%3 github. Apakah Anda ingin merubah website %1 atau memperbaiki kecocokan browser, kecepatan website atau tampilan Javascript?. Silahkan lihat proyek dan kirimkan kritik dan saran perubahan kode Anda."
 
 msgid "The %1close%2 is the latest tick at or before the %1end time%2. If you selected a specific %1end time,%2 the %1end time%2 is the selected time."
-msgstr "%1Close%2 adalah tik terakhir pada atau sebelum %1waktu mulai%2. Jika Anda memilih %1waktu akhir%2 tertentu maka %1waktu akhir%2 adalah waktu yang Anda pilih tersebut."
+msgstr "%1Close%2 adalah tik terakhir pada atau sebelum %1waktu akhir%2. Jika Anda memilih %1waktu akhir%2 tertentu maka %1waktu akhir%2 adalah waktu yang Anda pilih tersebut."
 
 msgid "The %1contract period%2 is the period between the %1first tick%2 (after start time) and the %1end time%2."
 msgstr "%1Periode kontrak%2 adalah periode antara %1tik pertama%2 (setelah waktu mulai) hingga %1waktu akhir%2."
@@ -13235,6 +13241,9 @@ msgstr "Bertrading logam dengan spread tetap dan variabel yang kompetitif."
 
 msgid "Trade now"
 msgstr "Trading sekarang"
+
+msgid "Trade on Deriv"
+msgstr "Trading pada Deriv"
 
 msgid "Trade on underlying markets that include forex, stock indices, commodities, and more."
 msgstr "Bertrading pada pasar dasar yang meliputi forex, indeks saham, komoditas, dan banyak lagi."
