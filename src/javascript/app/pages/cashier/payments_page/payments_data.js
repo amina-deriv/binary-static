@@ -2,7 +2,7 @@ const payment_method_json = require('./payment_methods.json');
 const Client = require('../../../base/client');
 const State = require('../../../../_common/storage').State;
 const BinarySocket = require('../../../base/socket');
-const isEuCountrySelected  = require('../../../../_common/utility').isEuCountrySelected;
+const isEuCountrySelected = require('../../../../_common/utility').isEuCountrySelected;
 
 const filterCountry = (countriesArray, client_country) => {
     const countries = countriesArray.map((i) => i.toLowerCase());
@@ -15,9 +15,9 @@ const filterCountry = (countriesArray, client_country) => {
 };
 
 const getPaymentsBasedOnCountry = (item, client_country) => {
-    if (item.countries.included.length){
+    if (item.countries.included.length) {
         return filterCountry(item.countries.included, client_country);
-    } else if (item.countries.excluded.length){
+    } else if (item.countries.excluded.length) {
         return !filterCountry(item.countries.excluded, client_country);
     } return true;
 };
@@ -51,5 +51,4 @@ const showPaymentData = () => {
         );
     });
 };
-
 export default showPaymentData;

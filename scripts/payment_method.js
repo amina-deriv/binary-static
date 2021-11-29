@@ -18,6 +18,18 @@ const output_path = path.join(
     'payment_methods.json'
 );
 
+const translation_output_path = path.join(
+    __dirname,
+    '..',
+    'src',
+    'javascript',
+    'app',
+    'pages',
+    'cashier',
+    'payments_page',
+    'payment-methods-translation.js',
+);
+
 const column_filters = {
     currencies: {
         type     : 'double_array',
@@ -271,5 +283,41 @@ fs.createReadStream(source_path)
             final_json,
             'utf8',
             () => console.log(`${Object.keys(parsed_json).length} payment methods found. ${output_path} has been generated`)); // eslint-disable-line no-console
+
+
+            const page_content = 
+            `import React from 'react'
+            const localize                 = require('../../_common/localize').localize;
+            const dataToTranslate = [${parsed_json.map(({ name,
+                                                category,
+                                                description,
+                                                min_deposit,
+                                                max_deposit,
+                                                deposit_proccessing_time,
+                                                min_withdrawal,
+                                                max_withdrawal,
+                                                withdrawal_processing_time }) =>
+                                                [
+                                                    `\n localize("${name}")`,
+                                                    `\n localize("${description}")`,
+                                                    `\n localize("${category}")`,
+                                                    `\n localize("${min_deposit}")`,
+                                                    `\n localize("${max_deposit}")`,
+                                                    `\n localize("${deposit_proccessing_time}")`,
+                                                    `\n localize("${min_withdrawal}")`,
+                                                    `\n localize("${max_withdrawal}")`,
+                                                    `\n localize("${withdrawal_processing_time}")`
+                                                ]
+                                            )}]
+            const paymentsPageLocalize = ()=> {
+                 return (
+                         <>{dataToTranslate}</>
+                        )
+            }
+             export default paymentsPageLocalize`;
+                                
+            fs.writeFile(translation_output_path, page_content, 'utf8', () => console.log(`\n Translation file generated at ${translation_output_path}`));// eslint-disable-line no-console
+    
+    
     });
    

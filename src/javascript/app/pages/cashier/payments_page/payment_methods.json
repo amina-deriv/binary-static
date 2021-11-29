@@ -264,7 +264,7 @@
     "name": "Internet Bank Transfer",
     "category": "Online Banking",
     "key": "internet-bank-transfer",
-    "description": "Deposit and withdraw your funds via international bank wire transfer.",
+    "description": "Deposit and withdraw easily using secure and fast money transfers.",
     "deposit_proccessing_time": "1 working day",
     "min_deposit": "5",
     "max_deposit": "50,000",
