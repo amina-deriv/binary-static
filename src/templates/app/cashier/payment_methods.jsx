@@ -152,8 +152,9 @@ const getWithdrawalLimit = (min_withdrawal, max_withdrawal, categoryId, item) =>
         const min_withdrawal_array = min_withdrawal.split('|');
         const max_withdrawal_array = max_withdrawal.split('|');
 
-        if (min_withdrawal_array.every((val, i, arr) => val === arr[0]) && max_withdrawal_array.every((val, i, arr) => val === arr[0])) {
-            return (`${min_withdrawal_array[0]} - ${max_withdrawal_array[0]}`)
+        if (min_withdrawal_array.every((val, i, arr) => val === arr[0]) &&
+            max_withdrawal_array.every((val, i, arr) => val === arr[0])) {
+            return (`${min_withdrawal_array[0]} - ${max_withdrawal_array[0]}`);
         }
 
         const values = min_withdrawal_array.map((amount, i) => `${amount} - ${max_withdrawal_array[i]}`);
@@ -184,7 +185,7 @@ const getDescription = (description, link) => {
 const getTableHead = (categoryId) => ([[
     { text: it.L('Method') },
     {
-        attributes: { colSpan: 5, className: 'th-list' }, custom_th: <CustomTableHead data={[
+        attributes: { colSpan: 5, className: 'th-list' }, custom_th : <CustomTableHead data={[
             { text: it.L('Currencies') },
             { text: categoryId.includes('crypto') ? `${it.L('Min Deposit')}` : `${it.L('Min-Max Deposit')}` },
             { text: categoryId.includes('crypto') ? `${it.L('Min Withdrawal')}` : `${it.L('Min-Max Withdrawal')}` },
@@ -196,43 +197,43 @@ const getTableHead = (categoryId) => ([[
 ]]);
 
 const getTableBody = (categoryId, data) =>
-(
-    data.map(({ key,
-        name,
-        logo,
-        description,
-        link_binary,
-        currencies,
-        min_deposit,
-        max_deposit,
-        min_withdrawal,
-        max_withdrawal,
-        deposit_proccessing_time,
-        withdrawal_processing_time,
-        reference,
-    }) => ({
-        id: `${key}`,
-        row: [
-            { text: <PaymentLogo logo={`${logo}`} name={`${name}`} /> },
-            {
-                attributes: { colSpan: 5, className: 'toggler' }, custom_td: <CustomTableData data={[
-                    { td: getDescription(description, link_binary) },
-                    {
-                        td_list: [
-                            { text: getCurrency(currencies) },
-                            { text: getDepositLimit(min_deposit, max_deposit) },
-                            { text: getWithdrawalLimit(min_withdrawal, max_withdrawal, categoryId, key) },
-                            { text: getProcessingTime(deposit_proccessing_time, withdrawal_processing_time) },
-                            { text: getReferenceFiles(key, reference) },
-                        ],
-                    },
-                ]}
-                />,
-            },
-        ],
-    })
-    )
-);
+    (
+        data.map(({ key,
+            name,
+            logo,
+            description,
+            link_binary,
+            currencies,
+            min_deposit,
+            max_deposit,
+            min_withdrawal,
+            max_withdrawal,
+            deposit_proccessing_time,
+            withdrawal_processing_time,
+            reference,
+        }) => ({
+            id : `${key}`,
+            row: [
+                { text: <PaymentLogo logo={`${logo}`} name={`${name}`} /> },
+                {
+                    attributes: { colSpan: 5, className: 'toggler' }, custom_td : <CustomTableData data={[
+                        { td: getDescription(description, link_binary) },
+                        {
+                            td_list: [
+                                { text: getCurrency(currencies) },
+                                { text: getDepositLimit(min_deposit, max_deposit) },
+                                { text: getWithdrawalLimit(min_withdrawal, max_withdrawal, categoryId, key) },
+                                { text: getProcessingTime(deposit_proccessing_time, withdrawal_processing_time) },
+                                { text: getReferenceFiles(key, reference) },
+                            ],
+                        },
+                    ]}
+                    />,
+                },
+            ],
+        })
+        )
+    );
 
 const paymentDataGenerator = () => {
 
@@ -243,7 +244,7 @@ const paymentDataGenerator = () => {
         const data = payment_methods && payment_methods.map(item => ({ ...item }));
         return {
             name: category,
-            id: `${category.replace(/\W/g, '').toLowerCase()}`,
+            id  : `${category.replace(/\W/g, '').toLowerCase()}`,
             data,
         };
     });
@@ -272,18 +273,18 @@ const RenderPaymentData = () => {
     return (
         <div id='payment_methods' className='table-container invisible'>
             {payment_data.map(({ name, id, data }) =>
-            (
-                <div key={name} id={id}>
-                    <TableTitle title={it.L(`${name}`)} dataAnchor={`${id}`} />
-                    <Table
-                        data={{
-                            thead: getTableHead(id),
-                            tbody: getTableBody(id, data),
-                        }}
-                    />
-                    <CategoryNote categoryId={`${id}`} />
-                </div>
-            )
+                (
+                    <div key={name} id={id}>
+                        <TableTitle title={it.L(`${name}`)} dataAnchor={`${id}`} />
+                        <Table
+                            data={{
+                                thead: getTableHead(id),
+                                tbody: getTableBody(id, data),
+                            }}
+                        />
+                        <CategoryNote categoryId={`${id}`} />
+                    </div>
+                )
             )
             }
         </div>
