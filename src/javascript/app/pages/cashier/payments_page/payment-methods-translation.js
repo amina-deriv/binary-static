@@ -1,7 +1,8 @@
-import React from 'react';
+/* eslint-disable */
+                            import React from 'react';
+                            const localize = require('../../../../_common/localize').localize;
 
-        const localize = require('../../../../_common/localize').localize;
-        const content = [
+                            const content = [
  localize("Visa"),
  localize("Deposit and withdraw using your Visa credit or debit card."),
  localize("Credit/debit cards"),
@@ -59,8 +60,8 @@ import React from 'react';
  localize("Internet Bank Transfer"),
  localize("Deposit and withdraw easily using secure and fast money transfers."),
  localize("Online Banking"),
- localize("5"),
- localize("50,000"),
+ localize("10"),
+ localize("1,000"),
  localize("1 working day"),
  localize("5"),
  localize("50,000"),
@@ -77,8 +78,8 @@ import React from 'react';
  localize("Walaopay"),
  localize("Deposit and withdraw easily in THB, IDR, and VND."),
  localize("Online Banking"),
- localize("10"),
- localize("10,000"),
+ localize("20"),
+ localize("100"),
  localize("Instant"),
  localize("Not Available"),
  localize("Not Available"),
@@ -87,7 +88,7 @@ import React from 'react';
  localize("A leading e-wallet service in Vietnam that’s easy to use, flexible, and safe. Used by thousands of merchants."),
  localize("Online Banking"),
  localize("10"),
- localize("2,500"),
+ localize("1,000"),
  localize("1 working day"),
  localize("10"),
  localize("2,500"),
@@ -113,7 +114,7 @@ import React from 'react';
  localize("Trustly"),
  localize("Enjoy fast, smooth, and secure deposits and withdrawals with Trustly."),
  localize("Online Banking"),
- localize("10|10"),
+ localize("20|20"),
  localize("100|100"),
  localize("Instant"),
  localize("10|10"),
@@ -167,7 +168,7 @@ import React from 'react';
  localize("Neteller"),
  localize("Used by over 20 million clients worldwide. Enjoy instant access, free withdrawals, and reward points that you can redeem for cash."),
  localize("E-wallets"),
- localize("10"),
+ localize("5"),
  localize("10,000"),
  localize("Instant"),
  localize("5"),
@@ -195,7 +196,7 @@ import React from 'react';
  localize("Enjoy fast, smooth, and secure deposits and withdrawals with PayLivre."),
  localize("E-wallets"),
  localize("5"),
- localize("4000"),
+ localize("5000"),
  localize("Instant"),
  localize("5"),
  localize("10,000"),
@@ -231,7 +232,7 @@ import React from 'react';
  localize("Use this popular invoice-based payment method to deposit if you don’t have a bank account or credit card. This option is accessible through Directa24."),
  localize("E-wallets"),
  localize("10"),
- localize("1000"),
+ localize("500"),
  localize("2 - 3 working days"),
  localize("Not Available"),
  localize("Not Available"),
@@ -258,7 +259,7 @@ import React from 'react';
  localize("Enjoy fast and secure deposits and withdrawals with Astropay."),
  localize("E-wallets"),
  localize("5"),
- localize("2500"),
+ localize("1000"),
  localize("Instant"),
  localize("5"),
  localize("2500"),
@@ -344,10 +345,8 @@ import React from 'react';
  localize("Not Available"),
  localize("Not Available"),
  localize("Not Available")];
-        const paymentMethodsTranslation = ()=> {
-            return (
-                <>{content}</>
-                )
-        };
-            
-         export default paymentMethodsTranslation
+                            const paymentMethodsTranslation = ()=>(<>{content}</>);
+                                        
+                            export default paymentMethodsTranslation;
+                                        
+                            

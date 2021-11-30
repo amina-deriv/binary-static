@@ -32,18 +32,18 @@ const translation_output_path = path.join(
 
 const column_filters = {
     currencies: {
-        type: 'double_array',
+        type     : 'double_array',
         delimeter: ',',
-        textcase: 'uppercase',
+        textcase : 'uppercase',
     },
     countries: {
         filter: 'includeExclude',
-        type: 'custom',
+        type  : 'custom',
     },
     locale: {
-        type: 'array',
+        type     : 'array',
         delimeter: ',',
-        textcase: 'lowercase',
+        textcase : 'lowercase',
     },
 };
 
@@ -109,23 +109,23 @@ const filterFunctions = {
         const keys = {};
         const multi_entries = [
             {
-                name: 'min_deposit',
-                type: 'string',
+                name     : 'min_deposit',
+                type     : 'string',
                 delimeter: '|',
             },
             {
-                name: 'max_deposit',
-                type: 'string',
+                name     : 'max_deposit',
+                type     : 'string',
                 delimeter: '|',
             },
             {
-                name: 'min_withdrawal',
-                type: 'string',
+                name     : 'min_withdrawal',
+                type     : 'string',
                 delimeter: '|',
             },
             {
-                name: 'max_withdrawal',
-                type: 'string',
+                name     : 'max_withdrawal',
+                type     : 'string',
                 delimeter: '|',
             },
             {
@@ -204,7 +204,7 @@ const filterFunctions = {
                 ) {
                     return {
                         ...details,
-                        logo: replaceAll(key, '-', '_'),
+                        logo     : replaceAll(key, '-', '_'),
                         reference: reference.toLowerCase() === 'yes' ? file_name : '',
                     };
                 }
@@ -292,35 +292,32 @@ fs.createReadStream(source_path)
             deposit_proccessing_time,
             min_withdrawal,
             max_withdrawal,
-            withdrawal_processing_time }) => {
-            return (
-                [
-                    `\n localize("${name}")`,
-                    `\n localize("${description}")`,
-                    `\n localize("${category}")`,
-                    `\n localize("${min_deposit}")`,
-                    `\n localize("${max_deposit}")`,
-                    `\n localize("${deposit_proccessing_time}")`,
-                    `\n localize("${min_withdrawal}")`,
-                    `\n localize("${max_withdrawal}")`,
-                    `\n localize("${withdrawal_processing_time}")`
-                ])
-        })
-        const page_content =
-            `import React from 'react';
+            withdrawal_processing_time }) =>
+            [
+                `\n localize("${name}")`,
+                `\n localize("${description}")`,
+                `\n localize("${category}")`,
+                `\n localize("${min_deposit}")`,
+                `\n localize("${max_deposit}")`,
+                `\n localize("${deposit_proccessing_time}")`,
+                `\n localize("${min_withdrawal}")`,
+                `\n localize("${max_withdrawal}")`,
+                `\n localize("${withdrawal_processing_time}")`,
+            ]
 
-        const localize = require('../../../../_common/localize').localize;
-        const content = [${dataToTranslate}];
-        const paymentMethodsTranslation = ()=> {
-            return (
-                <>{content}</>
-                )
-        };
-            
-         export default paymentMethodsTranslation`;
+        );
+        const page_content =
+                            `/* eslint-disable */
+                            import React from 'react';
+                            const localize = require('../../../../_common/localize').localize;
+
+                            const content = [${dataToTranslate}];
+                            const paymentMethodsTranslation = ()=>(<>{content}</>);
+                                        
+                            export default paymentMethodsTranslation;
+                                        
+                            `;
 
         fs.writeFile(translation_output_path, page_content, 'utf8', () => console.log(`\n Translation file generated at ${translation_output_path}`));// eslint-disable-line no-console
-
-
     });
 

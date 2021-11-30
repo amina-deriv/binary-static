@@ -1,7 +1,4 @@
-
 const payment_method_json = require('./payment_methods.json');
-const localize = require('../../../../_common/localize').localize;
-
 const Client = require('../../../base/client');
 const State = require('../../../../_common/storage').State;
 const BinarySocket = require('../../../base/socket');
@@ -54,5 +51,4 @@ const showPaymentData = () => {
         );
     });
 };
-console.log(localize('Real'));
 export default showPaymentData;
