@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: binary-static\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2021-11-03 06:15\n"
+"PO-Revision-Date: 2021-11-30 00:39\n"
 "Last-Translator: \n"
 "Language-Team: Thai\n"
 "MIME-Version: 1.0\n"
@@ -456,9 +456,6 @@ msgstr "%1ดิจิทัลออปชัน%1"
 
 msgid "%1Founded%2 October 1999"
 msgstr "%1ก่อตั้งเมื่อ%2 ตุลาคม พ.ศ. 2542 (ค.ศ. 1999)"
-
-msgid "%1In regard to customers of Deriv (MX) Ltd, online gambling debts are enforceable by law in the Isle of Man.%2"
-msgstr "%1 สำหรับลูกค้าของ Deriv (MX) Ltd หนี้การพนันออนไลน์มีผลบังคับให้เป็นไปตามกฎหมายในเกาะไอล์ออฟแมน %2"
 
 msgid "%1Manage your accounts%2"
 msgstr "%1จัดการบัญชีของท่าน%2"
@@ -2263,6 +2260,9 @@ msgstr "โปรแกรมบัณฑิต Binary.com"
 msgid "Binary.com in Numbers"
 msgstr "ตัวเลขใน Binary.com"
 
+msgid "Binary.com is moving to Deriv on 30 November"
+msgstr "Binary.com กำลังจะย้ายไปที่ Deriv ในวันที่ 30 พฤศจิกายน"
+
 msgid "Binary.com recommends 1.1.1.1"
 msgstr "Binary.com แนะนำ 1.1.1.1"
 
@@ -2593,9 +2593,6 @@ msgstr "เซสชันสำหรับการชำระเงินห
 msgid "Certain limits are imposed as to the acceptable levels for barrier/strike prices of contracts. Typically, the barrier/strike may not be too close nor too far from the current underlying market level."
 msgstr "ขอบเขตที่แน่นอนถูกกำหนดอยู่ในระดับที่ยอมรับได้สำหรับราคา Barrier และ Strike ของแต่ละสัญญา โดยทั่วไปแล้ว Barrier/Strike อาจจะไม่เข้าใกล้ และไม่ห่างไปจากระดับปัจจุบันของตลาดผลิตภัณฑ์อ้างอิง"
 
-msgid "Champion Group Ltd: Vanuatu"
-msgstr "Champion Group Ltd: วานูอาตู"
-
 msgid "Change API Endpoint"
 msgstr "เปลี่ยน API ปลายทาง"
 
@@ -2851,9 +2848,6 @@ msgstr "ลูกค้ายืนยันว่า ลูกค้ากำ�
 msgid "Clients in the European Union who wish to trade gambling products will have their accounts opened with Deriv (Europe) Limited."
 msgstr "ลูกค้าในสหภาพยุโรปที่ต้องการซื้อขายผลิตภัณฑ์การพนันจะมีบัญชีเปิดกับ Deriv (Europe) จํากัด"
 
-msgid "Clients in the Isle of Man and the UK who wish to trade gambling products will have their accounts opened with Deriv (MX) Ltd."
-msgstr "ลูกค้าในเกาะไอล์ออฟแมนและสหราชอาณาจักรที่ต้องการซื้อขายผลิตภัณฑ์การพนันจะต้องเปิดบัญชีกับ Deriv (MX) Ltd."
-
 msgid "Clients may trade on our platforms only when they are using their own money and are drawing on funds that have been acquired honestly. If you have any suspicion that clients are using money that has been acquired dishonestly, you must inform %1.  In such cases, we may decide to conduct checks on the client’s status and background. %2 management will decide what information needs to be reported to government officials and through what channels."
 msgstr "ลูกค้าสามารถซื้อขายบนแพลตฟอร์มของเราได้ก็ต่อเมื่อพวกเขาใช้เงินของตัวเองและกำลังดึงเงินที่ได้มาโดยสุจริต หากคุณมีข้อสงสัยว่าลูกค้าใช้เงินที่ได้มาโดยไม่สุจริตคุณต้องแจ้ง %1 ในกรณีดังกล่าวเราอาจตัดสินใจที่จะดำเนินการตรวจสอบสถานะและภูมิหลังของลูกค้า การจัดการ %2 จะตัดสินใจว่าจะต้องรายงานข้อมูลใดต่อเจ้าหน้าที่ของรัฐและผ่านช่องทางใด"
 
@@ -2871,12 +2865,6 @@ msgstr "ลูกค้าจะต้องมีคุณสมบัติต
 
 msgid "Clients registered with Deriv (Europe) Limited can refer their complaints to the Malta Gaming Authority via the %1Player Support Unity%3. They can file their unresolved disputes with the European Commission’s %2Online Dispute Resolution (ODR)%3."
 msgstr "ลูกค้าที่ลงทะเบียนกับ Deriv (Europe) Limited สามารถส่งเรื่องร้องเรียนไปยังหน่วยงานการเล่นเกมของมอลตาผ่านทาง %1Player Support Unity%3 พวกเขาสามารถยื่นข้อพิพาทที่ยังไม่ได้แก้ไขกับ %2Online Dispute Resolution (ODR)%3 ของคณะกรรมาธิการยุโรป"
-
-msgid "Clients registered with Deriv (MX) Ltd can formally submit a complaint to their local Supervisory Authority."
-msgstr "ลูกค้าที่ลงทะเบียนกับ Deriv (MX) Ltd สามารถส่งข้อพิพาทอย่างเป็นทางการไปที่หน่วยงานท้องถิ่น Supervisory Authority ของพวกเขา"
-
-msgid "Clients registered with Deriv (MX) Ltd can raise their unresolved disputes with the alternative dispute resolution entity IBAS by filing the adjudication form on the %1ADR entity's website%2."
-msgstr "ลูกค้าที่เปิดบัญชีกับ Deriv (MX) Ltd สามารถแจ้งข้อพิพาทต่างๆ ที่ยังไม่ได้ข้อสรุปของพวกเขา และทางเลือกในการแก้ไขข้อพิพาทต่อ IBAS โดยการกรอกแบบฟอร์ม %1ADR เว็บไซต์%2"
 
 msgid "Clients registered with Deriv Investments (Europe) Limited can raise their unresolved disputes with the Office of the Arbiter for Financial Services. Contact details and guidance on making a complaint with the Arbiter's Office can be found %1here%2."
 msgstr "ลูกค้าที่ลงทะเบียนกับ Deriv Investments (Europe) Limited สามารถแจ้งข้อพิพาทที่ยังไม่ได้รับการแก้ไขให้กับสำนักงานตุลาการด้านการให้บริการทางการเงิน Office of the Arbiter for Financial Services สามารถหารายละเอียดติดต่อและแนวทางในการยื่นคำร้องเรียนกับสำนักงานตุลาการได้ %1he ที่นี่ %2"
@@ -3800,8 +3788,8 @@ msgstr "บัญชีทดลอง ดัชนีสังเคราะ�
 msgid "Demo accounts do not have Payment Agent services."
 msgstr "บัญชีทดลองใช้ไม่มีบริการของบริษัทตัวแทนการชําระเงิน"
 
-msgid "Depending on the jurisdiction to which a client's account has been attached in accordance with the account opening procedures of the website and as detailed in the About us section of the website and the type of products offered, the term \"the Company\" shall denote,"
-msgstr "ขึ้นอยู่กับเขตอำนาจศาลที่บัญชีของลูกค้าที่ได้เปิดไว้ ตามขั้นตอนในการเปิดบัญชีของเว็บไซต์ และตามที่ได้ให้รายละเอียดไว้ในส่วนเกี่ยวกับเราในเว็บไซต์ และประเภทของผลิตภัณฑ์ที่นำเสนอ คำว่า \"บริษัทฯ\" จะหมายถึงอย่างใดอย่างหนึ่งต่อไปนี้"
+msgid "Depending on the jurisdiction to which a client's account has been attached in accordance with the account opening procedures of the website and as detailed in the About us section of the website and the type of products offered, the term \"the Company\" shall denote"
+msgstr "ขึ้นอยู่กับเขตอำนาจศาลที่บัญชีของลูกค้าที่ได้เปิดไว้ ตามขั้นตอนในการเปิดบัญชีของเว็บไซต์ และตามที่ได้ให้รายละเอียดไว้ในส่วนเกี่ยวกับเราในเว็บไซต์ และ ประเภทของผลิตภัณฑ์ที่นำเสนอ คำว่า \"บริษัทฯ\" จะหมายถึงอย่างใดอย่างหนึ่งต่อไปนี้"
 
 msgid "Depending on the jurisdiction to which a client's account has been attached in accordance with the account opening procedures of the website, the terms 'the Company' and '%1' shall denote"
 msgstr "ขึ้นอยู่กับเขตอํานาจศาลที่มีการแนบบัญชีของลูกค้าตามขั้นตอนการเปิดบัญชีของเว็บไซต์คําว่า 'บริษัท' และ '%1' จะหมายถึง"
@@ -3884,8 +3872,8 @@ msgstr "Deriv (BVI) Ltd: หมู่เกาะบริติชเวอร�
 msgid "Deriv (Europe) Limited"
 msgstr "Deriv (Europe) Limited"
 
-msgid "Deriv (Europe) Limited,"
-msgstr "Deriv (Europe) Limited,"
+msgid "Deriv (Europe) Limited or"
+msgstr "Deriv (Europe) Limited หรือ"
 
 msgid "Deriv (FX) Ltd"
 msgstr "Deriv (FX) Ltd"
@@ -3901,18 +3889,6 @@ msgstr "Deriv (FX) Ltd, Lot No. F16, First Floor, Paragon Labuan, Jalan Tun Must
 
 msgid "Deriv (FX) Ltd: Labuan, Territory of Malaysia"
 msgstr "Deriv (FX) Ltd: ลาบวน, ดินแดนมาเลเซีย"
-
-msgid "Deriv (MX) Ltd"
-msgstr "Deriv (MX) Ltd"
-
-msgid "Deriv (MX) Ltd, Millennium House, Level 1, Victoria Road, Douglas IM2 4RW, Isle of Man, is licensed and regulated in Great Britain by the Gambling Commission under %1account no. 39172%3 and by the Gambling Supervision Commission in the Isle of Man (%2view licence%3)."
-msgstr "Deriv (MX) Ltd, Millennium House, Level 1, Victoria Road, Douglas IM2 4RW ในเกาะไอล์ออฟแมน ได้รับอนุญาตและควบคุมในสหราชอาณาจักรโดยคณะกรรมาธิการการพนันภายใต้ %1จํานวน 39172%3 และโดยคณะกรรมการกํากับดูแลการพนันในเกาะแมน (%2ดูใบอนุญาต%3)"
-
-msgid "Deriv (MX) Ltd."
-msgstr "Deriv (MX) Ltd"
-
-msgid "Deriv (MX) Ltd: the Isle of Man"
-msgstr "Deriv (MX) Ltd: เกาะไอล์ออฟแมน"
 
 msgid "Deriv (SVG) LLC"
 msgstr "Deriv (SVG) LLC"
@@ -3971,17 +3947,17 @@ msgstr "Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun
 msgid "Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta, is licensed in Malta and regulated by the Malta Financial Services Authority under the Investments Services Act to provide investment services in the European Union (%1licence no. IS/70156%2). It is also authorised and subject to limited regulation by the Financial Conduct Authority in the UK. Details about the extent of our authorisation and regulation by the Financial Conduct Authority are available from us on request."
 msgstr "Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta, ได้รับอนุญาตในมอลตาและได้รับอนุญาตจาก Malta Financial Services Authority ภายใต้พระราชบัญญัติบริการการลงทุนเพื่อให้บริการการลงทุนในสหภาพยุโรป (%1ใบอนุญาตหมายเลข IS/70156%2) นอกจากนี้ยังได้รับอนุญาตและอยู่ภายใต้กฎระเบียบที่ จํากัด โดยหน่วยงานกํากับดูแลทางการเงินในสหราชอาณาจักร รายละเอียดเกี่ยวกับขอบเขตของการอนุญาตและข้อบังคับของเราโดยหน่วยงานกํากับดูแลทางการเงินมีให้จากเราตามคําขอ"
 
-msgid "Deriv Investments (Europe) Limited, or"
-msgstr "Deriv Investments (Europe) Limited หรือ"
-
 msgid "Deriv Investments (Europe) Limited."
 msgstr "Deriv Investments (Europe) Limited."
 
 msgid "Deriv Limited"
 msgstr "Deriv Limited"
 
-msgid "Deriv Limited, with registered office at 47 Esplanade, St Helier, Jersey JE1 0BD, Channel Islands, is the holding company for the subsidiaries listed below."
-msgstr "Deriv Limited ขึ้นทะเบียนที่อยู่สำนักงานที่ 47 Esplanade, St. Helier, Jersey, JE1 0BD Channel Islands เป็นบริษัทผู้ถือหุ้นของสาขาที่แสดงด้านล่าง"
+msgid "Deriv Limited — 13 Castle Street, St. Helier, JE2 3BT, Jersey — is the holding company for the above subsidiaries."
+msgstr "Deriv Limited — 13 Castle Street, เซนต์เฮลเยอร์, ​​JE2 3BT, เจอร์ซีย์ — เป็นบริษัทโฮลดิ้งสำหรับบริษัท ย่อยข้างต้น"
+
+msgid "Deriv Limited, with registered office at 13 Castle Street, St. Helier, JE2 3BT, Jersey, is the holding company for the subsidiaries listed below."
+msgstr "Deriv Limited ขึ้นทะเบียนที่อยู่สำนักงานที่ 13 Castle Street, St. Helier, Jersey, JE1 0BD Channel Islands เป็นบริษัทผู้ถือหุ้นของสาขาที่แสดงด้านล่าง"
 
 msgid "Deriv.com launched"
 msgstr "Deriv.com เปิดตัว"
@@ -6404,9 +6380,6 @@ msgstr "ในตลาดแลกเปลี่ยนเงินตรา �
 msgid "In light of the EU General Data Protection Regulation 2016/679 and the Data Protection Act 2018, the applicant is entitled to the following rights with regards to the applicant's personal data:"
 msgstr "ภายใต้กฎข้อบังคับด้านการป้องกันข้อมูลทั่วไปของสหภาพยุโรป 2016/679 และพระราชบัญญัติการป้องกันข้อมูลปี 2018 ผู้สมัครมีสิทธิได้รับสิทธิดังต่อไปนี้เกี่ยวกับข้อมูลส่วนบุคคลของผู้สมัคร:"
 
-msgid "In order for a UK resident to make use of the demo account, the client will first have to be age-verified. The client will also need to be fully verified before making use of the real money account. Verification can be done electronically or through submission of KYC documents."
-msgstr "เพื่อให้ผู้มีถิ่นที่อยู่ในสหราชอาณาจักรใช้ประโยชน์จากบัญชีทดลองใช้ลูกค้าจะต้องได้รับการยืนยันอายุก่อน ลูกค้าจะต้องได้รับการตรวจสอบอย่างเต็มที่ก่อนที่จะใช้บัญชีเงินจริง การตรวจสอบสามารถทําได้ทางอิเล็กทรอนิกส์หรือผ่านการส่งเอกสาร KYC"
-
 msgid "In order to access Telegram Bot, please %1generate an API Token%2 and enter it in the input box below."
 msgstr "เพื่อใช้งานเทเลแกรมอัตโนมัติ (Telegram Bot) โปรด%1สร้างโทเค่น API%2 และบันทึกค่าในช่องด้านล่าง"
 
@@ -6451,9 +6424,6 @@ msgstr "ในสหภาพยุโรปผลิตภัณฑ์ทาง
 
 msgid "In the EU, financial products are offered by Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara, BKR 9033, Malta, regulated as a Category 3 Investment Services provider by the Malta Financial Services Authority (%1licence no. IS/70156%2)."
 msgstr "ในสหภาพยุโรป ผลิตภัณฑ์ทางการเงินมีให้บริการโดย Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara, BKR 9033 ประเทศมอลตาได้รับการควบคุมโดยผู้ให้บริการการลงทุนประเภทที่ 3 Malta Financial Services Authority (%1liใบอนุญาตหมายเลข IS/70156%2)"
-
-msgid "In the Isle of Man and the UK, virtual-events-based bets on synthetic indices are offered by Deriv (MX) Ltd, Millennium House, Level 1, Victoria Road, Douglas IM2 4RW, Isle of Man; licensed and regulated in Great Britain by (1) the Gambling Commission under %1account no. 39172%3 and by (2) the Gambling Supervision Commission in the Isle of Man (%2view licence%3)."
-msgstr "ในเกาะแมนและสหราชอาณาจักร เหตุการณ์เสมือนจริงที่อิงจากดัชนีสังเคราะห์ที่เสนอโดย Deriv (MX) Ltd, Millennium House, Level 1, Victoria Road, Douglas IM2 4RW ในเกาะไอล์ออฟแมน ได้รับอนุญาตและควบคุมในสหราชอาณาจักรโดย (1) คณะกรรมาธิการการพนันภายใต้ %1จํานวน 39172%3 และโดย (2) คณะกรรมการกํากับดูแลการพนันในเกาะแมน (%2ดูใบอนุญาต%3)"
 
 msgid "In the UK, our clients trade through Deriv (MX) Ltd and Deriv Investments (Europe) Limited. In the Isle of Man, they trade through Deriv (MX) Ltd. In the European Union (except UK), they trade through Deriv (Europe) Limited and Deriv Investments (Europe) Limited. In the rest of the world, they trade through Deriv (SVG) LLC, Deriv (V) Ltd, Deriv (BVI) Ltd and Deriv (FX) Ltd."
 msgstr "ในสหราชอาณาจักรลูกค้าของเราซื้อขายผ่าน Deriv (MX) Ltd และ Deriv Investments (Europe) Limited ในเกาะไอล์ออฟแมน พวกเขาซื้อขายผ่าน Deriv (MX) Ltd ในสหภาพยุโรป (ยกเว้นสหราชอาณาจักร) พวกเขาซื้อขายผ่าน Deriv (Europe) Limited และ Deriv Investments (Europe) Limited ในส่วนประเทศอื่นๆ พวกเขาซื้อขายผ่าน Deriv (SVG) LLC, Deriv (V) Ltd, Deriv (BVI) Ltd และ Deriv (FX) Ltd"
@@ -10377,6 +10347,9 @@ msgstr "หากข้อกำหนดใดๆ ข้อหนึ่งข�
 msgid "Should be %1"
 msgstr "ควรเป็น %1"
 
+msgid "Should be 1"
+msgstr "ควรเป็น 1"
+
 msgid "Should be a valid number."
 msgstr "ควรเป็นตัวเลขที่ถูกต้อง"
 
@@ -10580,6 +10553,9 @@ msgstr "เวลาเริ่ม"
 
 msgid "Start trading"
 msgstr "เริ่มซื้อขาย"
+
+msgid "Start using Deriv with your Binary.com email and password."
+msgstr "เริ่มใช้ Deriv ด้วยอีเมลและรหัสผ่าน Binary.com ของคุณ"
 
 msgid "State Benefits"
 msgstr "ผลประโยชน์ของรัฐ"
@@ -11388,8 +11364,8 @@ msgstr "บริษัทฯ ไม่ส่งเสริมพฤติก�
 msgid "The Company endeavours to open or close the transaction to which the client's Order relates at a price reasonably available to the Company, acting in accordance with the Company's duty of best execution. Best execution means that, when executing Orders, the Company must take all sufficient steps to obtain the best possible result for the client, taking into account the price, costs, speed, likelihood of execution and settlement, size, nature, or any other consideration relevant to the execution of the Order."
 msgstr "บริษัทฯ พยายามที่จะเปิด หรือปิดธุรกรรมของการสั่งซื้อของลูกค้าในราคาสมเหตุสมผลที่บริษัทฯ มี ด้วยการปฏิบัติหน้าที่ในการดำเนินการที่ดีที่สุด การประมวลผลคำสั่งซื้อที่ดีที่สุด หมายถึง เมื่อประมวลผลคำสั่งซื้อ บริษัทฯ จะดำเนินการตามขั้นตอนทั้งหมด เพื่อให้ได้ผลลัพธ์ที่ดีที่สุดแก่ลูกค้า โดยพิจารณาราคา ต้นทุน ความเร็ว ความเป็นไปได้ในการประมวลผลและการชำระราคา ขนาด ลักษณะ หรือ ข้อพิจารณาอื่นๆ ที่เกี่ยวข้องกับการประมวลผลคำสั่งซื้อ"
 
-msgid "The Company has a Stop Out policy which prevents the client from losing more than they have deposited. However, in the event that the client's Open Positions are not closed when the Margin Level for their MT5 Real Account reaches the Stop Out Level, the Company, at its sole discretion, may waive the client's negative balance by crediting their account if their Account Balance goes into a negative balance. The negative balance is determined by aggregating all the negative balances incurred over a 24-hour period across all accounts held by the client. The client acknowledges that, unless they are a retail customer of Deriv Investments (Europe) Limited or a retail customer residing in Australia, the offer of the negative balance protection by the Company to the client is at the Company's sole discretion and the Company reserves the right to change the features and eligibility criteria of the negative balance protection at any time. The provisions of the negative balance protection do not apply in the following situations:"
-msgstr "บริษัทมีนโยบายการยุติการซื้อขาย ซึ่งป้องกันไม่ให้ลูกค้าสูญเสียเงินมากกว่าจำนวนที่ฝากไว้ อย่างไรก็ตาม ในกรณีที่ตำแหน่งเปิดของลูกค้าไม่ถูกปิดเมื่อระดับมาร์จิ้นของบัญชี MT5 จริงไปถึงระดับยุติการซื้อขาย บริษัทอาจละเว้นยอดคงเหลือที่ติดลบของลูกค้า โดยการเครดิตบัญชีของลูกค้าหากยอดคงเหลือในบัญชีติดลบ ยอดคงเหลือติดลบจะถูกพิจารณา โดยการคำนวณรวมยอดคงเหลือติดลบทั้งหมดที่เกิดขึ้นในทุกๆ บัญชีของลูกค้าภายในระยะเวลา 24 ชั่วโมง ลูกค้ายอมรับว่า เว้นแต่ลูกค้าเป็นลูกค้ารายย่อยของ Deriv Investments (Europe) Limited หรือลูกค้ารายย่อยที่อาศัยอยู่ในออสเตรเลีย ข้อเสนอกลไกการป้องกันยอดคงเหลือติดลบของบริษัทที่ให้แก่ลูกค้านี้ จะเป็นไปตามดุลยพินิจของบริษัทเท่านั้น และบริษัทสงวนสิทธิ์ในการเปลี่ยนแปลงคุณลักษณะและหลักเกณฑ์การคัดเลือกของกลไกการป้องกันยอดคงเหลือติดลบเมื่อใดก็ได้ หากแต่จะไม่มีบริการป้องกันยอดคงเหลือติดลบในสถานการณ์ดังต่อไปนี้:"
+msgid "The Company has a Stop Out policy which prevents the client from losing more than they have deposited. If the client’s balance becomes negative due to Stop Out, an automatic compensation will revert the client’s balance to zero. The client acknowledges that, unless they are a retail customer of Deriv Investments (Europe) Limited or a retail customer residing in Australia, the offer of the negative balance protection by the Company to the client is at the Company's sole discretion and the Company reserves the right to change the features and eligibility criteria of the negative balance protection at any time. The provisions of the negative balance protection do not apply in the following situations:"
+msgstr "บริษัทมีนโยบาย Stop Out ซึ่งป้องกันไม่ให้ลูกค้าสูญเสียมากกว่าที่ฝากไว้ หากยอดคงเหลือของลูกค้าติดลบเนื่องจาก Stop Out การชดเชยอัตโนมัติจะเปลี่ยนยอดคงเหลือของลูกค้าเป็นศูนย์ ลูกค้ารับทราบว่า เว้นแต่พวกเขาจะเป็นลูกค้ารายย่อยของ Deriv Investments (Europe) Limited หรือลูกค้ารายย่อยที่อาศัยอยู่ในออสเตรเลีย ข้อเสนอการคุ้มครองยอดคงเหลือติดลบโดยบริษัทให้กับลูกค้านั้นขึ้นอยู่กับดุลยพินิจของบริษัทแต่เพียงผู้เดียว และบริษัทขอสงวนสิทธิ์ สิทธิ์ในการเปลี่ยนแปลงคุณสมบัติและเกณฑ์คุณสมบัติของการคุ้มครองยอดคงเหลือติดลบได้ตลอดเวลา บทบัญญัติของการคุ้มครองยอดคงเหลือติดลบใช้ไม่ได้ในสถานการณ์ต่อไปนี้:"
 
 msgid "The Company has a general duty to conduct its business with the client honestly, fairly, and professionally and to act in the client's best interests when opening and closing binary options trades with the client."
 msgstr "บริษัทฯ มีหน้าที่ทั่วๆ ไป ในการจัดการธุรกิจของเรากับลูกค้าด้วยความซื่อสัตย์ เป็นธรรม และอย่างมืออาชีพ และเพื่อปฏิบัติอย่างเหมาะสมที่สุดเพื่อดำเนินการในการเปิดและปิดการซื้อขายไบนารีออปชั่นกับลูกค้า"
@@ -11418,8 +11394,8 @@ msgstr "บริษัทฯ รักษาข้อมูลส่วนบ�
 msgid "The Company holds customer funds in bank accounts separate from the operational accounts, and arrangements have been made to ensure that the assets in the customer accounts will be distributed to the customers in the event of insolvency."
 msgstr "บริษัทฯ ดูแลหลักประกันของลูกค้าในบัญชีที่ถูกจัดสรรแยกจากบัญชีปฏิบัติการ และได้จัดการเพื่อให้แน่ใจว่า สินทรัพย์ของบัญชีลูกค้าจะถูกจำหน่ายให้แก่ลูกค้า หากมีภาวะล้มละลาย"
 
-msgid "The Company holds customer funds in bank accounts separate from the operational accounts. Deriv (MX) Ltd & Deriv (Europe) Limited have arrangements in place so that in the event of insolvency they are able to meet their obligations to clients. These arrangements are in the form of a loan agreement between each respective company and the parent company, Deriv Limited, this loan will always at minimum cover the client liabilities. This meets the Gambling Commission's requirements for the segregation of customer funds at the level of medium protection."
-msgstr "บริษัทเก็บเงินของลูกค้าไว้ในบัญชีธนาคารแยกจากบัญชีปฏิบัติงาน Deriv (MX) Ltd & Deriv (Europe) Limited ได้ดำเนินการ หากในกรณีที่มีการล้มละลาย พวกเขาสามารถปฏิบัติตามภาระหน้าที่ต่อลูกค้าได้ ข้อตกลงเหล่านี้อยู่ในรูปแบบของสัญญาเงินกู้ระหว่างแต่ละบริษัทที่เกี่ยวข้องกับบริษัทแม่ Deriv Limited เงินกู้นี้จะครอบคลุมหนี้สินของลูกค้าเป็นอย่างน้อย เพื่อเป็นไปตามข้อกำหนดของ Gambling Commission สำหรับการแยกเงินทุนของลูกค้าในระดับการป้องกันระดับกลาง"
+msgid "The Company holds customer funds in bank accounts separate from the operational accounts. Deriv (Europe) Limited has arrangements in place so that in the event of insolvency, it is able to meet its obligations to clients. These arrangements are in the form of a loan agreement between Deriv (Europe) Limited and the parent company, Deriv Limited. This loan will always at minimum cover the client liabilities. This meets the Gambling Commission's requirements for the segregation of customer funds at the level of medium protection."
+msgstr "บริษัทถือเงินลูกค้าในบัญชีธนาคารแยกจากบัญชีปฏิบัติการ Deriv (Europe) Limited มีการเตรียมการเพื่อที่ว่าในกรณีของการล้มละลาย บริษัทสามารถปฏิบัติตามภาระผูกพันที่มีต่อลูกค้าได้ ข้อตกลงเหล่านี้อยู่ในรูปแบบของสัญญาเงินกู้ระหว่าง Deriv (Europe) Limited และบริษัทแม่ Deriv Limited เงินกู้นี้จะครอบคลุมหนี้สินของลูกค้าเป็นอย่างน้อย เป็นไปตามข้อกำหนดของ Gambling Commission สำหรับการแยกเงินของลูกค้าในระดับการป้องกันปานกลาง"
 
 msgid "The Company is an independent legal entity and is not affiliated with the MT5 trading platform. MT5 is not owned, controlled, or operated by the Company. Therefore, the Company does not provide any warranties related to any MT5 product or service and has not reviewed or verified any performance results that may be presented and/or described on this website in relation to MT5."
 msgstr "บริษัทฯ เป็นหน่วยงานอิสระทางกฎหมายและไม่มีความผูกพันต่อระบบซื้อขาย MT5 บริษัทฯ ไม่ได้เป็นเจ้าของ เป็นผู้ควบคุม หรือ ดำเนินการใดๆ ในแพลตฟอร์ม MT5 ดังนั้น บริษัทฯ จะไม่รับประกันใดๆ ต่อผลิตภัณฑ์หรือบริการที่เกี่ยวข้องกับระบบซื้อขาย MT5 รวมถึงบริษัทฯ ไม่ได้มีส่วนในการทวนสอบ หรือ ตรวจสอบศักยภาพการให้บริการของระบบซื้อขาย MT5 ซึ่งถูกแสดง และ/หรือ อธิบายไว้ในเว็บไซต์ที่เกี่ยวข้องกับระบบซื้อขาย MT5"
@@ -13238,6 +13214,9 @@ msgstr "ซื้อขายโลหะด้วยสเปรดคงที
 msgid "Trade now"
 msgstr "ซื้อขายทันที"
 
+msgid "Trade on Deriv"
+msgstr "เทรดบน Deriv"
+
 msgid "Trade on underlying markets that include forex, stock indices, commodities, and more."
 msgstr "ซื้อขายในตลาดอ้างอิงซึ่งรวมถึงฟอเร็กซ์ ดัชนีหุ้น หุ้นโภคภัณฑ์ และอื่นๆ"
 
@@ -13889,8 +13868,8 @@ msgstr "ยืนยันตัวตน"
 msgid "Verify your identity"
 msgstr "ยืนยันตัวตนของคุณ"
 
-msgid "Version 50. Last modified 06-10-2021."
-msgstr "เวอร์ชัน 50 แก้ไขล่าสุดเมื่อ 06-10-2021"
+msgid "Version 52. Last modified 26-11-2021."
+msgstr "เวอร์ชัน 52 แก้ไขล่าสุดเมื่อ 26-11-2021"
 
 msgid "Video Room Facility"
 msgstr "ห้องวีดีโอ"
@@ -14030,8 +14009,8 @@ msgstr "เรามักจะให้ลูกค้าของเราม
 msgid "We are PayOps, part of the Compliance department. Our team emphasizes business development by implementing the payment strategy for the Deriv group of companies in collaboration with the Marketing team."
 msgstr "เราเป็น PayOps ซึ่งเป็นส่วนหนึ่งของแผนกการปฏิบัติตามกฎระเบียบ ทีมของเราเน้นการพัฒนาธุรกิจโดยใช้กลยุทธ์การชำระเงินสำหรับเครือ Deriv ของบริษัทร่วมกับทีมการตลาด"
 
-msgid "We are licensed and regulated in the British Isles and in Malta since 2015."
-msgstr "พวกเราได้รับใบอนุญาตเและและการรับรองการค้าตามกฎหมายในสหราชอาณาจักร และประเทศมอลตา ตั้งแต่ พ.ศ. 2558 (ค.ศ. 2015)"
+msgid "We are licensed and regulated in Malta since 2015."
+msgstr "เราได้รับใบอนุญาตและควบคุมในมอลตาตั้งแต่ปี 2015"
 
 msgid "We are registered with the Financial Commission, an international independent organisation dedicated to resolving disputes within the financial services industry (%1view membership%2)."
 msgstr "เราจดทะเบียนกับคณะกรรมการการเงิน ซึ่งเป็นองค์กรอิสระระหว่างประเทศที่อุทิศตนเพื่อแก้ไขข้อพิพาทภายในอุตสาหกรรมบริการทางการเงิน (%1ดูสมาชิก%2)"
