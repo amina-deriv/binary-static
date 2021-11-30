@@ -1,6 +1,7 @@
-import React from 'react'
-            const localize = require('../../../../_common/localize').localize;
-            const content = [
+import React from 'react';
+
+        const localize = require('../../../../_common/localize').localize;
+        const content = [
  localize("Visa"),
  localize("Deposit and withdraw using your Visa credit or debit card."),
  localize("Credit/debit cards"),
@@ -342,11 +343,11 @@ import React from 'react'
  localize("5 - 30 minutes"),
  localize("Not Available"),
  localize("Not Available"),
- localize("Not Available")]
-            const paymentMethodsTranslation = ()=> {
-                 return (
-                         <>{content}</>
-                        )
-            }
+ localize("Not Available")];
+        const paymentMethodsTranslation = ()=> {
+            return (
+                <>{content}</>
+                )
+        };
             
-             export default paymentMethodsTranslation
+         export default paymentMethodsTranslation

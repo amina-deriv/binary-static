@@ -307,16 +307,17 @@ fs.createReadStream(source_path)
                 ])
         })
         const page_content =
-            `import React from 'react'
-            const localize = require('../../../../_common/localize').localize;
-            const content = [${dataToTranslate}]
-            const paymentMethodsTranslation = ()=> {
-                 return (
-                         <>{content}</>
-                        )
-            }
+            `import React from 'react';
+
+        const localize = require('../../../../_common/localize').localize;
+        const content = [${dataToTranslate}];
+        const paymentMethodsTranslation = ()=> {
+            return (
+                <>{content}</>
+                )
+        };
             
-             export default paymentMethodsTranslation`;
+         export default paymentMethodsTranslation`;
 
         fs.writeFile(translation_output_path, page_content, 'utf8', () => console.log(`\n Translation file generated at ${translation_output_path}`));// eslint-disable-line no-console
 
