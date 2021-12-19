@@ -294,10 +294,24 @@
             #btn_cancel {
                 span {
                     width: calc(100% - 50px);
+                    @media screen and (max-width: 400px) {
+                        font-size: small;
+                        width: calc(100% - 38px);
+                        padding-left: 13px;
+                    }
                 }
             }
             #btn_ok {
                 width: calc(100% - 25px);
+                @media screen and (max-width: 400px) {
+                    font-size: small;
+                }
+            }
+            .hint {
+                padding-right: 10px;
+                @media screen and (max-width: 400px) {
+                    padding: 0 1px 6px 0;
+                }
             }
             &#dialog_content {
                 padding: 22px 12px;
@@ -324,6 +338,13 @@
 
                 .button span {
                     width: calc(50% - 55px);
+                }
+                #btn_cancel, #btn_ok {
+                    width: calc(100% - 25px);
+
+                    span {
+                        width: 50%;
+                    }
                 }
             }
         }
