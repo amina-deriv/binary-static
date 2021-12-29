@@ -249,6 +249,7 @@ const DepositWithdraw = (() => {
         const response_get_account_status = State.get(['response', 'get_account_status']);
         if (!response_get_account_status.error) {
             const is_crypto = Currency.isCryptocurrency(Client.get('currency'));
+            const needs_verification =  response_get_account_status.get_account_status.authentication.needs_verification;
             if (/cashier_locked/.test(response_get_account_status.get_account_status.status)) {
                 if (/system_maintenance/.test(response_get_account_status.get_account_status.cashier_validation)) {
                     if (is_crypto) {
@@ -276,6 +277,10 @@ const DepositWithdraw = (() => {
                 }
                 if (/ASK_TIN_INFORMATION/.test(response_get_account_status.get_account_status.cashier_validation)) {
                     showError('tin_error');
+                    return;
+                }
+                if (/ASK_AUTHENTICATE/.test(response_get_account_status.get_account_status.cashier_validation) && needs_verification.length === 1 && needs_verification.includes('identity')) {
+                    showMessage('needs_identity_verification');
                     return;
                 }
                 if (/ASK_AUTHENTICATE/.test(response_get_account_status.get_account_status.cashier_validation) && Client.isAccountOfType('financial')) {
