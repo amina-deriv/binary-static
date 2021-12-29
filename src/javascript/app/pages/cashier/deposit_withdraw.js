@@ -249,7 +249,7 @@ const DepositWithdraw = (() => {
         const response_get_account_status = State.get(['response', 'get_account_status']);
         if (!response_get_account_status.error) {
             const is_crypto = Currency.isCryptocurrency(Client.get('currency'));
-            const needs_verification =  response_get_account_status.get_account_status.authentication.needs_verification;
+            const needs_verification = response_get_account_status.get_account_status.authentication.needs_verification;
             if (/cashier_locked/.test(response_get_account_status.get_account_status.status)) {
                 if (/system_maintenance/.test(response_get_account_status.get_account_status.cashier_validation)) {
                     if (is_crypto) {

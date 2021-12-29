@@ -391,10 +391,10 @@ const Header = (() => {
                 tnc                       : () => buildMessage(has_no_tnc_limit
                     ? localizeKeepPlaceholders('Please [_1]accept the updated Terms and Conditions[_2].')
                     : localizeKeepPlaceholders('Please [_1]accept the updated Terms and Conditions[_2] to lift your deposit and trading limits.'), 'user/tnc_approvalws'),
-                disabled               : () => localize('Your account is temporarily disabled. Please contact us via live chat to enable deposits and withdrawals again.'),
-                financial_risk_approval: () => localize('Please complete the Appropriateness Test to access your cashier.'),
-                ask_uk_funds_protection: () => buildMessageHref(localizeKeepPlaceholders('Your cashier is locked. See [_1]how we protect your funds[_2] before you proceed.'), `${Url.urlFor('cashier/forwardws')}?action=deposit`),
-                needs_identity_verification: () =>buildMessage( localizeKeepPlaceholders('Your account needs authentication. Please submit your [_1]proof of identity[_2] to access Cashier.'), 'user/authenticate')
+                disabled                   : () => localize('Your account is temporarily disabled. Please contact us via live chat to enable deposits and withdrawals again.'),
+                financial_risk_approval    : () => localize('Please complete the Appropriateness Test to access your cashier.'),
+                ask_uk_funds_protection    : () => buildMessageHref(localizeKeepPlaceholders('Your cashier is locked. See [_1]how we protect your funds[_2] before you proceed.'), `${Url.urlFor('cashier/forwardws')}?action=deposit`),
+                needs_identity_verification: () =>buildMessage(localizeKeepPlaceholders('Your account needs authentication. Please submit your [_1]proof of identity[_2] to access Cashier.'), 'user/authenticate'),
             };
 
             const validations = {
@@ -427,7 +427,7 @@ const Header = (() => {
                 disabled                   : () => hasStatus('disabled_status'),
                 financial_risk_approval    : () => hasStatus('ASK_FINANCIAL_RISK_APPROVAL'),
                 ask_uk_funds_protection    : () => hasStatus('ASK_UK_FUNDS_PROTECTION'),
-                needs_identity_verification: () => hasVerification('needs_identity_verification')
+                needs_identity_verification: () => hasVerification('needs_identity_verification'),
             };
 
             // real account checks in order
