@@ -238,10 +238,6 @@ const DepositWithdraw = (() => {
         }
 
         has_no_balance = +Client.get('balance') === 0;
-        if (cashier_type === 'withdraw' && has_no_balance) {
-            showError('no_balance_error');
-            return;
-        }
 
         await BinarySocket.send({ get_account_status: 1 });
         
@@ -340,6 +336,9 @@ const DepositWithdraw = (() => {
                     showError('custom_error', localize('Unfortunately, you can only make deposits. Please contact us via live chat to enable withdrawals.'));
                     return;
                 }
+            } else if (cashier_type === 'withdraw' && has_no_balance) {
+                showError('no_balance_error');
+                return;
             }
             const account_currency_config = getPropertyValue(response_get_account_status.get_account_status, ['currency_config', Client.get('currency')]) || {};
             if ((cashier_type === 'deposit' && account_currency_config.is_deposit_suspended) ||
