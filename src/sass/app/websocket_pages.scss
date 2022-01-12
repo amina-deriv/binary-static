@@ -312,19 +312,18 @@
             }
         }
         &#top_up_virtual_pop_up, &#top_up_error {
-            #btn_cancel {
-                span {
-                    width: calc(100% - 50px);
-                    @media screen and (max-width: 435px) {
-                        width: calc(100% - 1rem);
-                        font-size: small;
-                        padding: 10px;
-                    }
-                    @media screen and (max-width: 300px) {
-                        width: calc(100% - 0.625rem);
-                        font-size: x-small;
-                        padding: 10px;
-                    }
+           
+            #continue_text {
+                width: calc(100% - 50px);
+                @media screen and (max-width: 435px) {
+                    width: calc(100% - 1rem);
+                    font-size: small;
+                    padding: 10px;
+                }
+                @media screen and (max-width: 300px) {
+                    width: calc(100% - 0.625rem);
+                    font-size: x-small;
+                    padding: 10px;
                 }
             }
             #btn_ok {
