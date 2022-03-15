@@ -737,7 +737,7 @@ const MetaTraderUI = (() => {
         const should_set_trading_password = shouldSetTradingPassword();
         const is_synthetic = /gaming/.test(new_account_type);
 
-        $form.find('#msg_form').remove();
+        setTimeout(() => $form.find('#msg_form').setVisibility(0), 5000);
         $form.find('#mv_new_account div[id^="view_"]').setVisibility(0);
         $form.find(`#view_${step}`).setVisibility(1);
         $form.find('#view_3').find('.error-msg, .days-to-crack').setVisibility(0);
@@ -963,9 +963,11 @@ const MetaTraderUI = (() => {
 
         // disable next button and Synthetic option if all servers are used or unavailable
         const num_servers = populateTradingServers('real_gaming_financial');
-        if (/real/.test(selected_acc_type) && num_servers.supported === num_servers.used + num_servers.disabled) {
+        if (/(real|demo)/.test(selected_acc_type) && num_servers.supported === num_servers.used + num_servers.disabled) {
             disableButtonLink('.btn-next');
             $form.find('.step-2 #rbtn_gaming_financial').addClass('existed');
+            $form.find('.step-2 #rbtn_financial_financial').addClass('existed');
+            $form.find('.step-2 #rbtn_financial_financial_stp').addClass('existed');
         }
     };
 
