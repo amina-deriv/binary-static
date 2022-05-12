@@ -137,7 +137,7 @@ const Client = (() => {
                 redirection(response);
             });
         } else {
-            redirection(response);
+            setTimeout(() => {  redirection(response); }, 500);
         }
     };
 
