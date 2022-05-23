@@ -19,7 +19,6 @@ const IPHistoryUI = (() => {
         if (!patt.test(browser_string) && browser_string !== 'Unknown') {
             browser_string = 'Error';
         }
- 
         return [
             timestamp,
             action,
