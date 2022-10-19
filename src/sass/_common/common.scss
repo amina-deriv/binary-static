@@ -96,6 +96,14 @@ a.button-disabled {
     pointer-events: none;
 }
 
+.immutable-field {
+    color: $COLOR_GRAY;
+
+    &:hover {
+        border: 1px solid $COLOR_LIGHT_GRAY;
+    }
+}
+
 span.checked {
     background: url('../images/pages/authenticate/checked.svg') no-repeat;
     width: 16px;
