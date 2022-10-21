@@ -98,6 +98,7 @@ a.button-disabled {
 
 .immutable-field {
     -webkit-text-fill-color: $COLOR_BLACK; // to make disabled field normal one in ios
+    opacity: 1; /* required on iOS */
 
     &:hover {
         border: 1px solid $COLOR_LIGHT_GRAY;
