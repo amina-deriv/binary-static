@@ -20,6 +20,7 @@ const AddressDetailForm = (() => {
 
             getElementById(`${field.section}_section`).setVisibility(1);
             getElementById(`${field.id}_row`).setVisibility(1);
+            if (field.is_immutable) $(`#${field.id}`).attr('disabled', 'disabled').addClass('immutable-field');
         });
     };
 
