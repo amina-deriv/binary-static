@@ -97,9 +97,7 @@ a.button-disabled {
 }
 
 .immutable-field {
-    &:hover {
-        border: 1px solid $COLOR_LIGHT_GRAY;
-    }
+    pointer-events: none;
 }
 
 span.checked {
