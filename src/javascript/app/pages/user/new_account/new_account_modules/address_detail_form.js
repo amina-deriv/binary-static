@@ -21,6 +21,9 @@ const AddressDetailForm = (() => {
             getElementById(`${field.section}_section`).setVisibility(1);
             getElementById(`${field.id}_row`).setVisibility(1);
             if (field.is_immutable) $(`#${field.id}`).attr('disabled', 'disabled').addClass('immutable-field');
+            if (field.id === 'address_state' && field.is_immutable) {
+                $('#address_state').parent().css('pointer-events', 'none');
+            }
         });
     };
 
