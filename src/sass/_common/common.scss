@@ -98,7 +98,7 @@ a.button-disabled {
 
 .immutable-field {
     pointer-events: none;
-    -webkit-text-fill-color: $COLOR_BLACK; // to make disabled field normal one in ios
+    -webkit-text-fill-color: $COLOR_GRAY; // to make disabled field normal one in ios
     opacity: 1; /* required for iphone */
 }
 
