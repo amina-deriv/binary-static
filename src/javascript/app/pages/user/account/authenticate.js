@@ -1125,6 +1125,11 @@ const Authenticate = (() => {
         const country_code = selected_country.value;
         const { has_visual_sample, documents_supported } = selected_country.identity.services.idv;
 
+        if (country_code === 'in') {
+            delete documents_supported.aadhaar;
+            delete documents_supported.passport;
+        }
+        
         let document_type,
             document_number;
         
@@ -1299,7 +1304,9 @@ const Authenticate = (() => {
                 $('#idv_document_failed_upload_btn').setVisibility(0);
                 // If IDV has remaining attempt
                 if (Number(idv_submissions_left) > 0) {
-                    $('#idv_document_failed_try_again_btn').on('click', () => {
+                    $('#idv_document_failed_try_again_btn').on('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         $('#idv_document_failed').setVisibility(0);
                         handleCountrySelector();
                     });
@@ -1307,7 +1314,9 @@ const Authenticate = (() => {
                     $('#idv_document_failed_try_again_btn').setVisibility(0);
                     $('#idv_document_failed_text').setVisibility(1);
                     $('#idv_document_failed_upload_btn').setVisibility(1);
-                    $('#idv_document_failed_upload_btn').on('click', () => {
+                    $('#idv_document_failed_upload_btn').on('click', (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
                         $('#idv_document_failed').setVisibility(0);
                         if (Number(onfido_submissions_left) > 0) {
                             handleCountrySelector();
@@ -1376,7 +1385,7 @@ const Authenticate = (() => {
             case 'suspected':
             case 'rejected':
                 if (Number(submissions_left) < 1) {
-                    $('#limited_poi').setVisibility(1);
+                    handleManual();
                 } else {
                     const maximum_reasons = rejected_reasons.slice(0, 3);
                     const has_minimum_reasons = rejected_reasons.length > 3;
@@ -1438,13 +1447,32 @@ const Authenticate = (() => {
         }
     };
 
-    const handleManual = () => {
-        $('#idv-container').setVisibility(0);
+    const handleManual = async () => {
+        account_status = await getAccountStatus();
+        const { manual } = account_status.authentication.identity.services;
+        const { status } = manual;
         $('#authentication_tab').setVisibility(1);
-        $('#msg_personal_details').setVisibility(1);
         TabSelector.updateTabDisplay();
-        $('#not_authenticated_uns').setVisibility(1);
-        initUnsupported();
+
+        switch (status){
+            case 'none':
+                $('#idv-container').setVisibility(0);
+                $('#msg_personal_details').setVisibility(1);
+                $('#not_authenticated_uns').setVisibility(1);
+                initUnsupported();
+                break;
+            case 'pending':
+                $('#idv-container').setVisibility(0);
+                $('#upload_complete').setVisibility(1);
+                break;
+            case 'rejected':
+            case 'suspected':
+                $('#idv-container').setVisibility(0);
+                $('#limited_poi').setVisibility(1);
+                break;
+            default:
+                break;
+        }
     };
 
     const initAuthentication = async () => {

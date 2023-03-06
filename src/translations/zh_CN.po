@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: binary-static\n"
 "POT-Creation-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"PO-Revision-Date: 2022-11-15 14:13\n"
+"PO-Revision-Date: 2023-03-06 03:50\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "MIME-Version: 1.0\n"
@@ -1098,6 +1098,9 @@ msgstr "会计/支付"
 
 msgid "Accumulation of Income/Savings"
 msgstr "收入/储蓄积累"
+
+msgid "Accumulator"
+msgstr "累加器"
 
 msgid "Accuracy of information"
 msgstr "信息的准确性"
@@ -3180,7 +3183,7 @@ msgid "Continue with the verification"
 msgstr "继续验证操作"
 
 msgid "Continuous Indices – Choose from the Volatility 10 (1s) Index, Volatility 25 (1s) Index, Volatility 50 (1s) Index, Volatility 75 (1s) Index, Volatility 100 (1s) Index, Volatility 10 Index, Volatility 25 Index, Volatility 50 Index, Volatility 75 Index, and Volatility 100 Index. These indices correspond to simulated markets with constant volatilities of 10%, 25%, 50%, 75%, and 100% respectively."
-msgstr "连续指数 - 从波动率10(1s)指数、波动率25(1s)指数、波动率50(1s)指数、波动率75(1s)指数、波动率100(1s)指数、指数波动率10指数、波动率25指数、波动率50指数、波动率75指数及波动率100指数中挑选。这些指数跟具10%、25%、50%、75% 和100% 持续波动率的模拟市场对应。"
+msgstr "连续指数 - 从波动率10(1秒)指数、波动率25(1秒)指数、波动率50(1秒)指数、波动率75(1秒)指数、波动率100(1秒)指数、指数波动率10指数、波动率25指数、波动率50指数、波动率75指数及波动率100指数中挑选。这些指数跟具10%、25%、50%、75% 和100% 持续波动率的模拟市场对应。"
 
 msgid "Contract"
 msgstr "合约"
@@ -3391,6 +3394,9 @@ msgstr "开立新的演示账户"
 
 msgid "Create a cryptocurrency account"
 msgstr "开立加密货币账户"
+
+msgid "Create a demo account"
+msgstr "开立演示账户"
 
 msgid "Create a new Binary password."
 msgstr "创建新的 Binary 密码。"
@@ -3810,7 +3816,7 @@ msgid "Deriv (BVI) Ltd,"
 msgstr "Deriv (BVI) 有限公司,"
 
 msgid "Deriv (BVI) Ltd, Kingston Chambers, P.O. Box 173, Road Town, Tortola, British Virgin Islands. Licensed and regulated by the British Virgin Islands Financial Services Commission - %1view licence%2."
-msgstr "Deriv (BVI) 有限公司, Kingston Chambers, P.O. Box 173, Road Town, Tortola, British Virgin Islands. 由英属维尔京群岛的金融服务委员会授权和监管- %1查看许可证%2。"
+msgstr "Deriv (BVI) Ltd, Kingston Chambers, P.O. Box 173, Road Town, Tortola, British Virgin Islands. 由British Virgin Islands Financial Services Commission授权和监管- %1查看许可证%2。"
 
 msgid "Deriv (BVI) Ltd: British Virgin Islands"
 msgstr "Deriv (BVI) 有限公司: 英属维尔京群岛"
@@ -3828,7 +3834,7 @@ msgid "Deriv (FX) Ltd, Deriv BVI (Ltd), or"
 msgstr "Deriv (FX) 有限公司、Deriv BVI (有限公司) 或"
 
 msgid "Deriv (FX) Ltd., Lot No. F16, First Floor, Paragon Labuan, Jalan Tun Mustapha, 87000 Federal Territory of Labuan, Malaysia. Licensed and regulated by the Labuan Financial Services Authority to carry on a money-broking business %1(licence no. MB/18/0024)%2. A member of the %3Labuan Fintech Association%4."
-msgstr "Deriv (FX) 有限公司，地址是 Lot No. F16, First Floor, Paragon Labuan, Jalan Tun Mustapha, 87000 Federal Territory of Labuan, Malaysia。由纳闽金融服务管理局授予许可证执行资金经纪业务%1(许可证编号MB/18/0024)%2和监管。是%3纳闽 Fintech 协会%4的成员。"
+msgstr "Deriv (FX) Ltd., Lot No. F16, First Floor, Paragon Labuan, Jalan Tun Mustapha, 87000 Federal Territory of Labuan, Malaysia。由Labuan Financial Services Authority授予许可证执行资金经纪业务%1(许可证编号MB/18/0024)%2和监管。是%3Labuan Fintech Association%4的成员。"
 
 msgid "Deriv (FX) Ltd: Labuan, Territory of Malaysia"
 msgstr "Deriv (FX) 有限公司: 纳闽，马来西亚直辖区"
@@ -3840,10 +3846,10 @@ msgid "Deriv (SVG) LLC,"
 msgstr "Deriv (SVG) 有限责任公司,"
 
 msgid "Deriv (SVG) LLC, Hinds Buildings, Kingstown, St. Vincent and the Grenadines; company number 25299 BC 2019."
-msgstr "Deriv (SVG) 有限责任公司, Hinds Buildings, Kingstown, 圣文森特和格林纳丁斯; 公司编号：25299 BC 2019。"
+msgstr "Deriv (SVG) LLC, Hinds Buildings, Kingstown, St. Vincent and the Grenadines; 公司编号：25299 BC 2019。"
 
 msgid "Deriv (SVG) LLC: St. Vincent and the Grenadines"
-msgstr "Deriv (SVG) 有限责任公司: 圣文森特和格林纳丁斯"
+msgstr "Deriv (SVG) LLC: St. Vincent and the Grenadines"
 
 msgid "Deriv (V) Ltd"
 msgstr "Deriv (V) 有限公司"
@@ -3852,7 +3858,7 @@ msgid "Deriv (V) Ltd,"
 msgstr "Deriv (V) 有限公司，"
 
 msgid "Deriv (V) Ltd, Govant Building, Port Vila, PO Box 1276, Vanuatu, Republic of Vanuatu. Licensed and regulated by the Vanuatu Financial Services Commission - %1view licence%2."
-msgstr "Deriv (V) 有限公司，Govant Building, Port Vila, PO Box 1276, Vanuatu, Republic of Vanuatu。由瓦努阿图金融服务委员会授权和管理- %1查看许可证%2。"
+msgstr "Deriv (V) Ltd, Govant Building, Port Vila, PO Box 1276, Vanuatu, Republic of Vanuatu。由Vanuatu Financial Services Commission授权和管理- %1查看许可证%2。"
 
 msgid "Deriv (V) Ltd: Vanuatu"
 msgstr "Deriv (V) 有限公司: 瓦努阿图"
@@ -3873,7 +3879,7 @@ msgid "Deriv Investments (Europe) Limited has prepared the Financial disclosures
 msgstr "Deriv 投资 (欧洲) 有限公司已根据投资公司规则和指令编写了财务披露报告。请参阅此报告以了解我们作为市场参与者严格遵守市场纪律的方式。"
 
 msgid "Deriv Investments (Europe) Limited is a company established in Malta, at W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033. It is licensed in Malta and regulated by the Malta Financial Services Authority, Triq l-Imdina, Zone 1, Central Business District, Birkirkara CBD 1010, Malta, under the Investments Services Act to provide investment services in the European Union."
-msgstr "Deriv 投资 (欧洲) 有限公司在马耳他设立，地址是 W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033。由位于Triq l-Imdina, Zone 1, Central Business District, Birkirkara CBD 1010, Malta 的马耳他金融服务机构根据投资服务法令授予许可证并受其监管，在欧盟提供投资服务。"
+msgstr "Deriv Investments (Europe) Limited在马耳他设立，地址是 W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033。由Malta Financial Services Authority, Triq l-Imdina, Zone 1, Central Business District, Birkirkara CBD 1010, Malta根据投资服务法令授予许可证并受其监管，在欧盟提供投资服务。"
 
 msgid "Deriv Investments (Europe) Limited is entitled to provide services in another EU Member State through EU passporting rights. Refer to the map below for the list of EU countries that have access to %1 via EU passporting rights - freedom to provide cross border services."
 msgstr "Deriv 投资 (欧洲) 有限公司有权通过欧盟金融护照权利在另一欧盟成员国提供服务。请参阅以下地图查看有权通过欧盟金融护照（自由提供跨国界服务）权利访问%1的欧盟国家列表。"
@@ -3882,10 +3888,10 @@ msgid "Deriv Investments (Europe) Limited is required to collect your tax inform
 msgstr "Deriv 投资 (欧洲) 有限公司需要收集您的税务信息。"
 
 msgid "Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta, is licensed in Malta and authorised by the Malta Financial Services Authority under the Investments Services Act to provide investment services in the European Union."
-msgstr "Deriv 投资 (欧洲) 有限公司，W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta 在马耳他获得许可证，并根据《投资服务法》受马耳他金融服务管理局监管，可在欧盟提供投资服务。"
+msgstr "Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta 在马耳他获得许可证，并根据《投资服务法》受Malta Financial Services Authority监管，可在欧盟提供投资服务。"
 
 msgid "Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta, is licensed in Malta and regulated by the Malta Financial Services Authority under the Investments Services Act to provide investment services in the European Union (%1licence no. IS/70156%2). It is also authorised and subject to limited regulation by the Financial Conduct Authority in the UK. Details about the extent of our authorisation and regulation by the Financial Conduct Authority are available from us on request."
-msgstr "Deriv 投资 (欧洲) 有限公司，W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta 在马耳他获得许可证，并根据《投资服务法》受马耳他金融服务管理局监管，可在欧盟提供投资服务（ %1许可证编号 IS/70156%2）。同时也经由英国金融行为监管局授权并受其有限监管。我们可应要求提供有关金融行为监管局授权和监管范围的详细信息。"
+msgstr "Deriv Investments (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta 在马耳他获得许可证，并根据《投资服务法》受 Malta Financial Services Authority监管，可在欧盟提供投资服务（ %1许可证编号 IS/70156%2）。同时也经由英国Financial Conduct Authority授权并受其有限监管。我们可应要求提供有关金融行为监管局授权和监管范围的详细信息。"
 
 msgid "Deriv Investments (Europe) Limited."
 msgstr "Deriv 投资 (欧洲) 有限公司。"
@@ -4466,9 +4472,6 @@ msgstr "输入 MT5 密码以添加 %1 %2 账户。"
 msgid "Enter your document number"
 msgstr "输入文件号"
 
-msgid "Enter your email"
-msgstr "请输入电子邮件"
-
 msgid "Enter your mobile number:"
 msgstr "输入手机号："
 
@@ -4834,6 +4837,9 @@ msgstr "到期价格"
 
 msgid "Explanation"
 msgstr "说明"
+
+msgid "Explore Deriv"
+msgstr "探索 Deriv"
 
 msgid "Explore all the trading platforms, apps, and tools we offer"
 msgstr "探索我们提供的所有交易平台、应用程序和工具"
@@ -5458,6 +5464,9 @@ msgstr "前往 Deriv"
 
 msgid "Go to Deriv to add an MT5 account"
 msgstr "前往 Deriv 添加 MT5 账户"
+
+msgid "Go to Deriv to add an account"
+msgstr "前往 Deriv 添加账户"
 
 msgid "Go to MT5 download page"
 msgstr "前往 MT5 下载页面"
@@ -8183,9 +8192,6 @@ msgstr "在线"
 
 msgid "Online Personal Wealth Awards"
 msgstr "在线个人财富奖"
-
-msgid "Online Trading with %1"
-msgstr "%1网上交易"
 
 msgid "Online currency exchangers"
 msgstr "在线货币兑换"
@@ -13123,9 +13129,6 @@ msgstr "跟踪可能影响所有集团公司的法律和法规, 并对内部政�
 msgid "Trade"
 msgstr "交易"
 
-msgid "Trade 24/7, even on weekends."
-msgstr "全天均可交易，包括周末。"
-
 msgid "Trade Bitcoin, Ethereum, and Litecoin pairs without owning them. Our cryptocurrency pairs quote a cryptocurrency such as Bitcoin against a fiat currency, such as the US dollar."
 msgstr "不需拥有实物也能交易比特币、以太币和莱特币。我们的加密货币对报出例如比特币的加密货币与例如美元的法定货币的兑换价格。"
 
@@ -13901,31 +13904,31 @@ msgid "View your trading and withdrawal limits."
 msgstr "查看交易和取款限额。"
 
 msgid "Volatility 10 (1s) Index"
-msgstr "波动率 10 (1s) 指数"
+msgstr "波动率 10 (1秒) 指数"
 
 msgid "Volatility 10 Index"
 msgstr "波动率 10 指数"
 
 msgid "Volatility 100 (1s) Index"
-msgstr "波动率 100 (1s) 指数"
+msgstr "波动率 100 (1秒) 指数"
 
 msgid "Volatility 100 Index"
 msgstr "波动率 100 指数"
 
 msgid "Volatility 25 (1s) Index"
-msgstr "波动率 25 (1s) 指数"
+msgstr "波动率 25 (1秒) 指数"
 
 msgid "Volatility 25 Index"
 msgstr "波动率 25 指数"
 
 msgid "Volatility 50 (1s) Index"
-msgstr "波动率 50 (1s) 指数"
+msgstr "波动率 50 (1秒) 指数"
 
 msgid "Volatility 50 Index"
 msgstr "波动率 50 指数"
 
 msgid "Volatility 75 (1s) Index"
-msgstr "波动率 75 (1s) 指数"
+msgstr "波动率 75 (1秒) 指数"
 
 msgid "Volatility 75 Index"
 msgstr "波动率 75 指数"
@@ -14013,6 +14016,9 @@ msgstr "我们不以任何形式行贿，也不允许其他任何人代表我们
 
 msgid "We expect our business partners as well as our employees to abide by these same values. This Code explains how the Business Principles apply to you. It is intended to provide you with a clear and straightforward summary of the main points. You should read it together with the Payment Agent Terms and Conditions, the Affiliate Programme Terms and Conditions, and the more detailed policies and product descriptions, that appear on our website."
 msgstr "希望业务合作伙伴以及员工与我们一同遵守这些价值观。本准则说明了对您适用的业务原则。它旨在清晰和直接地为您提供所有要点的摘要。您须与网站提供的付款代理条款和条件、联盟计划条款和条件以及更详细的政策和产品说明一起阅读其内容。"
+
+msgid "We have a new home: Deriv"
+msgstr "我们有了新家：Deriv"
 
 msgid "We have a proven track record since we launched our platform in 2000."
 msgstr "自2000年推出平台以来，我们保持良好的经营纪录。"
@@ -14181,6 +14187,9 @@ msgstr "具备良好的组织、行政和会计技能"
 
 msgid "We’ll update your limits. Click %1Agree and accept%2 to acknowledge that you are fully responsible for your actions, and we are not liable for any addiction or loss."
 msgstr "将更新您的限额。单击％1同意和接受％2以确认您对自己的行为负全部责任。如果您因此而上瘾或蒙受损失，我们将不承担任何责任。"
+
+msgid "We’ve rebranded the online trading space by offering new innovative products, intuitive platforms, and outstanding services."
+msgstr "通过提供新的创新产品、直观的平台和卓越的服务，我们重塑了在线交易领域的品牌。"
 
 msgid "We’ve sent you an email"
 msgstr "已给您发送电子邮件"
@@ -14836,8 +14845,8 @@ msgstr "已成功将账户币种设置为 %1 。"
 msgid "You have the opportunity to %1set and amend limits%2 on your trading activities on this website. Available limits are:"
 msgstr "有机会％1设置和修改限制％2自己在此网站交易。可用的限额为："
 
-msgid "You have to register and get App ID before you can use different OAuth server for authentication. For more information refer to OAuth details on https://developers.binary.com/."
-msgstr "使用各OAuth服务器进行验证前须先注册并领取应用程序ID。欲知详情，请到https://developers.binary.com/参阅 OAuth信息。"
+msgid "You have to register and get App ID before you can use different OAuth server for authentication. For more information refer to OAuth details on https://api.deriv.com/docs."
+msgstr "您必须先注册并获取应用程序 ID，然后才能使用不同的 OAuth 服务器进行身份验证。欲了解更多信息，请参阅 https://api.deriv.com/docs 上的 OAuth 详细信息。"
 
 msgid "You may also instruct us to exclude you from trading on %1 for a specific period of time. This self-exclusion date cannot be amended once it is set."
 msgstr "还可以指示我们在指定时期内禁止您在%1交易。设定好之后，该自我禁止日期不能修改。"
@@ -15452,5 +15461,5 @@ msgid "{SPAIN ONLY}You are about to purchase a product that is not simple and ma
 msgstr "{SPAIN ONLY}You are about to purchase a product that is not simple and may be difficult to understand: Contracts for difference and forex. As a general rule, the CNMV considers that such products are not appropriate for retail clients, due to their complexity."
 
 msgid "“Deriv (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta, is licensed and regulated for digital options on synthetic indices by the Malta Gaming Authority in Malta (%1licence no. MGA/B2C/102/2000%2) and by Revenue Commissioners for clients in Ireland (licence no. 1010285)."
-msgstr "“Deriv (欧洲) 有限公司, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta, 综合指数的数字期权由位于马耳他的马耳他博彩局授予牌照和监管（%1牌照号MGA/B2C/102/2000%2），及爱尔兰客户由税务局授予牌照和监管 (牌照号: 1010285)。"
+msgstr "“Deriv (Europe) Limited, W Business Centre, Level 3, Triq Dun Karm, Birkirkara BKR 9033, Malta, 综合指数的数字期权由位于马耳他的Malta Gaming Authority授予牌照和监管（%1牌照号MGA/B2C/102/2000%2），及爱尔兰客户由Revenue Commissioners授予牌照和监管 (牌照号: 1010285)。"
 
